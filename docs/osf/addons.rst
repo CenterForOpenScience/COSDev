@@ -12,6 +12,7 @@ Notes and gotchas
 - `to_json` returns the mako context for the settings pages
 - Log templates: the `id` of each script tag correspond to log actions.
 - Don't forget to do error handling! This includes handling errors that might occur if 3rd party HTTP APIs cause a failure and any exceptions that a client library might raise
+- Any static assets that you put in ``website/addons/<addon_name>/static/`` will be served from ``/static/addons/<addon_name>/``. This means that ``<link>`` and ``<script>`` tags should always point to URLs that begin with ``/static/``.
 
 Installing Addons
 *****************
