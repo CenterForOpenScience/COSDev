@@ -10,3 +10,4 @@ Use the following checklist to make sure your pull request can be reviewed and m
 - Your code must be sufficiently documented. Add docstrings to new classes, functions, and methods.
 - Your code must be passing on TravisCI.
 - On Github, rename your pull request with the prefix "Feature: " or "Hotfix", as appropriate.
+- Feel free to reference relevant Github issues in the PR description.
