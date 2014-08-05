@@ -118,7 +118,7 @@ If you have intentionally have an unused import that exists only to make imports
 String formatting
 *****************
 
-Prefer `str.format` to "%-style" formatting.
+Prefer ``str.format`` to "%-style" formatting.
 
 .. code-block:: python
 
@@ -137,6 +137,8 @@ Documentation
 Follow  `PEP257`_'s docstring guidelines. `reStructured Text <http://docutils.sourceforge.net/docs/user/rst/quickref.html>`_ and `Sphinx <http://sphinx-doc.org/>`_ can help to enforce these standards.
 
 Use one-line docstrings for obvious functions.
+
+::
 
     """Return the pathname of ``foo``."""
 
@@ -236,6 +238,8 @@ Unit Tests
 - Should be fast, but a slow test is better than no test.
 - It often makes sense to have one testcase class for a single class or model.
 
+.. code-block:: python
+
     import unittest
     import factories
 
@@ -244,7 +248,7 @@ Unit Tests
             self.person = factories.PersonFactory()
 
         def test_has_age_in_dog_years(self):
-            self.assertEqual(self.person.dog_years, self.person.age / 7)
+             assert self.person.dog_years == self.person.age / 7
 
 Functional Tests
 ----------------
@@ -254,18 +258,20 @@ Functional tests are higher level tests that are closer to how an end-user would
 - Write tests as scenarios. Testcase and test method names should read like a scenario description.
 - Use comments to write out stories, *before writing the test code*.
 
-        class TestAUser(unittest.TestCase):
-            def test_can_write_a_blog_post(self):
-                # Goes to the her dashboard
-                ...
-                # Clicks "New Post"
-                ...
-                # Fills out the post form
-                ...
-                # Clicks "Submit"
-                ...
-                # Can see the new post
-                ...
+.. code-block:: python
+
+    class TestAUser(unittest.TestCase):
+        def test_can_write_a_blog_post(self):
+            # Goes to the her dashboard
+            ...
+            # Clicks "New Post"
+            ...
+            # Fills out the post form
+            ...
+            # Clicks "Submit"
+            ...
+            # Can see the new post
+            ...
 
 Notice how the testcase and test method read together like "Test A User can write a blog post".
 

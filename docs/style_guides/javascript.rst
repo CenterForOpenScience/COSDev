@@ -7,8 +7,8 @@ Style
 Follow `Felix's Node Style <https://github.com/felixge/node-style-guide>`_ and `airbnb's Style Guide <https://github.com/airbnb/javascript>`_ with a few exceptions:
 
 - Use **4 spaces** for indentation.
-- Use `self` to save a reference to `this`.
-- One `var` statement per line (same as Felix's guide, but different from Airbnb's).
+- Use ``self`` to save a reference to ``this``.
+- One ``var`` statement per line (same as Felix's guide, but different from Airbnb's).
 
 
 .. code-block:: javascript
@@ -49,7 +49,7 @@ Writing modules in the OSF
 **************************
 
 - Make your module compatible with `RequireJS <http://requirejs.org/>`_ or no module loader. This can be done simply by wrapping your module with a snippet, as shown in the example below.
-- Use the Combination Constructor/Prototype pattern for encapsulation (it's simpler than it sounds). A good write-up on this can be found `here <http://javascriptissexy.com/oop-in-javascript-what-you-need-to-know/#Encapsulation_in_JavaScript>`_
+- Use the Combination Constructor/Prototype pattern for encapsulation (it's simpler than it sounds). A good write-up on this can be found `here <http://javascriptissexy.com/oop-in-javascript-what-you-need-to-know/#Encapsulation_in_JavaScript>`_.
 
 
 .. code-block:: javascript
@@ -101,7 +101,13 @@ Writing modules in the OSF
         });
     </script>
 
+Naming Modules
+--------------
+
+Use lower camel case for the filename. The filename should correspond to the name of the exported class. For example, if you module has the ``LogFeed`` class, the JS file should be named ``logFeed.js``.
+
 Examples
+--------
 
 - `folderPicker.js <https://github.com/CenterForOpenScience/osf/blob/develop/website/static/js/folderPicker.js>`_
 
@@ -113,9 +119,9 @@ A module contains the Knockout model(s) and ViewModel(s) for a single unit of fu
 
 Knockout modules aren't much different from regular modules.
 
-- Apply bindings in the constructor. Use the `$.osf.applyBindings` helper. This will ensure that your ViewModel will be bound to the element that you expect (and not fall back to <body>, as `ko.applyBindings` will sometimes do). You can also pass `$.osf.applyBindings` a selector instead of an `HTMLElement`.
-- Name the HTML ID that you bind to with "Scope". Example: `<div id="logfeedScope">`.
-- Adding the `scripted` CSS class to the div you bind to will hide the div until `$.osf.applyBindings` finishes executing. This is useful if you don't want to show any HTML for your component until the ViewModel is bound.
+- Apply bindings in the constructor. Use the ``$.osf.applyBindings`` helper. This will ensure that your ViewModel will be bound to the element that you expect (and not fall back to <body>, as ``ko.applyBindings`` will sometimes do). You can also pass ``$.osf.applyBindings`` a selector instead of an ``HTMLElement``.
+- Name the HTML ID that you bind to with "Scope". Example: ``<div id="logfeedScope">``.
+- Adding the ``scripted`` CSS class to the div you bind to will hide the div until ``$.osf.applyBindings`` finishes executing. This is useful if you don't want to show any HTML for your component until the ViewModel is bound.
 
 
 **website/static/js/logFeed.js**

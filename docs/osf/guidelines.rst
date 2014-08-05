@@ -80,6 +80,7 @@ Responses
 - Be consistent with your response format.
 
  **TODO**: Come up with a standard format. The Dropbox add-on uses the following, though we may decide on a different convention later.
+
 ::
     {
         "result": {"name": "New Project", "id": ...} # ... the requested object(s) ,
