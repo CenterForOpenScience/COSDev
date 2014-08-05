@@ -38,15 +38,15 @@ OSF Development
     osf/testing
     osf/addons
     osf/migrations
+    osf/common_problems
 
 
-Troubleshooting
+Getting Help
 
 .. toctree::
     :maxdepth: 1
 
-    troubleshooting/common_problems
-    troubleshooting/getting_help
+    troubleshooting/resources
 
 
 .. Indices and tables

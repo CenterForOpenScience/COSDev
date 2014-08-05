@@ -4,13 +4,14 @@ Javascript
 Style
 *****
 
-Follow [Felix's Node Style](https://github.com/felixge/node-style-guide) and [airbnb's Style Guide](https://github.com/airbnb/javascript) with a few exceptions:
+Follow `Felix's Node Style <https://github.com/felixge/node-style-guide>`_ and `airbnb's Style Guide <https://github.com/airbnb/javascript>`_ with a few exceptions:
 
 - Use **4 spaces** for indentation.
 - Use `self` to save a reference to `this`.
 - One `var` statement per line (same as Felix's guide, but different from Airbnb's).
 
-<!-- -->
+
+.. code-block:: javascript
 
     // bad
     var foo, bar, baz;
@@ -26,27 +27,29 @@ Follow [Felix's Node Style](https://github.com/felixge/node-style-guide) and [ai
 jQuery
 ******
 
-Follow [Abhinay Rathore's jQuery Coding Standards Guide](http://lab.abhinayrathore.com/jquery-standards/).
+Follow `Abhinay Rathore's jQuery Coding Standards Guide <http://lab.abhinayrathore.com/jquery-standards/>`_.
 
 
 AJAX
 ----
 
-For PUTting and POSTing to JSON endpoints, use the `$.osf.postJSON` and `$.osf.putJSON` functions (located in `site.js`). This will handle JSON stringification as well as set the correct dataType and contentType.
+For PUTting and POSTing to JSON endpoints, use the ``$.osf.postJSON`` and ``$.osf.putJSON`` functions (located in ``site.js``). This will handle JSON stringification as well as set the correct dataType and contentType.
 
 
 Utility functions
 -----------------
 
-Put any reusable helper functions and plugins on the `$.osf` namespace. **Do not pollute the global namespace.**
+Put any reusable helper functions and plugins on the ``$.osf`` namespace. **Do not pollute the global namespace.**
+
+.. code-block:: javascript
 
     $.osf.myCopaceticFunction = function() {...}
 
 Writing modules in the OSF
 **************************
 
-- Make your module compatible with [RequireJS](http://requirejs.org/) or no module loader. This can be done simply by wrapping your module with a snippet, as shown in the example below.
-- Use the Combination Constructor/Prototype pattern for encapsulation (it's simpler than it sounds). A good write-up on this can be found [here](http://javascriptissexy.com/oop-in-javascript-what-you-need-to-know/#Encapsulation_in_JavaScript)
+- Make your module compatible with `RequireJS <http://requirejs.org/>`_ or no module loader. This can be done simply by wrapping your module with a snippet, as shown in the example below.
+- Use the Combination Constructor/Prototype pattern for encapsulation (it's simpler than it sounds). A good write-up on this can be found `here <http://javascriptissexy.com/oop-in-javascript-what-you-need-to-know/#Encapsulation_in_JavaScript>`_
 
 
 .. code-block:: javascript
@@ -215,6 +218,8 @@ To help you get started on your JS modules, here are some templates that you can
 JS Module Template
 ------------------
 
+.. code-block:: javascript
+
     /**
      * [description]
      */
@@ -237,6 +242,8 @@ JS Module Template
 
 Knockout Module Template
 ------------------------
+
+.. code-block:: javascript
 
     /**
      * [description]

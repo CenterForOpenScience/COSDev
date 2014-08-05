@@ -25,4 +25,15 @@ Ansible
     - name: uwsgi | Make user python is installed
       apt: name="python-dev"
 
+- Prefix all default variables with the role name and an underscore.
+
+.. code-block:: yaml
+
+    # OSF role
+
+    osf_virtualenv: "/opt/envs/osf/"
+    osf_repo_branch: "master"
+
+
+- Document default variables using comments.
 

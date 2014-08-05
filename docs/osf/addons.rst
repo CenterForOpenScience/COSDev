@@ -3,7 +3,8 @@ Developing an addon
 
 **In Progress**: Help out by sending a PR!
 
-Notes
+Notes and gotchas
+*****************
 
 - A new AddonSettings record is created upon enabling your addon's checkbox on the user settings page and submitting the form. You should *not* instantiate an `MyAddonUserSettings` object yourself
 - The view for rendering a file **must** include the return value of `website.project.util.serialize_project` (an alias of `_view_project`).
@@ -18,23 +19,33 @@ Installing Addons
 
 Open terminal and switch to the folder where your OSF installation is located. We will install the addons to the website folder. So navigate to
 
-`cd website/addons`
+::
+
+    cd website/addons
 
 During your installation you created a virtual environment for OSF. Switch to the environment by typing workon followed by the name of your virtual environment
 
-`workon osf`
+::
 
-### Add on CookieCutter
+    # If you use virtualenvwrapper
+    $ workon osf
+
+Addon cookiecutter
+------------------
 
 The Cookie cutter is designed to get you started with a new addon by filling out standard information and using boilerplate code to connect your add on.
 
 Install Cookiecutter
 
-`pip install cookiecutter`
+::
+
+    $ pip install cookiecutter
 
 Then run the following to create the project scaffold.
 
-`cookiecutter https://github.com/chrisseto/osf-Addon-cookiecutter.git`
+::
+
+    $ cookiecutter https://github.com/chrisseto/osf-Addon-cookiecutter.git
 
 This will prompt a few questions:
 
@@ -45,46 +56,55 @@ This will prompt a few questions:
 **categories (default is "'storage'")?**: Enter a one word category, lowercase.
 
 
-### Logs
+Logs
+****
 
 Some common log examples
 
-- `dropbox_node_authorized`
-- `dropbox_node_authorized`
-- `dropbox_file_added`
-- `dropbox_file_removed`
-- `dropbox_folder_selected`, `github_repo_linked`, etc.
+- ``dropbox_node_authorized``
+- ``dropbox_node_authorized``
+- ``dropbox_file_added``
+- ``dropbox_file_removed``
+- ``dropbox_folder_selected``, ``github_repo_linked``, etc.
 
-Use the `NodeLog` class's named constants when possible,
+Use the ``NodeLog`` class's named constants when possible,
+
+.. code-block:: python
 
     'dropbox_' + NodeLog.FILE_ADDED
 
-Every log action requires a template in `youraddon/templates/log_templates.mako`. Each template's id corresponds to the name of the log action.
+Every log action requires a template in ``youraddon/templates/log_templates.mako``. Each template's id corresponds to the name of the log action.
 
 
 Rubeus and the FileBrowser
---------------------------
+**************************
 
-For an addon to be included in the files view they must first define:
-`HAS_HGRID_FILES = True`
-`GET_HGRID_DATA = views.hgrid.{{addon}}_hgrid_data`
-in __init__.py
+For an addon to be included in the files view they must first define the following in the addon's ``__init__.py``:
+
+.. code-block:: python
+
+    HAS_HGRID_FILES = True
+    GET_HGRID_DATA = views.hgrid.{{addon}}_hgrid_data
+
 
 Has hgrid files is just a flag to attempt to load files from the addon.
 get hgrid data is a function that will return FileBrowser formatted data.
 
 
-#### Rubeus
+Rubeus
+------
 
 Rubeus is a helper module for filebrowser compatible add ons.
 
-`rubeus.FOLDER,KIND,FILE` are rubeus constants for use when defining filebrowser data.
+``rubeus.FOLDER,KIND,FILE`` are rubeus constants for use when defining filebrowser data.
 
-`rubeus.to_hgrid` Todo document me
+``rubeus.to_hgrid`` Todo document me
 
-`rubeus.build_addon_root`:
+``rubeus.build_addon_root``:
 
 Builds the root or "dummy" folder for an addon.
+
+::
 
     :param node_settings addonNodeSettingsBase: Addon settings
 
@@ -115,6 +135,8 @@ Building File GUIDs
 
 whenever a file is rendered a GUID should be created for it
 
+.. code-block:: python
+
     try:
         guid = S3GuidFile.find_one(
             Q('node', 'eq', node) &
@@ -137,7 +159,9 @@ Deselecting and Deauthorizing
 
 Many add-ons will have both user and node settings. It is important that if a user's add-on settings are deleted or his authorization is removed, that every node authorized by the user is deauthorized, which includes resetting all fields including its user settings.
 
-It is necessary to override the `delete` method for `MyAddonUserSettings` in order to clear all fields from the user settings.
+It is necessary to override the ``delete`` method for ``MyAddonUserSettings`` in order to clear all fields from the user settings.
+
+.. code-block:: python
 
     class MyAddonUserSettings(AddonUserSettingsBase):
 
@@ -153,7 +177,10 @@ It is necessary to override the `delete` method for `MyAddonUserSettings` in ord
                 node_settings.save()
             return self
 
-You will also have to override the `delete` method for `MyAddonNodeSettings`.
+You will also have to override the ``delete`` method for ``MyAddonNodeSettings``.
+
+.. code-block:: python
+
 
     class MyAddonNodeSettings(AddonNodeSettingsBase):
 
@@ -175,11 +202,13 @@ Every add-on will come with its own unique set of privacy considerations. There 
 
 General
 
-- **Using `must_be_contributor_or_public`, `must_have_addon`, etc. is not enough.** While you should make sure that you correctly decorate your views, that does not ensure that *non-OSF*-related permissions have been handled.
+- **Using ``must_be_contributor_or_public``, ``must_have_addon``, etc. is not enough.** While you should make sure that you correctly decorate your views, that does not ensure that *non-OSF*-related permissions have been handled.
 - For file storage add-ons, make sure that contributors can only see the folder that the authorizing user has selected to share.
 - Think carefully about security when writing the node settings view ({{addon}}_node_settings.mako / {{addon}}NodeConfig.js}}. For example, in the GitHub add-on, the user should only be able to see the list of repos from the authenticating account if the user is the authenticator for the current node. Most add-ons will need to tell the view (1) whether the current user is the authenticator of the current node and (2) whether the current user has added an auth token for the current add-on to her OSF account.
 
 Example: When a Dropbox folder is shared on a project, contributors (and the public, if the project is public) should only perform CRUD operations on files and folders that are within that shared folder. An error should be thrown if a user tries to access anything outside of that folder.
+
+.. code-block:: python
 
     @must_be_contributor_or_public
     @must_have_addon('dropbox', 'node')
@@ -194,6 +223,3 @@ Example: When a Dropbox folder is shared on a project, contributors (and the pub
         ...
 
 Make sure that any view (CRUD, settings views...) that accesses resources from a 3rd-party service is secured in this way.
-
-
-

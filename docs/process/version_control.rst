@@ -7,7 +7,8 @@ We use git for version control. Some general guidelines:
 - In your feature branches, pull from `develop` frequently
 
 
-### Useful tools
+Useful tools
+************
 
 - `SourceTree <http://www.sourcetreeapp.com/>`_ - Mac OS X; GUI.
 - `gitflow <https://github.com/nvie/gitflow>`_ - Cross-platform; CLI.

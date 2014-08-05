@@ -131,7 +131,8 @@ Prefer `str.format` to "%-style" formatting.
 
     'Hello %s' % ('World', )
 
-### Documentation
+Documentation
+*************
 
 Follow  `PEP257`_'s docstring guidelines. `reStructured Text <http://docutils.sourceforge.net/docs/user/rst/quickref.html>`_ and `Sphinx <http://sphinx-doc.org/>`_ can help to enforce these standards.
 
@@ -205,6 +206,8 @@ Line lengths
 Don't stress over it. 80-100 characters is fine.
 
 Use parentheses for line continuations.
+
+.. code-block:: python
 
     wiki = (
         "The Colt Python is a .357 Magnum caliber revolver formerly manufactured "
