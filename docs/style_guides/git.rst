@@ -1,3 +1,5 @@
+.. _git:
+
 Git
 ===
 
@@ -10,7 +12,7 @@ Git
 
   [fix CenterForOpenScience/openscienceframework.org#982]
 
-- Write `good commit messages <http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html>`_
+- Write `good commit messages <http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html>`_.
 
 Here's a model message, taken from the above post: ::
 

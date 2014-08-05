@@ -49,7 +49,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = 'COS Development Documentation'
+project = 'COS Development'
 copyright = '2014, Center for Open Science'
 
 # The version info for the project you're documenting, acts as replacement for
