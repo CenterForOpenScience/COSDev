@@ -30,26 +30,26 @@ General
 
 .. code-block:: python
 
-    # Good
+    # Yes
     from website.utils import api_url_for
     url = api_url_for('user_settings')
 
-    # Bad
-    url = os.path.jon('/user', 'settings')
+    # No
+    url = os.path.join('/user', 'settings')
 
 Views
 *****
 
-- If a decorator injects keyword arguments, declare them keyword arguments whenever possible. Avoid pulling them from the kwargs dictionary.
+- If a decorator injects keyword arguments, declare the keyword arguments whenever possible. Avoid pulling them from the kwargs dictionary.
 
 .. code-block:: python
 
-    # Good
+    # Yes
     @must_be_logged_in
     def user_settings_put(auth, **kwargs):
         #...
 
-    # Bad
+    # No
     @must_be_logged_in
     def user_settings_put(**kwargs):
         auth = kwargs['auth']
@@ -63,7 +63,7 @@ Responses
 
 .. code-block:: python
 
-    # Good
+    # Yes
     @must_be_logged_in
     def user_token_post(auth, **kwargs):
         #...
@@ -71,7 +71,7 @@ Responses
         # OR
         # return serialized_settings, httplib.CREATED
 
-    # Bad
+    # No
     @must_be_logged_in
     def user_token_post(auth, **kwargs):
         #...
@@ -94,9 +94,11 @@ Migrations are located in the ``scripts`` directory.
 
 To run them: ::
 
-    python -m scripts.script_name
+    $ python -m scripts.script_name
 
 To migrate search records:
+
+::
 
     invoke migrate_search
 
@@ -134,6 +136,7 @@ Docstrings
 
     def my_view(my_param):
         """Do something rad.
+
         :param str my_param: My directly passed parameter
         :param-query str foo: A parameter included in the query string; look me up in `request.args`
         :param-post str bar: A parameter included in the POST payload; look me up in `request.form`

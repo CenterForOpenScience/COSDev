@@ -161,7 +161,7 @@ Multiline docstrings should include
         >>> classifier = klassify.train(data)
 
     :param train_data: A list of tuples of the form ``(color, label)``.
-    :rtype: A :class:`Classifier <Classifier>`
+    :return: A trained :class:`Classifier <Classifier>`
     """
 
 Notes
@@ -173,6 +173,7 @@ Notes
 
     class Person(object):
         """A simple representation of a human being.
+
         :param name: A string, the person's name.
         :param age: An int, the person's age.
         """
@@ -183,7 +184,7 @@ Notes
 On Comments
 ***********
 
-Use them sparingly. Prefer code readability to writing a lot of comments. Often, small methods are more effective than comments.
+Use them sparingly. Prefer code readability to writing a lot of comments. Often, small methods and functions are more effective than comments.
 
 .. code-block:: python
 
@@ -200,7 +201,7 @@ Use them sparingly. Prefer code readability to writing a lot of comments. Often,
     if is_stop_sign(sign):
         stop()
 
-When you do write comments, remember: "Strunk and White apply." - [PEP 8][]
+When you do write comments, remember: "Strunk and White apply." - `PEP8`_
 
 Line lengths
 ************
@@ -229,7 +230,7 @@ General Testing Guidelines
 - Use long, descriptive names. This often obviates the need for doctrings in test methods.
 - Tests should be isolated. Don't interact with a real database or network. Use a separate test database that gets torn down or use mock objects.
 - Prefer `factories <https://github.com/rbarrois/factory_boy>`_ to fixtures.
-- Never let incomplete tests pass, else you run the risk of forgetting about them. Instead, add a placeholder like `assert False, "TODO: finish me"`.
+- Never let incomplete tests pass, else you run the risk of forgetting about them. Instead, add a placeholder like ``assert False, "TODO: finish me"``.
 
 Unit Tests
 ----------
