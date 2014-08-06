@@ -7,6 +7,7 @@ Welcome to the COS development documentation page. Here you'll find style guides
 
 
 Process
+*******
 
 .. toctree::
     :maxdepth: 1
@@ -18,6 +19,7 @@ Process
 
 
 Style Guides
+************
 
 .. toctree::
     :maxdepth: 1
@@ -29,6 +31,7 @@ Style Guides
     style_guides/ansible
 
 OSF Development
+***************
 
 .. toctree::
     :maxdepth: 1
@@ -42,12 +45,21 @@ OSF Development
 
 
 Getting Help
+************
 
 .. toctree::
     :maxdepth: 1
 
     troubleshooting/resources
 
+Contributing To These Docs
+**************************
+
+.. toctree::
+    :maxdepth: 1
+
+    contributing/getting_started
+    contributing/todo
 
 .. Indices and tables
 .. ==================

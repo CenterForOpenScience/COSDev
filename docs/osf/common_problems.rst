@@ -13,9 +13,12 @@ Solution: You may not have a celery worker running. If you have Celery and Rabbi
 
 Less ideally, you can turn Celery off and send emails synchronously by adding ``USE_CELERY = False`` to your ``website/settings/local.py`` file.
 
-### "My view test keeps failing"
+"My view test keeps failing"
+****************************
 
 Solution: You have to reload the database record.
+
+.. code-block:: python
 
     def test_change_name_view(self):
         user = UserFactory()

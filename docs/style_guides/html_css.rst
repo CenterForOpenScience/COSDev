@@ -9,3 +9,5 @@ HTML and CSS
     <div class="container-fluid">
         Lots of markup...
     </div><!-- end container-fluid -->
+
+- Avoid inline CSS. Prefer CSS classes for maintainability and reuseability.

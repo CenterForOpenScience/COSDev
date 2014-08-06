@@ -40,16 +40,21 @@ Testing models
 
 Unit tests for models belong in ``tests/test_models.py``. Each model should have its own test class.
 
+.. todo::
+    Write example model test.
 
 Views tests
 ***********
 
-TODO: Show webtest example
+.. todo::
+    Show webtest example
 
 Functional tests
 ****************
 
-TODO: Show webtest example
+.. todo::
+    Show webtest functional test example
+
 
 Javascript tests
 ****************

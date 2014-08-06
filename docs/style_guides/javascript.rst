@@ -24,6 +24,12 @@ Follow `Felix's Node Style <https://github.com/felixge/node-style-guide>`_ and `
     var bar = 42;
     var baz = 'qwerty';
 
+Documentation
+*************
+
+Use the `YUIDoc <https://yui.github.io/yuidoc/>`_ standard for writing JS comment blocks.
+
+
 jQuery
 ******
 
@@ -215,6 +221,15 @@ Examples
 - `revisions.js <https://github.com/CenterForOpenScience/osf/blob/develop/website/addons/dropbox/static/revisions.js>`_ (small example)
 - `Full LogFeed module <https://github.com/CenterForOpenScience/osf/blob/develop/website/static/js/logFeed.js>`_
 - `comment.js <https://github.com/CenterForOpenScience/osf/blob/develop/website/static/js/comment.js>`_
+
+
+Script Loading
+**************
+
+.. todo::
+
+    Document script.js usage.
+
 
 Templates
 *********
