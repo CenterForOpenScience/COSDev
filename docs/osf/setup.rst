@@ -5,10 +5,7 @@ Setting up the OSF
 See the `README.md <https://github.com/CenterForOpenScience/osf>`_ of the OSF for a quick guide on getting the OSF running for local development.
 
 
-TODO: Format below in RST
-
 **Work in Progress, please add or edit as necessary.**
-
 
 This page provides a verbose and detailed instruction to installing OSF. If you are already familiar with Python more compact instructions can be found at the README file. 
 
@@ -26,6 +23,7 @@ Pip is a tool for installing and managing Python packages. Working with librarie
 
 Installing pip
 ----
+
 Before you begin, check if Pip is already installed. Open the Terminal application on your Mac (It's under /Applications/Utilities). Type:
 
    ``pip``
@@ -34,10 +32,10 @@ If you see a long list of options for what to do with pip that means pip is alre
 
 This time type in your terminal 
 
-   `easy_install pip`
+   ``easy_install pip``
 
 If you receive a long error that starts with
-`error: can't create or remove files in install directory`
+``error: can't create or remove files in install directory``
 this is most likely because you don't have permission to write to a directory and should use **"sudo"**. This might be necessary in the upcoming command line tools as well so if the provided version does not work, add sudo to the front. Try entering
 
    ``sudo easy_install pip``
@@ -62,7 +60,7 @@ Now that you installed virtualenv, why not add an extension that makes it even e
 
 To conclude the installation you need to add the following lines to the end of your bash profile file. If you are using bash this could be .bashrc or .profile. If you are using another like zsh you will need to add this section to the file .zshrc; virtualenvwrapper works with bash, zsh or ksh. 
 
-      TIP: You most likely have bash, and if you don't know what this means, [this article][1] can explain.
+   TIP: You most likely have bash, and if you don't know what this means, [this article][1] can explain.
 
    ``export WORKON_HOME=$HOME/.virtualenvs``
    ``export PROJECT_HOME=$HOME/Devel``
@@ -83,7 +81,7 @@ You now have a solid development environment framework you can use for any of yo
 
 First lets see which virtual environments you already have by using the command to show the short version of your existing environments. 
 
-   ``lsvirtualenv -b ``
+   ``lsvirtualenv -b``
 
 You'll see that there isn't anything there yet. Let's create a virtual environment titled "try"
 
@@ -99,7 +97,7 @@ now when you run the lsvirtualenv command above you will see that "try" is liste
 
 Now the terminal lines will change to reflect that you are currently in that environment:
 
-   ``(try)$ ``
+   ``(try)$``
 
 You can switch environments by typing the name of another existing environment 
 
@@ -119,7 +117,7 @@ Now we can go ahead and create the OSF virtual environment and work on it. This 
 
 Next time you need to start osf you will have to type: 
 
-   ``workon osf ``
+   ``workon osf``
 
 Remember that the reason we created these environments is that next time we need to install something just for OSF we will go to the osf virtual environment we just created. Most the remainder of this page will be within this virtual environment unless otherwise stated. 
 
@@ -241,17 +239,17 @@ You now have both the mongo and servers running. You will see the server address
 Common Error messages
 #### 
 
-*1. Mongodb path /data/db does not exist*
+**1. Mongodb path /data/db does not exist**
 
    ``sudo mkdir -p /data/db/``
 
    ``sudo chown `id -u` /data/db``
 
-*2. unable to execute clang: No such file or directory*
+**2. unable to execute clang: No such file or directory**
 
 Xcode Command Line Tools installation is missing or was not successful. Go to the section on installing XCode and follow the steps there. 
 
-* 3. Unable to lock file: /data/db/mongod.lock *
+** 3. Unable to lock file: /data/db/mongod.lock **
 
 If the mongodb server is still running or if you turn off the computer without stopping the server the mongodb lock file will cause errors. If you see an error like the one below: 
 
@@ -259,8 +257,8 @@ If the mongodb server is still running or if you turn off the computer without s
 
 first check other terminals to see if mongodb is running. If it isn't go to the folder  /data/db/mongod.lock and delete the file. 
 
-* 4. RuntimeError: Broken toolchain: cannot link a simple C program OR 
-clang: error: unknown argument: '-mno-fused-madd'* 
+** 4. RuntimeError: Broken toolchain: cannot link a simple C program OR 
+clang: error: unknown argument: '-mno-fused-madd'** 
 
 Add the following to your bash profile document
 
@@ -268,13 +266,13 @@ Add the following to your bash profile document
    ``export CPPFLAGS=-Qunused-arguments``
 
 
-* 5. ImportError: No module named kombu.five* 
+** 5. ImportError: No module named kombu.five** 
 This error is related to Celery and not part of OSF. Until the source code is improved what you can do is uninstall celery and reinstall using: 
 
    ``pip uninstall celery``
    ``pip install celery``
 
-* 6. Incompatible library version: etree.so requires 12.0.0 or later...... * 
+** 6. Incompatible library version: etree.so requires 12.0.0 or later...... ** 
 
 If you have pip and conda installed, make sure remove lxml from conda and from pip. Then install again using conda.
 
