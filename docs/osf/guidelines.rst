@@ -19,14 +19,15 @@ General
     #      json_renderer,
     # )
 
-    # Good
+    # Yes
     # Pass the name of the view function and URL params as keyword arguments
-    url = node.api_url_for('node_tags_get', tid=tag._id)
+    url = node.api_url_for('node_tags_put', tid=tag._id)
+    # => /project/1rdsf/tags/mytag/
 
-    # Bad
+    # No
     url = os.path.join('/api', 'v1', node._primary_key, 'tags', tag._id)
 
-- Use ``website.utils.api_url_for`` and ``website.utils.web_url_for`` for general URL lookup
+- Use ``website.utils.api_url_for`` and ``website.utils.web_url_for`` for general URL lookup.
 
 .. code-block:: python
 
