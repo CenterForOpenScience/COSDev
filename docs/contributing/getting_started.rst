@@ -26,6 +26,22 @@ To build docs: ::
 
 The ``-b`` (for "browse") automatically opens up the docs in your browser after building. Alternatively, you can open up the ``docs/_build/index.html`` file manually.
 
+Autobuilding on File Changes
+----------------------------
+
+You can use ``sphinx-autobuild`` to automatically build the docs when you change a file in the ``docs`` directory.
+
+To install ``sphinx-autobuild``: ::
+
+    $ pip install sphinx-autobuild
+
+
+You can now start the livereload server with: ::
+
+    $ invoke watch
+
+Point your browser to http://localhost:8000 to see your docs.
+
 Send a PR!
 **********
 

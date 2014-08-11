@@ -16,7 +16,6 @@ A few things to note about the :class:`OsfTestCase`:
 - Following the above two rules ensures that your tests execute within a Flask `app context <http://flask.pocoo.org/docs/appcontext/>`_.
 - The test database lives for the duration of a test class. This means that database records created within a TestCase's methods may interact with each other in unexpected ways. Use :ref:`factories <factories>` and the ``tests.base.fake`` generator for creating unique test objects.
 
-
 .. _factories:
 
 Factories
