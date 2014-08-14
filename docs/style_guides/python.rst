@@ -75,7 +75,8 @@ Avoid getter and setter methods.
 Indentation
 ***********
 
-Use 4 spaces--never tabs. Enough said.
+Use 4 spaces--never tabs. You may need to change the settings in your
+text editor of choice.
 
 Imports
 *******
