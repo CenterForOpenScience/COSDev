@@ -13,16 +13,17 @@ Follow `Felix's Node Style <https://github.com/felixge/node-style-guide>`_ and `
 
 .. code-block:: javascript
 
-    // bad
+    // yes
+    var foo = 1;
+    var bar = 42;
+    var baz = 'qwerty';
+
+    // no
     var foo, bar, baz;
     foo = 1;
     bar =  42;
     baz = 'qwerty';
 
-    // good
-    var foo = 1;
-    var bar = 42;
-    var baz = 'qwerty';
 
 Documentation
 *************
