@@ -14,7 +14,7 @@ Having Your Code Reviewed
 
 Before sending a pull request for code review, make sure you have met the :ref:`PR guidelines <pull_requests>`.
 
-- Don't take code review personally. The review is of the code, not you.
+- It may be difficult not to perceive code review as personal criticism, but, keep in mind, it is a review of the code, not the person. We can all learn from eachother, and code reviews provide a good environment to do so.
 - After addressing all comments from a review, ping your reviewer by ``@mentioning`` them in a comment.
 
 Reviewing Code
@@ -22,4 +22,5 @@ Reviewing Code
 
 - Make sure you understand the purpose of the code being reviewed.
 - Checkout the branch being reviewed, and manually test the intended behavior.
+- In your comments, keep in mind the fact that what you're saying can easily be perceived as personal criticism (even if it's not--it shouldn't be) and adjust your tone accordingly.
 - After doing a pass of code review, add a comment with an emoji to signify that your pass is complete and ready to be processed.

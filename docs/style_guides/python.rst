@@ -75,7 +75,8 @@ Avoid getter and setter methods.
 Indentation
 ***********
 
-Use 4 spaces--never tabs. Enough said.
+Use 4 spaces--never tabs. You may need to change the settings in your
+text editor of choice.
 
 Imports
 *******
@@ -189,16 +190,16 @@ Use them sparingly. Prefer code readability to writing a lot of comments. Often,
 .. code-block:: python
 
 
-    # No
-    # If the sign is a stop sign
-    if sign.color == 'red' and sign.sides == 8:
-        stop()
-
     # Yes
     def is_stop_sign(sign):
         return sign.color == 'red' and sign.sides == 8
 
     if is_stop_sign(sign):
+        stop()
+
+    # No
+    # If the sign is a stop sign
+    if sign.color == 'red' and sign.sides == 8:
         stop()
 
 When you do write comments, remember: "Strunk and White apply." - `PEP8`_
