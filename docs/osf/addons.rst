@@ -34,7 +34,7 @@ During your installation you created a virtual environment for OSF. Switch to th
 Addon cookiecutter
 ------------------
 
-The Cookie cutter is designed to get you started with a new addon by filling out standard information and using boilerplate code to connect your add on.
+While this should not be used when creating your first add-on, the Cookie cutter is designed to get you started with a new addon by filling out standard information and using boilerplate code to connect your add on.
 
 Install Cookiecutter
 
