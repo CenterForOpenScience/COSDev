@@ -158,7 +158,7 @@ whenever a file is rendered a GUID should be created for it
 Deselecting and Deauthorizing
 -----------------------------
 
-Many add-ons will have both user and node settings. It is important that if a user's add-on settings are deleted or his authorization is removed, that every node authorized by the user is deauthorized, which includes resetting all fields including its user settings.
+Many add-ons will have both user and node settings. It is important to ensure that, if a user's add-on settings are deleted or authorization to that add-on is removed, every node authorized by the user is deauthorized, which includes resetting all fields including its user settings.
 
 It is necessary to override the ``delete`` method for ``MyAddonUserSettings`` in order to clear all fields from the user settings.
 
