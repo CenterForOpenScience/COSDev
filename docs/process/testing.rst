@@ -1,7 +1,11 @@
+.. _testing:
+
 Testing
 =======
 
-The below examples are in Python, but the concepts apply to testing in any language.
+.. note::
+
+    The below examples are in Python, but the concepts apply to testing in any language.
 
 General Testing Guidelines
 --------------------------

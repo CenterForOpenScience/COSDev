@@ -22,8 +22,9 @@ Below is the skeleton of an example migration.
     # -*- coding: utf-8 -*-
     """Script to migrate nodes with invalid categories."""
 
-    from website.app import init_app
+    import sys
 
+    from website.app import init_app
     from tests.base import OsfTestCase
 
     def do_migration(records):
@@ -34,7 +35,10 @@ Below is the skeleton of an example migration.
 
     def main():
         init_app(routes=False)  # Sets the storage backends on all models
-        do_migration(get_targets())
+        if 'dry' in sys.argv:
+            # print list of affected nodes, totals, etc.
+        else:
+            do_migration(get_targets())
 
     class TestMigrateNodeCategories(OsfTestCase):
 
@@ -47,3 +51,18 @@ Below is the skeleton of an example migration.
     if __name__ == '__main__':
         main()
 
+
+After performing a migration
+----------------------------
+
+After running a migration script on a production machine, add a timestamped log in the docstring of the script, documenting what was done.
+
+.. code-block:: python
+
+    """Script to remove invalid GUID tag objects from the database.
+
+    Log:
+
+        Performed on production by sloria on 2014-08-15 at 11.45AM. 892 invalid GUID
+        objects were removed.
+    """
