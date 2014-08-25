@@ -1,9 +1,9 @@
-OSF SSL
-=======
+Ops
+===
 
 
-Generating a new certificate
-****************************
+Generating a new SSL certificate
+********************************
 
 
 * Generate a certificate signing request (see instructions from `this post <http://blog.wensheng.org/2012/03/using-namecheap-ssl-with-nginx.html>`_)
