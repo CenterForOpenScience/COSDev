@@ -43,6 +43,7 @@ OSF Development
     osf/addons
     osf/migrations
     osf/common_problems
+    osf/ops
 
 
 Getting Help
