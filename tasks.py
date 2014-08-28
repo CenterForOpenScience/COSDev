@@ -29,6 +29,7 @@ def docs(clean=False, browse=False):
 
 @task
 def watch():
+    docs()
     try:
         import sphinx_autobuild
     except ImportError:
