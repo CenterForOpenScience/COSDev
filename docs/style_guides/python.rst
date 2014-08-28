@@ -202,7 +202,7 @@ Use them sparingly. Prefer code readability to writing a lot of comments. Often,
     if sign.color == 'red' and sign.sides == 8:
         stop()
 
-When you do write comments, remember: "Strunk and White apply." - `PEP8`_
+When you do write comments, use them to explain *why* a piece code was used, not *what* it does.
 
 Line lengths
 ************
