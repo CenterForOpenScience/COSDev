@@ -16,7 +16,7 @@ Before sending a pull request for code review, make sure you have met the :ref:`
 
 - It may be difficult not to perceive code review as personal criticism, but, keep in mind, it is a review of the code, not the person. We can all learn from eachother, and code reviews provide a good environment to do so.
 - After addressing all comments from a review, ping your reviewer by ``@mentioning`` them in a comment.
-- Re: style commments: If you have an issue  with one a guideline, post an issue on the `COSDev <https://github.com/CenterForOpenScience/COSDev>`_ rather than discussing in the PR.
+- If you would like to propose a change to a style guideline, post an issue or send a PR to the `COSDev <https://github.com/CenterForOpenScience/COSDev>`_ repo rather than discussing it in the PR.
 
 Reviewing Code
 **************

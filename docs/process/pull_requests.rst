@@ -10,9 +10,9 @@ Use the following checklist to make sure your pull request can be reviewed and m
 - Your code must be sufficiently documented. Add docstrings to new classes, functions, and methods.
 - Your code must be passing on TravisCI.
 - Feel free to reference relevant Github issues in the PR description.
-- On Github, rename your pull request with the prefix "Feature" or "Hotfix", as appropriate.
+- On Github, rename your PR title with the prefix "Feature" or "Hotfix", as appropriate.
+- If you are sending the PR for code review only and *not* for merge, add the "[WIP]" prefix to the PR's title.
 - Write a descriptive Pull Request description. Ideally, it should communicate:
     - The purpose of the changes you made.
     - Which Github issue the PR addresses, if applicable.
-    - If you are only sending the PR for code review and not for merge, make this very clear. Include a note such as: "Sending for review **only**. Do not merge. Please review feature X; feature Y is still a work in progress."
     - Potential concerns, esp. regarding security, privacy, and provenance, which will requires extra care during review.
