@@ -132,6 +132,19 @@ Prefer ``str.format`` to "%-style" formatting.
 
     'Hello %s' % ('World', )
 
+Print statements
+****************
+
+Use the ``print()`` function rather than the ``print`` keyword (even if you're using Python 2).
+
+.. code-block:: python
+
+    # Yes
+    print('Hello {}'.format(name))
+
+    # No
+    print 'Hello %s ' % name
+
 Documentation
 *************
 
