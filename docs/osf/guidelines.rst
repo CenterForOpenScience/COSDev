@@ -38,6 +38,16 @@ General
     # No
     url = os.path.join('/user', 'settings')
 
+- Use the above functions in Mako templates; they are available by default.
+
+.. code-block:: html+mako
+
+    <!-- Yes -->
+    <p>Visit your <a href="${ web_url_for('user_settings') }">user settings</a>.
+
+    <!-- No -->
+    <p>Visit your <a href="/settings/">user settings</a>.
+
 Views
 *****
 
@@ -83,6 +93,7 @@ Responses
  **TODO**: Come up with a standard format. The Dropbox add-on uses the following, though we may decide on a different convention later.
 
 ::
+
     {
         "result": {"name": "New Project", "id": ...} # ... the requested object(s) ,
         "message": "Successfully created project" # ... an optional message
