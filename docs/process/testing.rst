@@ -13,7 +13,7 @@ General Testing Guidelines
 - Use long, descriptive names. This often obviates the need for doctrings in test methods.
 - Tests should be isolated. Don't interact with a real database or network. Use a separate test database that gets torn down or use mock objects.
 - Prefer `factories <https://github.com/rbarrois/factory_boy>`_ to fixtures.
-- Never let incomplete tests pass, else you run the risk of forgetting about them. Instead, add a placeholder like ``assert False, "TODO: finish me"``.
+- Never let incomplete tests pass, else you run the risk of forgetting about them. Instead, add a placeholder like ``assert False, "TODO: finish me"``. If you are stubbing out a test that will be written in the future, use the :meth:`@unittest.skip` decorator.
 - Strive for 100% code coverage, but don't get obsess over coverage scores.
 
 Unit Tests
@@ -71,6 +71,7 @@ Python
 - `pytest <http://pytest.org/latest/contents.html>`_: A powerful test runner and library for writing automated tests.
 - `factory-boy <https://github.com/rbarrois/factory_boy>`_: Utility library for creating test objects. Replaces fixtures with "factories".
 - `mock <http://www.voidspace.org.uk/python/mock/>`_: Allows you to mock and patch objects for testing purposes.
+- `webtest <http://webtest.readthedocs.org/en/latest/>`_ / `webtest-plus <https://github.com/sloria/webtest-plus>`_ : Provides a :class:`TestApp` with which to send test requests and make assertions about the responses.
 
 
 Javascript
