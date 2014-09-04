@@ -38,6 +38,16 @@ General
     # No
     url = os.path.join('/user', 'settings')
 
+- Use the above functions in Mako templates; they are available by default.
+
+.. code-block:: html+mako
+
+    <!-- Yes -->
+    <p>Visit your <a href="${ web_url_for('user_settings') }">user settings</a>.
+
+    <!-- No -->
+    <p>Visit your <a href="/settings/">user settings</a>.
+
 Views
 *****
 
