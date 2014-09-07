@@ -7,7 +7,7 @@ See the `README.md <https://github.com/CenterForOpenScience/osf>`_ of the OSF fo
 
 *Work in Progress, please add or edit as necessary.*
 
-This page provides a verbose and detailed instruction to installing OSF. If you are already familiar with Python more compact instructions can be found at the README file. 
+This page provides a verbose and detailed instruction to installing OSF. If you are already familiar with Python more compact instructions can be found at the `README <https://github.com/CenterForOpenScience/osf>`_ file. 
 
 Preparing your development environment for the OSF
 ####
@@ -251,6 +251,7 @@ Run OSF installation
 
     ::
 
+        cd osf
         pip install -r dev-requirements.txt
 
 Create your local settings file
@@ -273,7 +274,7 @@ This is required for R installation. The xQuartz installation uses an installer 
 
 **Install gfortran**
 
-Gfortran will also be required for R installation and can be download as a package installer from this `website <https://igppwiki.ucsd.edu/groups/publichelpwiki/wiki/bb632/Installing_gfortran_64_and_32bit.html>`_ .
+Gfortran will also be required for R installation and can be download as a package installer from this `website <https://gcc.gnu.org/wiki/GFortranBinaries>`_ .
 
 **Install R**
 
