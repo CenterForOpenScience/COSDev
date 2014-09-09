@@ -32,3 +32,14 @@ Generating a new SSL certificate
     * paste osf.io.bundle.crt into "Certificate" field
     * paste osf.io.key.nopass into "Private Key" field
 
+Upgrading Unsupported releases of Ubuntu
+****************************************
+
+- `EOLUpgrades <https://help.ubuntu.com/community/EOLUpgrades/>`_
+- `How to install software or upgrade from old unsupported release? <https://askubuntu.com/questions/91815/how-to-install-software-or-upgrade-from-old-unsupported-release/91821#91821?newreg=55cb4b0054814dbe9fdf36b3a0a08f27>`_ (AskUbuntu)
+
+NOTE: The command from the AskUbuntu answer needs slight modification to include replacement of ``us.archive.ubuntu.com``: ::
+
+    sudo sed -i -e 's/archive.ubuntu.com\|security.ubuntu.com\us.archive.ubuntu.com/old-releases.ubuntu.com/g' /etc/apt/sources.list
+
+NOTE: When prompted if you want to replace ``/etc/mongodb.conf`` and ``/etc/nginx/nginx.conf``, etc., press ``X`` to enter the shell and back these files up (``sudo cp /etc/mongodb.conf /etc/mongodb.conf.bak``)
