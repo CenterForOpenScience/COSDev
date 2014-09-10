@@ -233,10 +233,25 @@ Use parentheses for line continuations.
         "same year as Smith & Wesson's M29 .44 Magnum."
     )
 
+Recommended Syntax Checkers
+***************************
 
+We recommend using a syntax checker to help you find errors quickly and easily format your code to abide by the guidelines above. `Flake8 <http://flake8.readthedocs.org/en/latest/>`_ is the recommended is a nice choice for Python. It will check syntax as well as style and is easily configurable. It can be installed with pip: ::
+
+    $ pip install flake8
+
+There are a number of plugins for integrating Flake8 with your preferred text editor.
+
+Vim
+
+- `syntastic <https://github.com/scrooloose/syntastic>`_ (multi-language)
+
+Sublime Text
+
+- `Sublime Linter <https://sublime.wbond.net/packages/SublimeLinter`_ with `SublimeLinter-flake8 <https://sublime.wbond.net/packages/SublimeLinter-flake8>`_ (must install both)
 
 Credits
--------
+*******
 
 - `PEP8`_ (Style Guide for Python)
 - `Pythonic Sensibilities <http://www.nilunder.com/blog/2013/08/03/pythonic-sensibilities/>`_

@@ -49,14 +49,44 @@ Testing models
 
 Unit tests for models belong in ``tests/test_models.py``. Each model should have its own test class.
 
-.. todo::
-    Write example model test.
+.. code-block:: python
+
+    from frameworks.auth.core import User
+
+    from tests.base import OsfTestCase, fake
+
+    class TestUser(OsfTestCase):
+
+        def test_check_password(self):
+            user = User(username=fake.email(), fullname='Nick Cage')
+            user.set_password('ghostrider')
+            user.save()
+            assert_true(user.check_password('ghostrider'))
+            assert_false(user.check_password('ghostride'))
+
+        # ...
 
 Views tests
 ***********
 
-.. todo::
-    Show webtest example
+.. code-block:: python
+
+    from framework.auth.core import Auth
+
+    from tests.factories import ProjectFactory
+
+    class TestProjectViews(OsfTestCase):
+
+        def setUp(self):
+            OsfTestCase.setUp(self)
+            self.project = ProjectFactory()
+
+        def test_get_project_returns_200_with_auth(self):
+            url = self.project.api_url_for('project_get')
+            # Endpoint is protected, so need an `Auth` object
+            auth = Auth(user=self.project.creator)
+            res = self.app.get(url, auth=auth)
+            assert_equal(res.status_code, 200)
 
 Functional tests
 ****************
