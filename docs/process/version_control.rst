@@ -4,7 +4,8 @@ Version Control
 We use git for version control. Some general guidelines:
 
 - Use Vincent Driessen's `Successful Git Branching Model <http://nvie.com/posts/a-successful-git-branching-model/>`_ (aka git-flow)
-- In your feature branches, pull from ``develop`` frequently.
+- In your **feature** branches, pull from ``develop`` frequently.
+- **DO NOT** merge ``develop`` into **hotfix** branches.
 - Follow the :ref:`Git style guide <git>`.
 
 
