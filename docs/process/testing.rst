@@ -10,7 +10,7 @@ Testing
 General Testing Guidelines
 --------------------------
 
-- Use long, descriptive names. This often obviates the need for doctrings in test methods.
+- Use long, descriptive names. This often obviates the need for doctrings in test methods. This also makes it easier to locate tests that fail.
 - Tests should be isolated. Don't interact with a real database or network. Use a separate test database that gets torn down or use mock objects.
 - Prefer `factories <https://github.com/rbarrois/factory_boy>`_ to fixtures.
 - Never let incomplete tests pass, else you run the risk of forgetting about them. Instead, add a placeholder like ``assert False, "TODO: finish me"``. If you are stubbing out a test that will be written in the future, use the :meth:`@unittest.skip` decorator.
