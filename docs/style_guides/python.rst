@@ -236,7 +236,7 @@ Use parentheses for line continuations.
 Recommended Syntax Checkers
 ***************************
 
-We recommend using a syntax checker to help you find errors quickly and easily format your code to abide by the guidelines above. `Flake8 <http://flake8.readthedocs.org/en/latest/>`_ is the recommended is a nice choice for Python. It will check syntax as well as style and is easily configurable. It can be installed with pip: ::
+We recommend using a syntax checker to help you find errors quickly and easily format your code to abide by the guidelines above. `Flake8 <http://flake8.readthedocs.org/en/latest/>`_ is our recommended checker for Python. It will check for both syntax and style errors and is easily configurable. It can be installed with pip: ::
 
     $ pip install flake8
 
@@ -248,7 +248,7 @@ Vim
 
 Sublime Text
 
-- `Sublime Linter <https://sublime.wbond.net/packages/SublimeLinter`_ with `SublimeLinter-flake8 <https://sublime.wbond.net/packages/SublimeLinter-flake8>`_ (must install both)
+- `Sublime Linter <https://sublime.wbond.net/packages/SublimeLinter>`_ with `SublimeLinter-flake8 <https://sublime.wbond.net/packages/SublimeLinter-flake8>`_ (must install both)
 
 Credits
 *******

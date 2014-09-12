@@ -302,3 +302,20 @@ Knockout Module Template
 
         return MyModule;
     }));
+
+Recommended Syntax Checkers
+***************************
+
+We recommend using a syntax checker to help you find errors quickly and easily format your code to abide by the guidelines above. `JSHint <http://jshint.com>`_ is our recommended checker for Javascript. It can be installed with ``npm``: ::
+
+    $ npm install -g jshint
+
+There are a number of plugins for integrating jshint with your preferred text editor.
+
+Vim
+
+- `syntastic <https://github.com/scrooloose/syntastic>`_ (multi-language)
+
+Sublime Text
+
+- `Sublime Linter <https://sublime.wbond.net/packages/SublimeLinter>`_ with `SublimeLinter-jshint <https://sublime.wbond.net/packages/SublimeLinter-jshint>`_ (must install both)
