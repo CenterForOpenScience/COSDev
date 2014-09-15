@@ -66,6 +66,12 @@ Views
         auth = kwargs['auth']
         #...
 
+    # Exception: when node and/or project are injected, you must pull off kwargs
+    @must_be_contributor_or_public
+    def get_project_comments(auth, **kwargs):
+        node = kwargs['node'] or kwargs['project']
+        # ...
+
 
 Responses
 *********
