@@ -46,13 +46,16 @@ When using ``jQuery.ajax`` directly, use the Promises interface.
 
 .. code-block:: javascript
 
-    $.ajax({ ... }).then(successHandler, failureHandler);
+    function successHandler(response) { ... }
+    function failureHandler(jqXHR, status, error) {...}
+
+
+    var request = $.ajax({ ... });
+    request.done(successHandler);
+    request.fail(failureHandler);
 
     // OR
-    var jqxhr = $.ajax({ ... });
-    jqxhr.done(successHandler);
-    jqxhr.fail(failureHandler);
-
+    $.ajax({ ... }).then(successHandler, failureHandler);
 
 Utility functions
 -----------------
