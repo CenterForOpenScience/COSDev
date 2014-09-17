@@ -123,6 +123,9 @@ To migrate search records:
 Error Handling
 **************
 
+Server-side
+-----------
+
 If a view should return an error response, raise a ``framework.exceptions.HTTPError``, optionally passing a short and long message. This will ensure that a properly formatted HTML or JSON response is returned (depending on whether the route is an API or web route). **Do NOT** return a dictionary.
 
 .. code-block:: python
@@ -140,6 +143,32 @@ If a view should return an error response, raise a ``framework.exceptions.HTTPEr
                 msg_long='The user could not be in our database.'
             )
         return serialized_settings(settings), 200
+
+Client-side
+-----------
+
+All client-side HTTP requests should have proper error handlers. As an example, you might display an error message in a modal if a request fails.
+
+
+.. code-block:: javascript
+
+    var request = $.osf.putJSON('/api/v1/profile', {'email': 'foo@bar.com'});
+
+    request.done(function(response) { ... });
+
+    request.fail(function(jqxhr, status, error) {
+        bootbox.alert({
+            title: "Error",
+            message: "We're sorry. Your profile could not be updated at this time. Please try again later."
+        });
+    })
+
+When appropriate, you can use the generic `$.osf.handleJSONError`, which will display a generic error message in a modal to the user if a failure occurs.
+
+.. code-block:: javascript
+
+    // ...
+    request.fail($.osf.handleJSONError);
 
 Documentation
 *************
