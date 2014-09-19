@@ -48,7 +48,7 @@ Hotfix releases
 
     You can also use the ``release.hotfix`` invoke task to automatically rename the current hotfix branch and finish it. ::
 
-        $ invoke release.hotfix --finish
+        $ invoke hotfix --finish
 
 - Push ``develop`` and ``master``. Push tags.
 
