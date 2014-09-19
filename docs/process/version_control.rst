@@ -43,6 +43,13 @@ Hotfix releases
 
 - When prompted to add a tag message, write a brief (1-2 sentence) description of the hotfix.
 
+
+.. note::
+
+    You can also use the ``release.hotfix`` invoke task to automatically rename the current hotfix branch and finish it. ::
+
+        $ invoke release.hotfix --finish
+
 - Push ``develop`` and ``master``. Push tags.
 
 
