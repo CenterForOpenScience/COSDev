@@ -20,6 +20,8 @@ Naming
 General Naming Guidelines
 -------------------------
 
+Use singlequotes for strings, unless doing so requires lots of escaping.
+
 Avoid one-letter variables (esp. ``l``, ``O``, ``I``).
 
 *Exception*: In very short blocks, when the meaning is clearly visible from the immediate context
