@@ -32,6 +32,7 @@ Generating a new SSL certificate
     * paste osf.io.bundle.crt into "Certificate" field
     * paste osf.io.key.nopass into "Private Key" field
 
+
 Upgrading Unsupported releases of Ubuntu
 ****************************************
 
@@ -43,3 +44,40 @@ NOTE: The command from the AskUbuntu answer needs slight modification to include
     sudo sed -i -e 's/archive.ubuntu.com\|security.ubuntu.com\us.archive.ubuntu.com/old-releases.ubuntu.com/g' /etc/apt/sources.list
 
 NOTE: When prompted if you want to replace ``/etc/mongodb.conf`` and ``/etc/nginx/nginx.conf``, etc., press ``X`` to enter the shell and back these files up (``sudo cp /etc/mongodb.conf /etc/mongodb.conf.bak``)
+
+
+Migrating to a new machine
+**************************
+
+- On Linode dashboard, go to the Linode you want to restore *from*.
+- Go to Backups -> Daily Backups.
+- Click "Restore to this Linode" next to the Linode you want to restore *to*.
+- Once restoration is complete, resize the data image.
+- On the new machine, add a new SSH key pair in /root/.ssh ::
+
+    # Replace "sloria" with your username
+    $ ssh-keygen -t rsa -C "sloria-osf"
+
+- Copy the new public key to the old machine at  ``/home/<your-username>/.ssh/authorized_keys``
+- On the new machine, edit /root/.ssh/config with the correct SSH settings. ::
+
+    Host osf-old
+        HostName <ip-of-old-linode>
+        User sloria
+        IdentityFile /home/sloria/.ssh/id_sloria
+
+
+- rsync /opt/data/mongodb. ::
+
+    # On the new machine
+    $ sudo rsync -vaz --delete osf-old:/opt/data/mongodb /opt/data
+
+.. note::
+    You'll probably want to use ``screen`` or ``nohup`` to run this as a background process.
+
+
+- rsync /opt/data/uploads. ::
+
+    $ sudo rsync -vaz --delete osf-old:/opt/data/uploads /opt/data/
+
+put up osf_down page,private ips on node balancer, restart new server then old
