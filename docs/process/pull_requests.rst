@@ -16,3 +16,4 @@ Use the following checklist to make sure your pull request can be reviewed and m
     - The purpose of the changes you made.
     - Which Github issue the PR addresses, if applicable.
     - Potential concerns, esp. regarding security, privacy, and provenance, which will requires extra care during review.
+- Once your PR is ready, ask for code review on Flowdock.
