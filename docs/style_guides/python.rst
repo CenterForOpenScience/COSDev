@@ -252,6 +252,7 @@ Once installed, you can run a check with: ::
     We highly recommend that you add a git hook to check your code before you commit it. You only need to run the following command once:
     ::
 
+        # Current directory must be a git repo
         $ flake8 --install-hook
 
     This adds the proper hook to ``.git/hooks/pre-commit``.
