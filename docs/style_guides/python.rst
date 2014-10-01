@@ -242,6 +242,20 @@ We recommend using a syntax checker to help you find errors quickly and easily f
 
     $ pip install flake8
 
+
+Once installed, you can run a check with: ::
+
+    $ flake8
+
+.. note::
+
+    We highly recommend that you add a git hook to check your code before you commit it. You only need to run the following command once:
+    ::
+
+        $ flake8 --install-hook
+
+    This adds the proper hook to ``.git/hooks/pre-commit``.
+
 There are a number of plugins for integrating Flake8 with your preferred text editor.
 
 Vim
