@@ -53,7 +53,7 @@ Migrating to a new machine
 - Go to Backups -> Daily Backups.
 - Click "Restore to this Linode" next to the Linode you want to restore *to*.
 - Once restoration is complete, resize the data image.
-- On the new machine, add a new SSH key pair in /root/.ssh ::
+- On the new machine, add a new SSH key pair. ::
 
     # Replace "sloria" with your username
     $ ssh-keygen -t rsa -C "sloria-osf"
@@ -64,7 +64,7 @@ Migrating to a new machine
     Host osf-old
         HostName <ip-of-old-linode>
         User sloria
-        IdentityFile /home/sloria/.ssh/id_sloria
+        IdentityFile /home/sloria/.ssh/id_rsa
 
 
 - rsync /opt/data/mongodb. ::
