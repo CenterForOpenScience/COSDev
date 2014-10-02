@@ -173,7 +173,7 @@ Installing OSF
 
 Using homebrew
 ----
-The next step will be to install mongoDB, but just like we used pip to install virtualenv, we need another cool tool called Homebrew to install mongo. Homebrew is a package manager that allows you to install lots of very cool things that are not just python related. You most likely have homebrew. To test this open a new window of terminal and type
+The next step will be to install TokuMX, but just like we used pip to install virtualenv, we need another cool tool called Homebrew to install TokuMX. Homebrew is a package manager that allows you to install lots of very cool things that are not just python related. You most likely have homebrew. To test this open a new window of terminal and type
 
     :: 
 
@@ -193,16 +193,16 @@ Homebrew installation will ask you to press ENTER to continue and enter your pas
 
 This will show any possible errors or other things that need to be done. Homebrew is quite clear about what to do in these cases, usually you need to copy paste the provided commands and run them. 
 
-Installing MongoDB
+Installing TokuMX
 ----
-MongoDB is a database that OSF uses. It is a widely known and very common database application. If you are coming from PHP you have more likely used MySQL although databases are not programming language specific.  
+TokuMX is a database that OSF uses. It is a fork of MongoDB, which is a widely known and very common database application. If you are coming from PHP you have more likely used MySQL although databases are not programming language specific.  
 
-To install MongoDB first refresh your brew install by updating it and then use brew to install mongoDB: 
+To install TokuMX first refresh your brew install by updating it and then use brew to install TokuMX: 
 
     :: 
 
-        brew update
-        brew install mongodb
+        brew tap tokutek/tokumx
+        brew install tokumx-bin
 
 Installing libxml2 and libxslt 
 ----
@@ -300,13 +300,13 @@ The following commands will install the requirements for add ons.
 
 Starting up 
 ----
-Run your mongodb process:
+Run your TokuMX process:
 
     :: 
 
         invoke mongo
 
-Note -- mongo must be running in order to invoke the server. If the process stops it has failed. Try running  `mongod` for a more informative message. See below for common problems.
+Note -- TokuMX must be running in order to invoke the server. If the process stops it has failed. Try running  `mongod` for a more informative message. See below for common problems.
 
 Run your local development server:
 
@@ -314,7 +314,7 @@ Run your local development server:
 
           invoke server
 
-You now have both the mongo and servers running. You will see the server address in the terminal window where you entered invoke server. It will most likely be **http://0.0.0.0:5000**. Navigate to this url in your browser to check if it works. 
+You now have both the database and application running. You will see the application address in the terminal window where you entered invoke server. It will most likely be **http://0.0.0.0:5000**. Navigate to this url in your browser to check if it works. 
 
 Common Error messages
 #### 
@@ -332,13 +332,13 @@ Xcode Command Line Tools installation is missing or was not successful. Go to th
 
 **3. Unable to lock file: /data/db/mongod.lock**
 
-If the mongodb server is still running or if you turn off the computer without stopping the server the mongodb lock file will cause errors. If you see an error like the one below: 
+If the TokuMX server is still running or if you turn off the computer without stopping the server the TokuMX lock file will cause errors. If you see an error like the one below: 
 
     ::
 
         ...exception in initAndListen: 10310 Unable to lock file: /data/db/mongod.lock. Is a mongod instance already running?, terminating...
 
-first check other terminals to see if mongodb is running. If it isn't go to the folder  /data/db/mongod.lock and delete the file. 
+first check other terminals to see if TokuMX is running. If it isn't go to the folder  /data/db/mongod.lock and delete the file. 
 
 **4. RuntimeError: Broken toolchain: cannot link a simple C program OR clang: error: unknown argument: '-mno-fused-madd'** 
 
@@ -373,7 +373,7 @@ Notes and Tips
 
     - Use SSH for git to avoid authentication issues.  
     - Don't use SUDO inside virtual environments to install things. Bad things happen.
-    - Mongo port needs to be 20771. If you use invoke mongo this should be the case, otherwise either change mongo port settings or change osf settings for the mongo port.
+    - TokuMX port needs to be 20771. If you use ``invoke mongo`` this should be the case, otherwise either change TokuMX port settings or change osf settings for the TokuMX port.
 
 Sources and Further Reading
 ####
@@ -385,5 +385,6 @@ Sources and Further Reading
     - Homebrew: `http://brew.sh/ <http://brew.sh/>`_
     - Flask `http://flask.pocoo.org <http://flask.pocoo.org>`_
     - mongoDB `https://www.mongodb.org <https://www.mongodb.org>`_  
+    - TokuMX: `http://www.tokutek.com/tokumx-for-mongodb/ <http://www.tokutek.com/tokumx-for-mongodb/>`_
     - IDE: PyCharm `http://www.jetbrains.com/pycharm/features/ <http://www.jetbrains.com/pycharm/features/>`_
     - How to use your bash profile on Mac: `http://natelandau.com/my-mac-osx-bash_profile/ <http://natelandau.com/my-mac-osx-bash_profile/>`_
