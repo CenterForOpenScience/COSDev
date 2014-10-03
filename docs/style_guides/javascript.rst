@@ -322,3 +322,7 @@ Vim
 Sublime Text
 
 - `Sublime Linter <https://sublime.wbond.net/packages/SublimeLinter>`_ with `SublimeLinter-jshint <https://sublime.wbond.net/packages/SublimeLinter-jshint>`_ (must install both)
+
+PyCharm
+
+- Follow these docs: `http://www.jetbrains.com/pycharm/webhelp/jshint.html <http://www.jetbrains.com/pycharm/webhelp/jshint.html>`_
