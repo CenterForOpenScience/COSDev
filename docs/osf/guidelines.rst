@@ -216,3 +216,27 @@ Generating fake data
 where ``fred@cos.io`` is the email of the user you created.
 
 After you run the script, you will have 3 fake projects, each with 3 fake contributors (with you as the creator).
+
+Dialogs
+-------
+
+We use `Bootbox <http://bootboxjs.com/>`_ to generate modal dialogs in the OSF. When calling a ``bootbox`` method, always pass in an object of arguments rather than positional arguments. This allows you to include a title in the dialog.
+
+
+.. code-block:: javascript
+
+    // Yes
+    bootbox.confirm({
+        title: 'Permanently delete file?',
+        message: 'Are you sure you want to delete this file?',
+        callback: function(confirmed) {
+            // ..
+        }
+    })
+
+    // No
+    bootbox.confirm('Are you sure you want to delete this file?',
+        function(confirmed) {
+            // ...
+        }
+    )
