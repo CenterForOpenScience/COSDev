@@ -49,6 +49,8 @@ NOTE: When prompted if you want to replace ``/etc/mongodb.conf`` and ``/etc/ngin
 Migrating to a new machine
 **************************
 
+.. todo:: This is incomplete. Add final steps and clean this up.
+
 - On Linode dashboard, go to the Linode you want to restore *from*.
 - Go to Backups -> Daily Backups.
 - Click "Restore to this Linode" next to the Linode you want to restore *to*.
