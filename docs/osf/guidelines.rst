@@ -72,6 +72,7 @@ Views
         node = kwargs['node'] or kwargs['project']
         # ...
 
+- Use ``framework.flask.redirect`` to return redirect responses. It has the same functionality as ``flask.redirect`` except that it will reappend querystring parameters for view-only links when necessary. Do **not** use ``flask.redirect``.
 
 Responses
 *********
