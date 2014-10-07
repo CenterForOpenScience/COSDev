@@ -106,6 +106,34 @@ Responses
         "message": "Successfully created project" # ... an optional message
     }
 
+- Prefer namespaced representations to arbitrary prefixes in response data.
+
+.. code-block:: javascript
+
+    // Yes
+    {
+        'node': {
+            '_id': '123abc',
+            'urls': {
+                'api': '/api/v1/123abc',
+                'web': '/123abc/'
+            }
+        },
+        'urls': {
+            'latest': '/files/some-file-id/latest/',
+            'detail': '/files/some-file-id/'
+        }
+    }
+
+    // No
+    {
+        'node_id': '123abc',
+        'node_api_url': '/api/v1/123abc',
+        'node_web_url': '/123abc/',
+        'latest_file_url': '/files/some-file-id/latest/',
+        'file_detail_url': '/files/some-file-id/'
+    }
+
 Running Migrations
 ******************
 
