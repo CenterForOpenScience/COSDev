@@ -30,6 +30,23 @@ Documentation
 
 Use the `YUIDoc <https://yui.github.io/yuidoc/>`_ standard for writing JS comment blocks.
 
+Example:
+
+.. code-block:: javascript
+
+    /**
+    * A wrapper around the ACE editor that asynchronously loads
+    * and publishes its content.
+    *
+    * @param {String} selector Selector for the editor element
+    * @param {String} url URL for retrieving and posting content.
+    */
+
+For simple functions and methods, a single-line docstring will suffice.
+
+.. code-block:: javascript
+
+    /** Update the viewModel with data fetched from a server. */
 
 jQuery
 ******
