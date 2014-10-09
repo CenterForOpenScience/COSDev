@@ -37,6 +37,9 @@ extensions = [
     'sphinx.ext.todo',
 ]
 
+primary_domain = 'py'
+default_role = 'py:obj'
+
 # Show todo and todolists
 todo_include_todos = True
 

@@ -72,6 +72,7 @@ Python
 - `factory-boy <https://github.com/rbarrois/factory_boy>`_: Utility library for creating test objects. Replaces fixtures with "factories".
 - `mock <http://www.voidspace.org.uk/python/mock/>`_: Allows you to mock and patch objects for testing purposes.
 - `webtest <http://webtest.readthedocs.org/en/latest/>`_ / `webtest-plus <https://github.com/sloria/webtest-plus>`_ : Provides a :class:`TestApp` with which to send test requests and make assertions about the responses.
+- `faker <https://github.com/joke2k/faker>`_ : A fake data generator.
 
 
 Javascript
