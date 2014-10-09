@@ -1,12 +1,11 @@
 Testing the OSF
 ===============
 
-Docs in progress.
+This page includes information about testing the OSF codebase.
 
 .. seealso::
 
-    This page includes information testing the OSF codebase. For more general testing
-    guidelines, see the :ref:`Testing <testing>` page.
+     For more general testing guidelines, see the :ref:`Testing <testing>` page.
 
 
 The ``OsfTestCase``
