@@ -3,6 +3,11 @@ Testing the OSF
 
 Docs in progress.
 
+.. seealso::
+
+    This page includes information testing the OSF codebase. For more general testing
+    guidelines, see the :ref:`Testing <testing>` page.
+
 
 The ``OsfTestCase``
 *******************
@@ -29,6 +34,7 @@ Using Factories
 .. code-block:: python
 
     from tests.factories import UserFactory
+    from tests.base import fake
 
     class TestUser(OsfTestCase):
 
@@ -38,6 +44,7 @@ Using Factories
 
             # You can also specify attributes when needed
             user3 = UserFactory(username='fredmercury@queen.io')
+            user4 = UserFactory(password=fake.md5())
             # ...
 
 
@@ -47,7 +54,7 @@ Unit tests
 Testing models
 --------------
 
-Unit tests for models belong in ``tests/test_models.py``. Each model should have its own test class.
+Unit tests for models belong in ``tests/test_models.py``. Each model should have its own test class. You can have multiple test classes for a single model if necessary.
 
 .. code-block:: python
 
@@ -81,8 +88,7 @@ Things to test:
 
 .. code-block:: python
 
-    from framework.auth.core import Auth
-
+    from tests.base import OsfTestCase
     from tests.factories import ProjectFactory, AuthUserFactory
 
     class TestProjectViews(OsfTestCase):
@@ -117,8 +123,50 @@ Things to test:
 Functional tests
 ****************
 
-.. todo::
-    Show webtest functional test example
+Functional tests in the OSF also use webtest. These tests mimic how a user would interact with the application through their browser.
+
+Things to test:
+
+- User interactions, such as clicking on links, `filling out forms <http://webtest.readthedocs.org/en/latest/forms.html>`_
+- Content that you expect to appear on the page.
+
+.. code-block:: python
+
+    from tests.base import OsfTestCase
+    from tests.factories import ProjectFactory, AuthUserFactory
+
+    class TestProjectDashboard(OsfTestCase):
+
+        def setUp(self):
+            OsfTestCase.setUp(self)
+            self.user = AuthUserFactory()
+            self.project = ProjectFactory(creator=self.user)
+
+        # Use line comments to write out user stories
+        def test_can_access_wiki_from_project_dashboard(self):
+            # Goes to project dashboard (user is logged in)
+            url = self.project.web_url_for('view_project')
+            res = self.app.get(url, auth=self.user.auth)
+
+            # Clicks the Wiki link,
+            # follows redirect to wiki home page
+            res = res.click('Wiki').follow()
+
+            # Sees 'home' on the page
+            assert_in('home', res)
+
+
+.. note::
+
+    The :meth:`TestResponse.showbrowser()` method is especially useful for debugging functional
+    tests. It allows you to open the current page in your browser at a given point in the test.
+
+    .. code-block:: python
+
+        res = self.app.get(url)
+        res.showbrowser()  # for debugging
+
+    Just be sure to remove the line when you are done debugging.
 
 
 Javascript tests
