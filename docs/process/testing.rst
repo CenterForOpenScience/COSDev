@@ -7,6 +7,11 @@ Testing
 
     The below examples are in Python, but the concepts apply to testing in any language.
 
+.. seealso::
+
+    Looking for OSF-specific testing guidelines? See the :ref:`Testing the OSF <osftesting>` page.
+
+
 General Testing Guidelines
 --------------------------
 
