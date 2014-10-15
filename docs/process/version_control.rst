@@ -21,6 +21,14 @@ Useful Tools
 - `hub <https://github.com/github/hub>`_ - GitHub integration with the git CLI. Very useful for checking out pull requests.
 
 
+An Important Note About Hotfixes
+********************************
+
+Many git-flow tools will try to force you to merge hotfix branches into master *before* publishing code to a hosting service (e.g. Github). Do **not** do this. Just push your hotfix branch on its own and :ref:`send a pull request <pull_requests>`. ::
+
+    # Push a new hotfix branch up to origin
+    $ git push -u origin hotfix/nav-header-size
+
 Package and App Maintainers: Release How-to
 *******************************************
 
