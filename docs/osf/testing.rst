@@ -169,6 +169,17 @@ Things to test:
 
     Just be sure to remove the line when you are done debugging.
 
+Regression tests
+****************
+
+Regression tests may fall under any one of the categories above (unit, model, views, functional). If you write a regression test for a specific issue, it is often helpful to link to the issue in a line comment above the test.
+
+.. code-block:: python
+
+    # Regression test for https://github.com/CenterForOpenScience/openscienceframework.org/issues/1136
+    def test_cannot_create_project_with_blank_name(self):
+        # ...
+
 
 Javascript tests
 ****************
