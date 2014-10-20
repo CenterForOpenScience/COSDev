@@ -178,10 +178,15 @@ Client-side
 
 All client-side HTTP requests should have proper error handlers. As an example, you might display an error message in a modal if a request fails.
 
+.. note::
+
+    Use `RavenJS <https://raven-js.readthedocs.org/en/latest/>`_ (a JS client for Sentry) to log unexpected errors to our Sentry server.
+
 
 .. code-block:: javascript
 
-    var request = $.osf.putJSON('/api/v1/profile', {'email': 'foo@bar.com'});
+    var url = '/api/v1/profile';
+    var request = $.osf.putJSON(url, {'email': 'foo@bar.com'});
 
     request.done(function(response) { ... });
 
@@ -190,7 +195,12 @@ All client-side HTTP requests should have proper error handlers. As an example, 
             title: "Error",
             message: "We're sorry. Your profile could not be updated at this time. Please try again later."
         });
-    })
+        // Log error to Sentry
+        // Add context (e.g. error status, error messages) as the 2nd argument
+        Raven.captureMessage('Error while updating user profile', {
+            url: url, status: status, error: error
+        });
+    });
 
 When appropriate, you can use the generic `$.osf.handleJSONError`, which will display a generic error message in a modal to the user if a failure occurs.
 
