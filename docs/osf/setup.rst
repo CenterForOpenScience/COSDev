@@ -261,6 +261,22 @@ Create your local settings file
 
         cp website/settings/local-dist.py website/settings/local.py
 
+
+Install front end dependencies
+----
+Several front end modules required by OSF are installed using bower. Bower is a front end package manager. To install bower run: 
+    
+    ::
+
+        npm install -g bower
+
+Within your OSF folder Install dependencies for OSF by running:
+
+    ::
+
+        bower install
+
+
 Installing Add on Requirements
 ----
 OSF uses add ons that provide diverse functionalities. You can decide to work with the add ons or without them. If you don't want add ons you can turn them off. Otherwise you will need to install the add on requirements as well.
