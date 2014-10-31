@@ -20,6 +20,16 @@ General Testing Guidelines
 - Prefer `factories <https://github.com/rbarrois/factory_boy>`_ to fixtures.
 - Never let incomplete tests pass, else you run the risk of forgetting about them. Instead, add a placeholder like ``assert False, "TODO: finish me"``. If you are stubbing out a test that will be written in the future, use the :meth:`@unittest.skip` decorator.
 - Strive for 100% code coverage, but don't get obsess over coverage scores.
+- When testing the contents of a dictionary, test the keys individually.
+
+.. code-block:: python
+
+    # Yes
+    assert_equal(result['foo'], 42)
+    assert_equal(result['bar'], 24)
+
+    # No
+    assert_equal(result, {'foo': 42, 'bar': 24})
 
 Unit Tests
 ----------
@@ -64,6 +74,7 @@ Functional tests are higher level tests that are closer to how an end-user would
             ...
 
 Notice how the testcase and test method read together like "Test A User can write a blog post".
+
 
 
 Supporting Libraries
