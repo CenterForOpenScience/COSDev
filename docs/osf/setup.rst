@@ -263,9 +263,10 @@ Create your local settings file
 
 
 Install front end dependencies
-----
-Several front end modules required by OSF are installed using bower. Bower is a front end package manager. To install bower run: 
-    
+------------------------------
+
+Several front end modules required by OSF are installed using bower. Bower is a front end package manager. To install bower run:
+
     ::
 
         npm install -g bower
@@ -278,7 +279,8 @@ Within your OSF folder Install dependencies for OSF by running:
 
 
 Installing Add on Requirements
-----
+------------------------------
+
 OSF uses add ons that provide diverse functionalities. You can decide to work with the add ons or without them. If you don't want add ons you can turn them off. Otherwise you will need to install the add on requirements as well.
 
 During your add on installation some packages will be required and if you don't have them you will receive errors. To avoid errors install the following
