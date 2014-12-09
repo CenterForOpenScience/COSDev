@@ -247,7 +247,7 @@ To install the latest files for OSF using SSH, type the following in the folder 
 
 
 Run OSF installation
-----
+--------------------
 
     ::
 
@@ -255,15 +255,19 @@ Run OSF installation
         pip install -r dev-requirements.txt
 
 Create your local settings file
-----
+-------------------------------
 
     ::
 
         cp website/settings/local-dist.py website/settings/local.py
 
+Install node packages with ``npm``
+----------------------------------
 
-Install front end dependencies
-------------------------------
+.. todo:: In-depth info on npm installation. For now, see the README.
+
+Install front end dependencies with ``bower``
+---------------------------------------------
 
 Several front end modules required by OSF are installed using bower. Bower is a front end package manager. To install bower run:
 
@@ -276,6 +280,12 @@ Within your OSF folder Install dependencies for OSF by running:
     ::
 
         bower install
+
+
+Building assets with ``webpack``
+--------------------------------
+
+.. todo:: Document webpack installation and usage. For now, see the README.
 
 
 Installing Add on Requirements

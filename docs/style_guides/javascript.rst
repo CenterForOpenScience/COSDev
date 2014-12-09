@@ -86,68 +86,86 @@ Put any reusable helper functions and plugins on the ``$.osf`` namespace. **Do n
 Writing modules in the OSF
 **************************
 
-- Make your module compatible with `RequireJS <http://requirejs.org/>`_ or no module loader. This can be done simply by wrapping your module with a snippet, as shown in the example below.
+- Use the CommonJS module style.
 - Use the Combination Constructor/Prototype pattern for encapsulation (it's simpler than it sounds). A good write-up on this can be found `here <http://javascriptissexy.com/oop-in-javascript-what-you-need-to-know/#Encapsulation_in_JavaScript>`_.
+- Reuseable modules go in ``website/static/js/``. Name modules in ``lowerCamelCase``.
+- Initialization code for a single web page goes in module within ``website/static/js/pages/``. Name page modules with ``lower-dashed-case``.
 
+**website/static/js/osfMarkdownParser.js**
+
+.. code-block:: javascript
+    
+    /**
+     * A Markdown parser with special syntax for linking to 
+     * OSF projects.
+    **/
+    'use strict';
+
+    // CommonJS/Node-style imports at the top of the file
+    
+    var $osf = require('osf-helpers');
+
+    // Private methods go up here
+    function someHelper() {
+        // ....
+    }
+    // This is the public API
+    // The constructor
+    function OSFMarkdownParser (selector, options) {
+        this.selector = selector;
+        this.options = options;
+        this.init();
+    }
+    // Methods
+    OSFMarkdownParser.prototype.init = function() {
+        //...
+    }
+
+    OSFMarkdownParser.prototype.somePublicMethod = function() {
+        //...
+    }
+
+    module.exports = OSFMarkdownParser;
+
+**website/static/js/pages/wiki-edit-page.js**
 
 .. code-block:: javascript
 
-    // website/static/js/markdownParser.js
+    // Initialization of the Markdown parser
 
-    // Initial semicolon for safe minification
-    ;(function (global, factory) {
-        // Support RequireJS/AMD or no module loader
-        if (typeof define === 'function' && define.amd) {
-            // Dependency IDs here
-            define(['jquery'], factory);
-        } else { // No module loader, just attach to global namespace
-            global.OSFMarkdownParser = factory(jQuery);
-        }
-    }(this, function($) {  // named dependencies here
-        'use strict';
-        // Private methods go up here
-        function someHelper() {
-            // ....
-        }
-        // This is the public API
-        // The constructor
-        function OSFMarkdownParser (selector, options) {
-            this.selector = selector;
-            this.options = options;
-            this.init();
-        }
-        // Methods
-        OSFMarkdownParser.prototype.init = function() {
-            //...
-        }
+    var OSFMarkdownParser = require('../osfMarkdownParser.js');
 
-        OSFMarkdownParser.prototype.somePublicMethod = function() {
-            //...
-        }
-
-        return OSFMarkdownParser;
-    }));
+    new OSFMarkdownParser('#wikiInput', {...});
 
 
-**website/templates/some_template.mako**
+Each module in ``website/static/js/pages`` corresponds to an entry point in `webpack <https://webpack.github.io/docs/multiple-entry-points.html>`_. 
+
+**webpack.config.js**
+
+.. code-block:: javascript
+
+    // Entry points built by webpack. The keys of this object correspond to the 
+    // names of the built files which are put in /website/static/public/js/. The values
+    // in the object are the source files.
+    var entry = {
+        //...
+        'project-base-page': staticPath('js/pages/project-base-page.js'),
+        // ...
+    }
+
+Webpack parses the dependency graphs of these modules and builds them into single files which can be included on HTML pages. The built files reside in ``website/static/public/js``.
+
+**website/templates/wiki/edit.mako**
 
 .. code-block:: html
 
-    <script>
-        $script(['/static/js/markdownParser.js'], function(){
-            var markdown = new OSFMarkdownParser('#markdownEditor');
-        });
-    </script>
-
-Naming Modules
---------------
-
-Use lower camel case for the filename. The filename should correspond to the name of the exported class. For example, if you module has the ``LogFeed`` class, the JS file should be named ``logFeed.js``.
+    <script src="/static/public/js/wiki-edit-page.js"></script>
 
 Examples
 --------
 
-- `folderPicker.js <https://github.com/CenterForOpenScience/osf/blob/develop/website/static/js/folderPicker.js>`_
+- `folderPicker.js <https://github.com/CenterForOpenScience/osf.io/blob/develop/website/static/js/folderPicker.js>`_
+- `nodeControl.js <https://github.com/CenterForOpenScience/osf.io/blob/develop/website/static/js/nodeControl.js>`_ is used within `project-base-page.js <https://github.com/CenterForOpenScience/osf.io/blob/12cce5b9578c4d129f9d6f12ed78516b7e1640a0/website/static/js/pages/project-base-page.js#L4>`_. The built template is included in `project_base.mako <https://github.com/CenterForOpenScience/osf.io/blob/8a0fa0ae1c1a383cc51616c190f72d47d2ae694a/website/templates/project/project_base.mako#L65>`_
 
 
 Knockout
@@ -157,9 +175,9 @@ A module contains the Knockout model(s) and ViewModel(s) for a single unit of fu
 
 Knockout modules aren't much different from regular modules.
 
-- Apply bindings in the constructor. Use the ``$.osf.applyBindings`` helper. This will ensure that your ViewModel will be bound to the element that you expect (and not fall back to <body>, as ``ko.applyBindings`` will sometimes do). You can also pass ``$.osf.applyBindings`` a selector instead of an ``HTMLElement``.
+- Apply bindings in the constructor. Use the ``$osf.applyBindings`` helper. This will ensure that your ViewModel will be bound to the element that you expect (and not fall back to <body>, as ``ko.applyBindings`` will sometimes do). You can also pass ``$osf.applyBindings`` a selector instead of an ``HTMLElement``.
 - Name the HTML ID that you bind to with "Scope". Example: ``<div id="logfeedScope">``.
-- Adding the ``scripted`` CSS class to the div you bind to will hide the div until ``$.osf.applyBindings`` finishes executing. This is useful if you don't want to show any HTML for your component until the ViewModel is bound.
+- Adding the ``scripted`` CSS class to the div you bind to will hide the div until ``$osf.applyBindings`` finishes executing. This is useful if you don't want to show any HTML for your component until the ViewModel is bound.
 
 
 **website/static/js/logFeed.js**
@@ -168,64 +186,58 @@ Knockout modules aren't much different from regular modules.
 
     /**
      * Renders a log feed.
-     */
-    ;(function (global, factory) {
-        if (typeof define === 'function' && define.amd) {
-            // The osfutils module (site.js) contains $.osf.applyBindings
-            define(['knockout', 'jquery', 'osfutils'], factory);
-        } else {
-            global.RevisionTable  = factory(ko, jQuery);
-        }
-    }(this, function(ko, $) {
-        'use strict';
-        /**
-         * Log model.
-         */
-        var Log = function(params) {
-            var self = this;
-            self.text = ko.observable('');
-            // ...
-        };
+     **/
+    'use strict';
+    var ko = require('knockout');
+    var $osf = require('osf-helpers');
 
-        /**
-         * View model for a log list.
-         * @param {Log[]} logs An array of Log model objects to render.
-         */
-        var LogViewModel = function(logs) {
-            var self = this;
-            self.logs = ko.observableArray(logs);
-            // ...
-        };
+    /**
+    * Log model.
+    */
+    var Log = function(params) {
+        var self = this;
+        self.text = ko.observable('');
+        // ...
+    };
 
-        ////////////////
-        // Public API //
-        ////////////////
+    /**
+    * View model for a log list.
+    * @param {Log[]} logs An array of Log model objects to render.
+    */
+    var LogViewModel = function(logs) {
+        var self = this;
+        self.logs = ko.observableArray(logs);
+        // ...
+    };
 
-        var defaults = {
-            data: null,
-            progBar: '#logProgressBar'
-        };
+    ////////////////
+    // Public API //
+    ////////////////
 
-        function LogFeed(selector, options) {
-            var self = this;
-            self.selector = selector;
-            self.options = $.extend({}, defaults, options);
-            self.$progBar = $(self.options.progBar);
-            self.logs = self.options.data.map(function(log) {
-                return new Log(log.params);
-            })
-        };
-        // Apply ViewModel bindings
-        LogFeed.prototype.init = function() {
-            var self = this;
-            self.$progBar.hide();
-            $.osf.applyBindings(new LogViewModel(self.logs), self.selector);
-        };
+    var defaults = {
+        data: null,
+        progBar: '#logProgressBar'
+    };
 
-        return LogFeed;
-    }));
+    function LogFeed(selector, options) {
+        var self = this;
+        self.selector = selector;
+        self.options = $.extend({}, defaults, options);
+        self.$progBar = $(self.options.progBar);
+        self.logs = self.options.data.map(function(log) {
+            return new Log(log.params);
+        })
+    };
+    // Apply ViewModel bindings
+    LogFeed.prototype.init = function() {
+        var self = this;
+        self.$progBar.hide();
+        $osf.applyBindings(new LogViewModel(self.logs), self.selector);
+    };
 
-**website/templates/some_template_with_logs.mako**
+    module.exports = LogFeed;
+
+**website/templates/some_template.mako**
 
 
 .. code-block:: html
@@ -236,16 +248,10 @@ Knockout modules aren't much different from regular modules.
         </ul>
     </div>
 
-    <%def name="javascript_bottom()">
-        <script>
-            // Initialize the LogFeed
-            $script(['/static/js/logFeed.js'], function() {
-                var logFeed = new LogFeed("#logScope", {
-                    data: // Array of logs...
-                });
-            });
-        </script>
-    </%def>
+    <!-- assuming there's an entry for `some-template-page` in webpack.config.js -->
+    <!-- some-template-page.js would initialize the `LogFeed` class -->
+    <script src="/static/public/js/some-template-page.js"></script>
+
 
 Examples
 --------
@@ -253,14 +259,6 @@ Examples
 - `revisions.js <https://github.com/CenterForOpenScience/osf/blob/develop/website/addons/dropbox/static/revisions.js>`_ (small example)
 - `Full LogFeed module <https://github.com/CenterForOpenScience/osf/blob/develop/website/static/js/logFeed.js>`_
 - `comment.js <https://github.com/CenterForOpenScience/osf/blob/develop/website/static/js/comment.js>`_
-
-
-Script Loading
-**************
-
-.. todo::
-
-    Document script.js usage.
 
 
 Templates
@@ -276,22 +274,16 @@ JS Module Template
     /**
      * [description]
      */
-    ;(function (global, factory) {
-        if (typeof define === 'function' && define.amd) {
-            define(['jquery'], factory);
-        } else {
-            global.MyModule  = factory(jQuery);
-        }
-    }(this, function($) {
-        'use strict';
+    'use strict';
+    var $ = require('jquery');
 
-        function MyModule () {
-            // YOUR CODE HERE
-        }
 
-        return MyModule;
+    function MyModule () {
+        // YOUR CODE HERE
+    }
 
-    }));
+    module.exports = MyModule;
+
 
 Knockout Module Template
 ------------------------
@@ -301,27 +293,22 @@ Knockout Module Template
     /**
      * [description]
      */
-    ;(function (global, factory) {
-        if (typeof define === 'function' && define.amd) {
-            define(['knockout', 'jquery', 'osfutils'], factory);
-        } else {
-            global.MyModule  = factory(ko, jQuery);
-        }
-    }(this, function(ko, $) {
-        'use strict';
+    'use strict';
+    var ko = require('knockout');
 
-        function ViewModel(url) {
-            var self = this;
-            // YOUR CODE HERE
-        }
+    var $osf = require('osf-helpers');
 
-        function MyModule(selector, url) {
-            this.viewModel = new ViewModel(url);
-            $.osf.applyBindings(this.viewModel, selector);
-        }
+    function ViewModel(url) {
+        var self = this;
+        // YOUR CODE HERE
+    }
 
-        return MyModule;
-    }));
+    function MyModule(selector, url) {
+        this.viewModel = new ViewModel(url);
+        $osf.applyBindings(this.viewModel, selector);
+    }
+
+    module.exports = MyModule;
 
 Recommended Syntax Checkers
 ***************************
