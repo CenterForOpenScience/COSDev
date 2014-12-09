@@ -152,14 +152,14 @@ Documentation
 
 Follow  `PEP257`_'s docstring guidelines. `reStructured Text <http://docutils.sourceforge.net/docs/user/rst/quickref.html>`_ and `Sphinx <http://sphinx-doc.org/>`_ can help to enforce these standards.
 
-Use one-line docstrings for obvious functions.
+All functions should have a docstring - for very simple functions, one line may be enough:
 
 ::
 
     """Return the pathname of ``foo``."""
 
 
-Multiline docstrings should include
+Multiline docstrings should include:
 
 - Summary line
 - Use case, if appropriate
