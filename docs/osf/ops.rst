@@ -1,6 +1,19 @@
 Ops
 ===
 
+Common deployment tasks
+***********************
+
+Restarting the app server
+-------------------------
+
+.. code-block:: bash
+
+    # After pulling down changes
+    # Update and build assets
+    $ invoke assets
+    # Restart uwsgi
+    $ sudo service uwsgi restart
 
 Generating a new SSL certificate
 ********************************
