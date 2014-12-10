@@ -13,6 +13,7 @@ Migrations
         return (node for node in Node.find(Q('category', 'nin', Node.VALID_CATEGORIES)))
 
 - Migrations should have automated tests. These can go in the same file as the migration script.
+- Use Python's ``logging`` module for logging output. In addition, use ``scripts.utils.add_file_logger`` to add a file handler that will add timestamped log file in ``website.settings.LOG_PATH``.
 
 Below is the skeleton of an example migration.
 
@@ -23,9 +24,14 @@ Below is the skeleton of an example migration.
     """Script to migrate nodes with invalid categories."""
 
     import sys
+    import logging
 
     from website.app import init_app
+    from scripts import utils as script_utils
     from tests.base import OsfTestCase
+
+    logger = logging.getLogger(__name__)
+    script_utils.add_file_logger(logger, __file__)
 
     def do_migration(records):
         # ... perform the migration ...
