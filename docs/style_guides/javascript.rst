@@ -94,7 +94,7 @@ Writing modules in the OSF
 Example
 -------
 
-Let's say you're creating a reuseable Markdown parser module for the Wiki edit page. Your module would go in ``website/static/js/``.
+Let's say you're creating a reuseable Markdown parser module for the wiki edit page. Your module would go in ``website/static/js/``.
 
 **website/static/js/osfMarkdownParser.js**
 
@@ -134,7 +134,7 @@ Let's say you're creating a reuseable Markdown parser module for the Wiki edit p
     module.exports = OSFMarkdownParser;
 
 
-The initialization of your Markdown parser would go in ``website/static/js/pages/wiki-edit-page``.
+The initialization of your Markdown parser would go in ``website/static/js/pages/wiki-edit-page.js``.
 
 **website/static/js/pages/wiki-edit-page.js**
 
@@ -147,7 +147,7 @@ The initialization of your Markdown parser would go in ``website/static/js/pages
 
     // ... other wiki-related initialization.
 
-Each module in ``website/static/js/pages`` corresponds to an entry point in `webpack <https://webpack.github.io/docs/multiple-entry-points.html>`_. Here is what the ``wiki-edit-page`` would look like in the webpack configuration file.
+Each module in ``website/static/js/pages`` corresponds to an entry point in `webpack <https://webpack.github.io/docs/multiple-entry-points.html>`_ and has a rough one-to-one mapping with a page on the OSF. Here is what the ``wiki-edit-page`` would look like in the webpack configuration file.
 
 **webpack.config.js**
 
@@ -164,7 +164,7 @@ Each module in ``website/static/js/pages`` corresponds to an entry point in `web
 
 .. note::
 
-    You will seldom have to modify ``webpack.config.js``. The only time you may need to care about it is when you a completely new page is added to the OSF.
+    You will seldom have to modify ``webpack.config.js``. The only time you may need to care about it is when a completely new page is added to the OSF.
 
 Webpack parses the dependency graphs of these modules and builds them into single files which can be included on HTML pages. The built files reside in ``website/static/public/js``. Therefore, the built file which would include your Markdown parser initialization would be in ``/static/public/js/wiki-edit-page.js``. This is the file that would be included in the HTML template.
 
