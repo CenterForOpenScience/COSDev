@@ -77,6 +77,19 @@ Use the ``NodeLog`` class's named constants when possible,
 Every log action requires a template in ``youraddon/templates/log_templates.mako``. Each template's id corresponds to the name of the log action.
 
 
+Static files for addons
+***********************
+
+.. todo:: Add detail.
+
+The following files in the ``static`` folder of your addon directory will be built by webpack:
+
+- user-cfg.js : Executed on the user addon configuration page.
+- node-cfg.js : Executed on the node addon configuration page.
+- files.js : Executed on the files page of a node.
+
+**You do not have to include these files in a ``<script>`` tag in your templates.** They will dynamically be included when your addon is enabled.
+
 Rubeus and the FileBrowser
 **************************
 
