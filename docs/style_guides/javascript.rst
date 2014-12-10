@@ -134,7 +134,7 @@ Let's say you're creating a reuseable Markdown parser module for the wiki edit p
     module.exports = OSFMarkdownParser;
 
 
-The initialization of your Markdown parser would go in ``website/static/js/pages/wiki-edit-page.js``.
+The initialization of your Markdown parser would go in ``website/static/js/pages/wiki-edit-page.js``. Assume that this file already exists.
 
 **website/static/js/pages/wiki-edit-page.js**
 
@@ -147,7 +147,7 @@ The initialization of your Markdown parser would go in ``website/static/js/pages
 
     // ... other wiki-related initialization.
 
-Each module in ``website/static/js/pages`` corresponds to an entry point in `webpack <https://webpack.github.io/docs/multiple-entry-points.html>`_ and has a rough one-to-one mapping with a page on the OSF. Here is what the ``wiki-edit-page`` would look like in the webpack configuration file.
+Each module in ``website/static/js/pages`` corresponds to an entry point in `webpack <https://webpack.github.io/docs/multiple-entry-points.html>`_ and has a rough one-to-one mapping with a page on the OSF. Here is what the ``wiki-edit-page`` entry would look like in the webpack configuration file.
 
 **webpack.config.js**
 
