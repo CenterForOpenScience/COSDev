@@ -57,6 +57,7 @@ This will prompt a few questions:
 **categories (default is "'storage'")?**: Enter a one word category, lowercase.
 
 
+
 Logs
 ****
 
@@ -81,6 +82,23 @@ Static files for addons
 ***********************
 
 .. todo:: Add detail.
+
+
+First make sure your addon's short name is listed in ``addons.json``.
+
+**addons.json**
+
+.. code-block:: json
+    
+    {
+        "addons": [
+            ...
+            "dropbox",
+            ...
+        ]
+    }
+
+ This adds the proper entry points for webpack to build your addon's static files.
 
 The following files in the ``static`` folder of your addon directory will be built by webpack:
 
