@@ -31,7 +31,6 @@ Below is the skeleton of an example migration.
     from tests.base import OsfTestCase
 
     logger = logging.getLogger(__name__)
-    script_utils.add_file_logger(logger, __file__)
 
     def do_migration(records):
         # ... perform the migration ...
@@ -55,6 +54,7 @@ Below is the skeleton of an example migration.
             # ...
 
     if __name__ == '__main__':
+        script_utils.add_file_logger(logger, __file__)
         main()
 
 
