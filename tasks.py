@@ -28,7 +28,7 @@ def docs(clean=False, browse=False):
         browse_docs()
 
 @task
-def watch():
+def watch(port=8000):
     docs()
     try:
         import sphinx_autobuild
@@ -37,5 +37,6 @@ def watch():
         print('Install it with:')
         print('    pip install sphinx-autobuild')
         sys.exit(1)
-    run('sphinx-autobuild {} {}'.format(docs_dir, build_dir), pty=True)
+    run('sphinx-autobuild {} {} --port {}'.format(docs_dir, build_dir, port),
+            pty=True, echo=True)
 
