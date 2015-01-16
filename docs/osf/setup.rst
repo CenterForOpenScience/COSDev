@@ -2,27 +2,24 @@ Setting up the OSF
 ==================
 
 
-See the `README.md <https://github.com/CenterForOpenScience/osf>`_ of the OSF for a quick guide on getting the OSF running for local development.
-
-
 *Work in Progress, please add or edit as necessary.*
 
-This page provides a verbose and detailed instruction to installing OSF. If you are already familiar with Python more compact instructions can be found at the `README <https://github.com/CenterForOpenScience/osf>`_ file.
+This page provides a verbose and detailed instruction to installing OSF. If you are already familiar with Python more compact instructions can be found at the `README <https://github.com/CenterForOpenScience/osf.io>`_ file.
 
 Preparing your development environment for the OSF
-####
+##################################################
 
 Below are quick instructions to get up and running with OSF installation on your local computer. These instructions are prepared for **researchers, technical staff, or developers new to python**.
 
 Virtual Environments
-----
+--------------------
 
 Software projects will require different settings for different projects or different versions of libraries installed. If you have a single work environment you will not be able to use two versions of libraries simultaneously. IF you updated a version that is incompatible with other projects in your work environment you will break the code. It's best practice to avoid conflicts as much as possible but since you can't use a different machine for each of your projects it is better to use virtual environments so that instead of a global installation you have individual installations of your programming language that you can then tweak for different reasons. For Python you need to install virtualenv using pip.
 
 Pip is a tool for installing and managing Python packages. Working with libraries in a package format makes it easier to manage and update your applications. Pip is therefore a great tool to install in your system first. PHP has a tool called "Composer" that helps you manage dependencies in a similar way.
 
 Installing pip
-----
+--------------
 
 Before you begin, check if Pip is already installed. Open the Terminal application on your Mac (It's under /Applications/Utilities). Type:
 
@@ -53,7 +50,7 @@ this is most likely because you don't have permission to write to a directory an
 Enter your password to continue installation (See our note about passwords within virtual environments).
 
 Installing Virtualenv
-----
+---------------------
 
 Virtualenv is the tool we use to isolate the python environments for each project you need to run. Instaling it is easy. Open Terminal and type
 
@@ -64,7 +61,7 @@ Virtualenv is the tool we use to isolate the python environments for each projec
 We are using pip here to install virtualenv, which is why we needed pip first.
 
 Installing Virtualenvwrapper
-----
+----------------------------
 
 Now that you installed virtualenv, why not add an extension that makes it even easier to use virtualenv (Programmers like shortcuts). Virtualenvwrapper does what its name suggests, it wraps the virtual environments so that you can easily manage them and work with multiple environments at once. To install virtualenvwrapper, type this into Terminal
 
@@ -101,7 +98,7 @@ Once you made the changes remember to load the changed file by typing:
 
 
 Creating your virtual environment
-----
+---------------------------------
 
 You now have a solid development environment framework you can use for any of your projects. To start using OSF we will create a virtual environment for it.
 
@@ -169,10 +166,11 @@ Remember that the reason we created these environments is that next time we need
 
 
 Installing OSF
-####
+##############
 
 Using homebrew
-----
+--------------
+
 The next step will be to install TokuMX, but just like we used pip to install virtualenv, we need another cool tool called Homebrew to install TokuMX. Homebrew is a package manager that allows you to install lots of very cool things that are not just python related. You most likely have homebrew. To test this open a new window of terminal and type
 
     ::
@@ -194,7 +192,8 @@ Homebrew installation will ask you to press ENTER to continue and enter your pas
 This will show any possible errors or other things that need to be done. Homebrew is quite clear about what to do in these cases, usually you need to copy paste the provided commands and run them.
 
 Installing TokuMX
-----
+-----------------
+
 TokuMX is a database that OSF uses. It is a fork of MongoDB, which is a widely known and very common database application. If you are coming from PHP you have more likely used MySQL although databases are not programming language specific.
 
 To install TokuMX first refresh your brew install by updating it and then use brew to install TokuMX:
@@ -205,7 +204,8 @@ To install TokuMX first refresh your brew install by updating it and then use br
         brew install tokumx-bin
 
 Installing libxml2 and libxslt
-----
+------------------------------
+
 (required for installing lxml; which is a package OSF uses and will later need to be installed)
 
     ::
@@ -214,7 +214,8 @@ Installing libxml2 and libxslt
         brew install libxslt
 
 Install XCode and Command Line Tools
-----
+------------------------------------
+
 You will need the command line tools for development work in Macs. It is a good idea to install XCode. You can find XCode in the App Store for Mac applications.
 
 If XCode is already installed make sure you have the command line tools installed as well:
@@ -238,12 +239,13 @@ You should get a software update window that will install the command-line tools
 `Source <http://stackoverflow.com/questions/19548011/cannot-install-lxml-on-mac-os-x-10-9>`_
 
 Clone or copy the OSF files to local directory
-----
+----------------------------------------------
+
 To install the latest files for OSF using SSH, type the following in the folder where you would like osf installed.
 
     ::
 
-        git clone git@github.com:CenterForOpenScience/osf.git
+        git clone git@github.com:CenterForOpenScience/osf.io.git
 
 
 Run OSF installation
@@ -327,7 +329,8 @@ The following commands will install the requirements for add ons.
 
 
 Starting up
-----
+-----------
+
 Run your TokuMX process:
 
     ::
@@ -345,7 +348,7 @@ Run your local development server:
 You now have both the database and application running. You will see the application address in the terminal window where you entered invoke server. It will most likely be **http://0.0.0.0:5000**. Navigate to this url in your browser to check if it works.
 
 Common Error messages
-####
+#####################
 
 **1. Mongodb path /data/db does not exist**
 
@@ -397,13 +400,13 @@ If you have pip and conda installed, make sure remove lxml from conda and from p
         conda install lxml
 
 Notes and Tips
-----
+--------------
 
     - Use SSH for git to avoid authentication issues.
     - Don't use SUDO inside virtual environments to install things. Bad things happen.
 
 Sources and Further Reading
-####
+###########################
 
     - PIP Documentation `https://pip.readthedocs.org/en/latest/ <https://pip.readthedocs.org/en/latest/>`_
     - VirtualENV and pip basics `http://www.jontourage.com/2011/02/09/virtualenv-pip-basics/ <http://www.jontourage.com/2011/02/09/virtualenv-pip-basics/>`_
