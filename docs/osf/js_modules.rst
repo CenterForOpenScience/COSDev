@@ -296,4 +296,3 @@ Knockout Module Template
     }
 
     module.exports = MyModule;
-

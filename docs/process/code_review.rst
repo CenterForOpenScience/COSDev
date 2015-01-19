@@ -17,7 +17,7 @@ Having Your Code Reviewed
 Before sending a pull request for code review, make sure you have met the :ref:`PR guidelines <pull_requests>`.
 
 - It may be difficult not to perceive code review as personal criticism, but, keep in mind, it is a review of the code, not the person. We can all learn from eachother, and code reviews provide a good environment to do so.
-- After addressing all comments from a review, ping your reviewer by ``@mentioning`` them in a comment.
+- After addressing all comments from a review, ping your on Flowdock for the next pass.
 - If there is a style guideline that affects your PR and you believe the guideline is incorrect, post an issue or send a PR to the `COSDev <https://github.com/CenterForOpenScience/COSDev>`_ repo rather than discussing it in the PR.
 
 Reviewing Code
@@ -33,8 +33,6 @@ Example style comment:
 
 .. code-block:: markdown
 
-    From http://cosdev.readthedocs.org/en/latest/style_guides/python.html:
-
     > Use parentheses for line continuation.
 
-
+    From http://cosdev.readthedocs.org/en/latest/style_guides/python.html:
