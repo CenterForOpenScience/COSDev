@@ -3,6 +3,8 @@
 Javascript Modules How-To
 =========================
 
+This section describes how to write Javascript modules for the OSF, use `webpack <https://webpack.github.io/docs/>`_ to build assets, and include built assets in HTML.
+
 Writing Modules
 ***************
 
@@ -65,6 +67,21 @@ The initialization of your Markdown parser would go in ``website/static/js/pages
     new OSFMarkdownParser('#wikiInput', {...});
 
     // ... other wiki-related initialization.
+
+Third-party Libraries
+*********************
+
+The following libraries can be imported in your JS modules (using ``require('name')``):
+
+- Any library listed in `bower.json <https://github.com/CenterForOpenScience/osf.io/blob/develop/bower.json>`_
+- Any library listed in `package.json <https://github.com/CenterForOpenScience/osf.io/blob/develop/package.json>`_
+- Any library listed in the `resolve.alias <https://github.com/CenterForOpenScience/osf.io/blob/d504cefa315d00f4dce3c6ca4310ad3d4e126987/webpack.common.config.js#L77-103>`_ entry of ``webpack.common.config.js``
+
+
+.. note::
+
+    Some commonly-used internal modules, such as ``osfHelpers.js`` are also aliased in ``resolve.alias``. This allows you to write ``require('osfHelpers')`` rather than ``require('relative/path/to/osfHelpers.js')``.
+
 
 Building and Using Modules
 **************************
@@ -266,7 +283,7 @@ Knockout Module Template
     'use strict';
     var ko = require('knockout');
 
-    var $osf = require('osf-helpers');
+    var $osf = require('osfHelpers');
 
     function ViewModel(url) {
         var self = this;
