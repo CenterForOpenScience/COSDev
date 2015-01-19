@@ -3,7 +3,7 @@
 Javascript Modules How-To
 =========================
 
-This section describes how to write Javascript modules for the OSF, use `webpack <https://webpack.github.io/docs/>`_ to build assets, and include built assets in HTML.
+This section describes how to write Javascript modules for the OSF, use `webpack <https://webpack.github.io/docs/>`_ to build assets, and include built assets in HTML. We also provide starter templates for new JS modules.
 
 Writing Modules
 ***************
