@@ -1,4 +1,4 @@
-Developing an addon
+Developing An Addon
 ===================
 
 **In Progress**: Help out by sending a PR!

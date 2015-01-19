@@ -40,6 +40,7 @@ OSF Development
     osf/setup
     osf/guidelines
     osf/testing
+    osf/js_modules
     osf/addons
     osf/migrations
     osf/common_problems
