@@ -49,3 +49,14 @@ Once you are done making your edits, send a pull request on Github to the `COSDe
 
 .. _Sphinx: http://sphinx.pocoo.org/
 .. _`reStructured Text`: http://docutils.sourceforge.net/rst.html
+
+
+Header Conventions
+******************
+
+Use the following underlining conventions for heading levels:
+
+- ``=`` for h1
+- ``*`` for h2
+- ``-`` for h3
+- ``^`` for h4
