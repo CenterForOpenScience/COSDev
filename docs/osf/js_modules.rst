@@ -142,7 +142,7 @@ Examples
 --------
 
 - `js/folderPicker.js <https://github.com/CenterForOpenScience/osf.io/blob/develop/website/static/js/folderPicker.js>`_
-- `js/nodeControl.js <https://github.com/CenterForOpenScience/osf.io/blob/develop/website/static/js/nodeControl.js>`_ is used within `js/pages/project-base-page.js <https://github.com/CenterForOpenScience/osf.io/blob/12cce5b9578c4d129f9d6f12ed78516b7e1640a0/website/static/js/pages/project-base-page.js#L4>`_. The built template is included in `templates/project_base.mako <https://github.com/CenterForOpenScience/osf.io/blob/8a0fa0ae1c1a383cc51616c190f72d47d2ae694a/website/templates/project/project_base.mako#L65>`_.
+- `js/nodeControl.js <https://github.com/CenterForOpenScience/osf.io/blob/develop/website/static/js/nodeControl.js>`_ is used within `js/pages/project-base-page.js <https://github.com/CenterForOpenScience/osf.io/blob/12cce5b9578c4d129f9d6f12ed78516b7e1640a0/website/static/js/pages/project-base-page.js#L4>`_. The built file is included in `templates/project_base.mako <https://github.com/CenterForOpenScience/osf.io/blob/d504cefa315d00f4dce3c6ca4310ad3d4e126987/website/templates/project/project_base.mako#L65>`_.
 
 
 Knockout Modules
