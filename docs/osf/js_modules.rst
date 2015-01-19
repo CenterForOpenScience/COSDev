@@ -53,7 +53,7 @@ Let's say you're creating a reuseable Markdown parser module for the wiki edit p
     module.exports = OSFMarkdownParser;
 
 
-The initialization of your Markdown parser would go in ``website/static/js/pages/wiki-edit-page.js``. Assume that this file already exists.
+The initialization of your Markdown parser would go in ``website/static/js/pages/wiki-edit-page.js`` (assume that this file already exists).
 
 **website/static/js/pages/wiki-edit-page.js**
 
@@ -65,6 +65,12 @@ The initialization of your Markdown parser would go in ``website/static/js/pages
     new OSFMarkdownParser('#wikiInput', {...});
 
     // ... other wiki-related initialization.
+
+Building and Using Modules
+**************************
+
+Webpack Entry Points
+--------------------
 
 Each module in ``website/static/js/pages`` corresponds to an entry point in `webpack <https://webpack.github.io/docs/multiple-entry-points.html>`_ and has a rough one-to-one mapping with a page on the OSF. Here is what the ``wiki-edit-page`` entry would look like in the webpack configuration file.
 
@@ -85,13 +91,35 @@ Each module in ``website/static/js/pages`` corresponds to an entry point in `web
 
     You will seldom have to modify ``webpack.common.config.js``. The only time you may need to care about it is when a completely new page is added to the OSF.
 
-Webpack parses the dependency graphs of these modules and builds them into single files which can be included on HTML pages. The built files reside in ``website/static/public/js``. Therefore, the built file which would include your Markdown parser initialization would be in ``/static/public/js/wiki-edit-page.js``. This is the file that would be included in the HTML template.
+Building with Webpack
+---------------------
+
+Webpack parses the dependency graphs of the modules defined in the entry points and builds them into single files which can be included on HTML pages. The built files reside in ``website/static/public/js/``. Therefore, the built file which would include your Markdown parser initialization would be in ``/static/public/js/wiki-edit-page.<hash>.js``. This is the file that would be included in the HTML template.
+
+
+.. note::
+    Webpack will add a hash to the filenames of the built files to prevent users' browsers from caching old versions (example: ``wiki-edit-page.js`` becomes ``wiki-edit-page.4ec1318376695bcd241b.js``).
+
+    Therefore, we need to resolve the short filenames to the full filenames when we include them in the HTML. More on that in the next section.
+
+To build the assets for local development, use the ``assets`` invoke task. ::
+
+    $ inv assets --debug --watch
+    # OR
+    $ inv assets -dw
+
+Loading the Modules in HTML with ``webpack_asset``
+--------------------------------------------------
+
+Once you have the built assets, you can include them on HTML pages with a `<script>` tag. In order to resolve the short filenames to the filenames on disk (which include hashes), use the ``webpack_asset`` Mako filter.
 
 **website/templates/wiki/edit.mako**
 
-.. code-block:: html
+.. code-block:: mako
 
-    <script src="/static/public/js/wiki-edit-page.js"></script>
+    <%def name="javascript_bottom()">
+    <script src=${"/static/public/js/wiki-edit-page.js" | webpack_asset}></script>
+    </%def>
 
 Examples
 --------
@@ -107,7 +135,8 @@ A module contains the Knockout model(s) and ViewModel(s) for a single unit of fu
 
 Knockout modules aren't much different from regular modules.
 
-- Apply bindings in the constructor. Use the ``$osf.applyBindings`` helper. This will ensure that your ViewModel will be bound to the element that you expect (and not fall back to <body>, as ``ko.applyBindings`` will sometimes do). You can also pass ``$osf.applyBindings`` a selector instead of an ``HTMLElement``.
+- Apply bindings in the constructor.
+- Use the ``osfHelpers.applyBindings`` helper. This will ensure that your ViewModel will be bound to the element that you expect (and not fall back to <body>, as ``ko.applyBindings`` will sometimes do). You can also pass ``$osf.applyBindings`` a selector instead of an ``HTMLElement``.
 - Name the HTML ID that you bind to with "Scope". Example: ``<div id="logfeedScope">``.
 - Adding the ``scripted`` CSS class to the div you bind to will hide the div until ``$osf.applyBindings`` finishes executing. This is useful if you don't want to show any HTML for your component until the ViewModel is bound.
 
@@ -169,10 +198,20 @@ Knockout modules aren't much different from regular modules.
 
     module.exports = LogFeed;
 
+**website/static/pages/some-template-page.js**
+
+.. code-block:: javascript
+
+    'use strict';
+
+    var LogFeed = require('../logFeed.js');
+
+    // Initialize the LogFeed
+    new LogFeed('#logScope', {data: ...});
+
 **website/templates/some_template.mako**
 
-
-.. code-block:: html
+.. code-block:: mako
 
     <div class="scripted" id="logScope">
         <ul data-bind="foreach: {data: logs, as: 'log'}">
@@ -180,9 +219,9 @@ Knockout modules aren't much different from regular modules.
         </ul>
     </div>
 
-    <!-- assuming there's an entry for `some-template-page` in webpack.config.js -->
-    <!-- some-template-page.js would initialize the `LogFeed` class -->
-    <script src="/static/public/js/some-template-page.js"></script>
+    <%def name="javascript_bottom()">
+    <script src=${"/static/public/js/some-template-page.js" | webpack_asset}></script>
+    </%def>
 
 
 Examples
