@@ -7,7 +7,7 @@ Setting up the OSF
 This page provides a verbose and detailed instruction to installing OSF. If you are already familiar with Python more compact instructions can be found at the `README <https://github.com/CenterForOpenScience/osf.io>`_ file.
 
 Preparing your development environment for the OSF
-##################################################
+**************************************************
 
 Below are quick instructions to get up and running with OSF installation on your local computer. These instructions are prepared for **researchers, technical staff, or developers new to python**.
 
@@ -166,7 +166,7 @@ Remember that the reason we created these environments is that next time we need
 
 
 Installing OSF
-##############
+**************
 
 Using homebrew
 --------------
@@ -266,10 +266,12 @@ Create your local settings file
 Install node packages with ``npm``
 ----------------------------------
 
+``npm`` is used to install required Node.JS packages.
+
 .. todo:: In-depth info on npm installation. For now, see the README.
 
-Install front end dependencies with ``bower``
----------------------------------------------
+Install front end dependencies with ``bower`` and ``npm``
+---------------------------------------------------------
 
 Several front end modules required by OSF are installed using bower. Bower is a front end package manager. To install bower run:
 
@@ -288,6 +290,10 @@ Building assets with ``webpack``
 --------------------------------
 
 .. todo:: Document webpack installation and usage. For now, see the README.
+
+::
+
+    inv assets -dw
 
 
 Installing Add on Requirements
@@ -348,7 +354,7 @@ Run your local development server:
 You now have both the database and application running. You will see the application address in the terminal window where you entered invoke server. It will most likely be **http://0.0.0.0:5000**. Navigate to this url in your browser to check if it works.
 
 Common Error messages
-#####################
+*********************
 
 **1. Mongodb path /data/db does not exist**
 
@@ -406,7 +412,7 @@ Notes and Tips
     - Don't use SUDO inside virtual environments to install things. Bad things happen.
 
 Sources and Further Reading
-###########################
+***************************
 
     - PIP Documentation `https://pip.readthedocs.org/en/latest/ <https://pip.readthedocs.org/en/latest/>`_
     - VirtualENV and pip basics `http://www.jontourage.com/2011/02/09/virtualenv-pip-basics/ <http://www.jontourage.com/2011/02/09/virtualenv-pip-basics/>`_
