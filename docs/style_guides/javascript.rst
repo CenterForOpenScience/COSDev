@@ -1,5 +1,12 @@
+.. _javascript_style:
+
 Javascript
 ==========
+
+Style guidelines for writing Javascript.
+
+.. seealso::
+    Writing a JS module for the OSF? See the :ref:`Javascript Modules <osf_js_modules>` page in the OSF section.
 
 Style
 *****
@@ -74,23 +81,6 @@ When using ``$.osf.postJSON``, ``$.osf.putJSON``, or ``jQuery.ajax``, use the Pr
     // OR
     $.ajax({ ... }).then(successHandler, failureHandler);
 
-Utility functions
-*****************
-
-Put any reusable utility functions in ``website/static/osfHelpers.js``. **Do not pollute the global namespace.**
-
-.. code-block:: javascript
-
-    // osfHelpers.js
-
-    var myCopaceticFunction = function() {...}
-
-    // ...
-    module.exports = {
-        // ...
-        myCopaceticFunction: myCopaceticFunction
-    };
-
 
 Encapsulation
 *************
@@ -118,9 +108,6 @@ Use the Combination Constructor/Prototype pattern for encapsulation (it's simple
     };
 
     module.exports = Person;
-
-.. seealso::
-    Writing a JS module for the OSF? See the :ref:`Javascript Modules <osf_js_modules>` page in the OSF section.
 
 Recommended Syntax Checkers
 ***************************

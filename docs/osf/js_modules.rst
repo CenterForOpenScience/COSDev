@@ -5,12 +5,32 @@ Javascript Modules How-To
 
 This section describes how to write Javascript modules for the OSF, use `webpack <https://webpack.github.io/docs/>`_ to build assets, and include built assets in HTML. We also provide starter templates for new JS modules.
 
+.. seealso::
+    Looking for the JS style guidelines? See :ref:`here <javascript_style>` .
+
 Writing Modules
 ***************
 
 - Use the CommonJS module style.
 - Reuseable modules go in ``website/static/js/``. Name modules in ``lowerCamelCase``.
 - Initialization code for a page goes in a module within ``website/static/js/pages/``. Name page modules with ``lower-dashed-case``.
+
+A Note on Utility Functions
+---------------------------
+
+Put any reusable utility functions in ``website/static/osfHelpers.js``. **Do not pollute the global namespace.**
+
+.. code-block:: javascript
+
+    // osfHelpers.js
+
+    var myCopaceticFunction = function() {...}
+
+    // ...
+    module.exports = {
+        // ...
+        myCopaceticFunction: myCopaceticFunction
+    };
 
 Example
 -------
