@@ -165,6 +165,9 @@ Examples
 - `js/nodeControl.js <https://github.com/CenterForOpenScience/osf.io/blob/develop/website/static/js/nodeControl.js>`_ is used within `js/pages/project-base-page.js <https://github.com/CenterForOpenScience/osf.io/blob/12cce5b9578c4d129f9d6f12ed78516b7e1640a0/website/static/js/pages/project-base-page.js#L4>`_. The built file is included in `templates/project_base.mako <https://github.com/CenterForOpenScience/osf.io/blob/d504cefa315d00f4dce3c6ca4310ad3d4e126987/website/templates/project/project_base.mako#L65>`_.
 
 
+.. todo:: Document how to use mako variables in JS modules (``contextVars``)
+
+
 Knockout Modules
 ****************
 
