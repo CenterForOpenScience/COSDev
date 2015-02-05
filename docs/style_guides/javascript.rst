@@ -64,9 +64,9 @@ Follow `Abhinay Rathore's jQuery Coding Standards Guide <http://lab.abhinayratho
 AJAX
 ----
 
-For PUTting and POSTing to JSON endpoints in the OSF, use the ``$.osf.postJSON`` and ``$.osf.putJSON`` functions (located in ``site.js``). This will handle JSON stringification as well as set the correct dataType and contentType.
+For PUTting and POSTing to JSON endpoints in the OSF, use the ``$osf.postJSON`` and ``$osf.putJSON`` functions (located in ``osfHelpers.js``). This will handle JSON stringification as well as set the correct dataType and contentType.
 
-When using ``$.osf.postJSON``, ``$.osf.putJSON``, or ``jQuery.ajax``, use the Promises interface.
+When using ``$osf.postJSON``, ``$osf.putJSON``, or ``jQuery.ajax``, use the Promises interface.
 
 .. code-block:: javascript
 

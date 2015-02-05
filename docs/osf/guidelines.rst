@@ -186,7 +186,7 @@ All client-side HTTP requests should have proper error handlers. As an example, 
 .. code-block:: javascript
 
     var url = '/api/v1/profile';
-    var request = $.osf.putJSON(url, {'email': 'foo@bar.com'});
+    var request = $osf.putJSON(url, {'email': 'foo@bar.com'});
 
     request.done(function(response) { ... });
 
@@ -202,12 +202,13 @@ All client-side HTTP requests should have proper error handlers. As an example, 
         });
     });
 
-When appropriate, you can use the generic `$.osf.handleJSONError`, which will display a generic error message in a modal to the user if a failure occurs.
+When appropriate, you can use the generic `$osf.handleJSONError`, which will display a generic error message in a modal to the user if a failure occurs.
 
 .. code-block:: javascript
 
+    var $osf = require('osfHelpers');
     // ...
-    request.fail($.osf.handleJSONError);
+    request.fail($osf.handleJSONError);
 
 Documentation
 *************
