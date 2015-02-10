@@ -1,3 +1,5 @@
+.. _osf_setup:
+
 Setting up the OSF
 ==================
 
