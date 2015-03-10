@@ -45,6 +45,7 @@ OSF Development
     osf/migrations
     osf/common_problems
     osf/ops
+    osf/google_analytics
 
 
 Getting Help
