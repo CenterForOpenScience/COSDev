@@ -49,10 +49,10 @@ Using Factories
             # ...
 
 
-Unit tests
+Unit Tests
 **********
 
-Testing models
+Testing Models
 --------------
 
 Unit tests for models belong in ``tests/test_models.py``. Each model should have its own test class. You can have multiple test classes for a single model if necessary.
@@ -74,7 +74,7 @@ Unit tests for models belong in ``tests/test_models.py``. Each model should have
 
         # ...
 
-Views tests
+Views Tests
 ************
 
 Views tests are used to test that our endpoints return the expected responses. We use the `webtest <http://webtest.readthedocs.org/en/latest/>`_ library to interact with our application under test.
@@ -121,7 +121,7 @@ Things to test:
             res = self.app.get(url, auth=self.user.auth, expect_errors=True)
             assert_equal(res.status_code, 403)
 
-Functional tests
+Functional Tests
 ****************
 
 Functional tests in the OSF also use webtest. These tests mimic how a user would interact with the application through their browser.
@@ -169,7 +169,7 @@ Things to test:
 
     Just be sure to remove the line when you are done debugging.
 
-Regression tests
+Regression Tests
 ****************
 
 Regression tests may fall under any one of the categories above (unit, model, views, functional). If you write a regression test for a specific issue, it is often helpful to link to the issue in a line comment above the test.
@@ -181,5 +181,68 @@ Regression tests may fall under any one of the categories above (unit, model, vi
         # ...
 
 
-Javascript tests
+Javascript Tests
 ****************
+
+Running tests
+-------------
+
+Before running tests, make sure you have the dependencies installed. ::
+
+    $ npm install
+
+Javascript tests are run with ::
+
+    $ inv karma
+
+This will start a `Karma <https://karma-runner.github.io/>`_ process which will run the tests on every JS code change.
+
+You can specify which browser to run your tests against by passing the ``--browser`` (or ``-b``, for short) option. ::
+
+    $ inv karma -b Chrome
+
+Chrome and Firefox are supported after you've run ``npm install``. To run on other browsers, install the appropriate launcher with ``npm`` (see `here <https://karma-runner.github.io/0.12/config/browsers.html>`_ for available launchers). ::
+
+    $ npm install karma-safari-launcher
+    $ inv karma -b Safari
+
+Writing Tests
+-------------
+
+We use the following libraries for writing tests:
+
+- `Mocha <http://mochajs.org/>`_: Provides the interface for test cases.
+- `Chai <http://chaijs.com/>`_: Provides assertion functions.
+- `Sinon <http://sinonjs.org/>`_: Provides test spies, stubs, and mocks.
+
+See the official docs for these libraries for more information.
+
+OSF-specific Guidelines
++++++++++++++++++++++++
+
+- Core OSF tests go in `website/static/js/tests/`. Addons tests go in `website/addons/<addon_name>/static/tests/`
+- Karma will run every module that has the ``.test.js`` extension.
+- Use Chai's ``assert`` `interface <http://chaijs.com/api/assert/>`_.
+- To mock HTTP requests, use the ``createServer`` utility from the ``js/tests/utils`` module.
+
+Test Boilerplate
+----------------
+
+The following boilerplate should be included at the top of every test module.
+
+.. code-block:: javascript
+
+    /*global describe, it, expect, example, before, after, beforeEach, afterEach, mocha, sinon*/
+    'use strict';
+    var assert = require('chai').assert;
+    // Add sinon asserts to chai.assert, so we can do assert.calledWith instead of sinon.assert.calledWith
+    sinon.assert.expose(assert, {prefix: ''});
+
+Debugging tests
+---------------
+
+- Run karma: ``inv karma``
+- Browse to ``localhost:9876`` in your browser.
+- Click the DEBUG button on the top right.
+- Open dev tools and open up the debugger tab.
+- Add breakpoints or ``debugger;`` statements where necessary.
