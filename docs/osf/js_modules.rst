@@ -288,7 +288,9 @@ JS Module Template
         // YOUR CODE HERE
     }
 
-    module.exports = MyModule;
+    module.exports = {
+        MyModule: MyModule
+    };
 
 
 Knockout Module Template
@@ -314,4 +316,6 @@ Knockout Module Template
         $osf.applyBindings(this.viewModel, selector);
     }
 
-    module.exports = MyModule;
+    module.exports = {
+        MyModule
+    };
