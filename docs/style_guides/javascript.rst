@@ -32,6 +32,36 @@ Follow `Felix's Node Style <https://github.com/felixge/node-style-guide>`_ and `
     baz = 'qwerty';
 
 
+CommonJS Modules
+****************
+
+- Group imports in the following order, separated by a blank line:
+
+1. Third party libraries
+2. Local application/library-specific imports
+
+- ``module.exports`` are always grouped at the end of a file. Do not use ``export`` throughout the file.
+- Keep testability in mind in deciding what to export.
+
+.. code-block:: javascript
+
+    // Yes
+    module.exports = {
+        SomeClass: SomeClass,
+        _privateFunction: privateFunction
+    }
+
+    // Yes
+    function SomeClass() { ... }
+    SomeClass._privateFunction = function() {...}
+
+    module.exports = SomeClass;
+
+    // No
+    var SomeClass = exports.SomeClass = function() { ... };
+    var privateFunction = exports._privateFunction = function() { ... };
+
+
 Documentation
 *************
 
@@ -85,7 +115,7 @@ When using ``$osf.postJSON``, ``$osf.putJSON``, or ``jQuery.ajax``, use the Prom
 Encapsulation
 *************
 
-Use the Combination Constructor/Prototype pattern for encapsulation (it's simpler than it sounds). A good write-up on this can be found `here <http://javascriptissexy.com/oop-in-javascript-what-you-need-to-know/#Encapsulation_in_JavaScript>`_.
+Use the Combination Constructor/Prototype pattern for encapsulation. A good write-up on this can be found `here <http://javascriptissexy.com/oop-in-javascript-what-you-need-to-know/#Encapsulation_in_JavaScript>`_.
 
 
 .. code-block:: javascript
@@ -107,7 +137,10 @@ Use the Combination Constructor/Prototype pattern for encapsulation (it's simple
         window.console.log('Greetings! My name is ' + self.name);
     };
 
-    module.exports = Person;
+    module.exports = {
+        Person: Person,
+        _somePrivateFunction: somePrivateFunction
+    };
 
 Recommended Syntax Checkers
 ***************************
