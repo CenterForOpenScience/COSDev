@@ -94,5 +94,7 @@ Python
 Javascript
 **********
 
-- `qunit <http://qunitjs.com/>`_: Unit testing framework.
-- `sinon <http://sinonjs.org/>`_: Provides test spies and mocks.
+- `Karma <https://karma-runner.github.io/>`_: Test runner.
+- `Mocha <http://mochajs.org/>`_: Test framework/interface.
+- `Chai <http://chaijs.com/>`_: Assertion library.
+- `Sinon <http://sinonjs.org/>`_: Test spies and mocks.
