@@ -18,7 +18,7 @@ Writing Modules
 A Note on Utility Functions
 ---------------------------
 
-Put any reusable utility functions in ``website/static/osfHelpers.js``. **Do not pollute the global namespace.**
+Put reusable utility functions in ``website/static/js/osfHelpers.js``.
 
 .. code-block:: javascript
 
@@ -49,7 +49,7 @@ Let's say you're creating a reuseable Markdown parser module for the wiki edit p
 
     // CommonJS/Node-style imports at the top of the file
 
-    var $osf = require('osfHelpers');
+    var $osf = require('js/osfHelpers');
 
     // Private methods go up here
     function someHelper() {
@@ -82,7 +82,7 @@ The initialization of your Markdown parser would go in ``website/static/js/pages
 .. code-block:: javascript
 
     // Initialization of the Markdown parser
-    var OSFMarkdownParser = require('../osfMarkdownParser.js');
+    var OSFMarkdownParser = require('js/osfMarkdownParser');
 
     new OSFMarkdownParser('#wikiInput', {...});
 
@@ -96,11 +96,6 @@ The following libraries can be imported in your JS modules (using ``require('nam
 - Any library listed in `bower.json <https://github.com/CenterForOpenScience/osf.io/blob/develop/bower.json>`_
 - Any library listed in `package.json <https://github.com/CenterForOpenScience/osf.io/blob/develop/package.json>`_
 - Any library listed in the `resolve.alias <https://github.com/CenterForOpenScience/osf.io/blob/d504cefa315d00f4dce3c6ca4310ad3d4e126987/webpack.common.config.js#L77-103>`_ entry of ``webpack.common.config.js``
-
-
-.. note::
-
-    Some commonly-used internal modules, such as ``osfHelpers.js`` are also aliased in ``resolve.alias``. This allows you to write ``require('osfHelpers')`` rather than ``require('relative/path/to/osfHelpers.js')``.
 
 
 Building and Using Modules
@@ -190,7 +185,8 @@ Knockout modules aren't much different from regular modules.
      **/
     'use strict';
     var ko = require('knockout');
-    var $osf = require('osf-helpers');
+
+    var $osf = require('js/osfHelpers');
 
     /**
     * Log model.
@@ -244,7 +240,7 @@ Knockout modules aren't much different from regular modules.
 
     'use strict';
 
-    var LogFeed = require('../logFeed.js');
+    var LogFeed = require('js/logFeed');
 
     // Initialize the LogFeed
     new LogFeed('#logScope', {data: ...});
@@ -306,7 +302,7 @@ Knockout Module Template
     'use strict';
     var ko = require('knockout');
 
-    var $osf = require('osfHelpers');
+    var $osf = require('js/osfHelpers');
 
     function ViewModel(url) {
         var self = this;
