@@ -121,22 +121,22 @@ Promises
 
 .. code-block:: javascript
 
-// Yes
-function makeRequest() {
-    var request = $.getJSON('/api/projects/');
-    return request;
-}
-var request = makeRequest();
-request.done(function(response) { console.log(response); })
+    // Yes
+    function makeRequest() {
+        var request = $.getJSON('/api/projects/');
+        return request;
+    }
+    var request = makeRequest();
+    request.done(function(response) { console.log(response); })
 
-// No
-function noop() {}
-function makeRequest(callback){
-    $.getJSON('/api/projects/', function(response) {
-        callback(response) || noop;
-    }) ;
-}
-makeRequest(function(response) {console.log(response)});
+    // No
+    function noop() {}
+    function makeRequest(callback){
+        $.getJSON('/api/projects/', function(response) {
+            callback(response) || noop;
+        }) ;
+    }
+    makeRequest(function(response) {console.log(response)});
 
 
 - When doing AJAX requests or other async work, it's often useful to return a promise that resolves to a useful value (e.g. model objects or "unwrapped" responses).
@@ -166,7 +166,12 @@ makeRequest(function(response) {console.log(response)});
         return ret.promise();
     };
 
-    getUsers().done(function(user){ console.log(user.username); })
+    getUsers().done(function(users){ 
+        users.forEach(function(user)){
+            console.log(user._id); 
+            console.log(user.username); 
+        };
+    })
 
 
 Encapsulation
