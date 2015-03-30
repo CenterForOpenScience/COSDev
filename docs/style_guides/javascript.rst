@@ -112,6 +112,61 @@ When using ``$osf.postJSON``, ``$osf.putJSON``, or ``jQuery.ajax``, use the Prom
     $.ajax({ ... }).then(successHandler, failureHandler);
 
 
+Promises
+********
+
+- Prefer promises to callbacks.
+
+.. code-block:: javascript
+
+// Yes
+function makeRequest() {
+    var request = $.getJSON('/api/projects/');
+    return request;
+}
+var request = makeRequest();
+request.done(function(response) { console.log(response); })
+
+// No
+function noop() {}
+function makeRequest(callback){
+    $.getJSON('/api/projects/', function(response) {
+        callback(response) || noop;
+    }) ;
+}
+makeRequest(function(response) {console.log(response)});
+
+
+- When doing AJAX requests or other async work, it's often useful to return a promise that resolves to a useful value (e.g. model objects or "unwrapped" responses).
+
+.. code-block:: javascript
+
+    function User(data) {
+        this._id = data._id;
+        this.username = data.username;
+    }
+
+    /** Return a promise that resolves to a list of Users */
+    var getUsers = function() {
+        var ret = $.Deferred();
+
+        var request = $.getJSON('/users/');
+        request.done(function(response) {
+            var users = $.map(response.users, function(data){
+                return User(data);
+            });
+            ret.resolve(users);
+        });
+        request.fail(function(xhr, status, error) {
+            Raven.captureMessage(...);
+            ret.reject(xhr, status, error);
+        });
+        return ret.promise();
+    };
+
+    getUsers().done(function(user){ console.log(user.username); })
+
+
 Encapsulation
 *************
 
