@@ -16,6 +16,24 @@ Follow `Felix's Node Style <https://github.com/felixge/node-style-guide>`_ and `
 - Use **4 spaces** for indentation.
 - Use ``self`` to save a reference to ``this``.
 
+
+Errors
+******
+
+- Always throw ``Error`` instances, not strings.
+
+.. code-block:: javascript
+
+    // Yes
+    throw new Error('Something went wrong');
+
+    // No
+    throw 'Something went wrong';
+
+    // No
+    throw Error('Something went wrong');
+
+
 CommonJS Modules
 ****************
 
