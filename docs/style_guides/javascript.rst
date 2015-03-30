@@ -15,22 +15,6 @@ Follow `Felix's Node Style <https://github.com/felixge/node-style-guide>`_ and `
 
 - Use **4 spaces** for indentation.
 - Use ``self`` to save a reference to ``this``.
-- One ``var`` statement per line (same as Felix's guide, but different from Airbnb's).
-
-
-.. code-block:: javascript
-
-    // yes
-    var foo = 1;
-    var bar = 42;
-    var baz = 'qwerty';
-
-    // no
-    var foo, bar, baz;
-    foo = 1;
-    bar =  42;
-    baz = 'qwerty';
-
 
 CommonJS Modules
 ****************
