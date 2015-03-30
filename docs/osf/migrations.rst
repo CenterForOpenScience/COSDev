@@ -14,6 +14,7 @@ Migrations
 
 - Migrations should have automated tests. These can go in the same file as the migration script.
 - Use Python's ``logging`` module for logging output. In addition, use ``scripts.utils.add_file_logger`` to add a file handler that will add timestamped log file in ``website.settings.LOG_PATH``.
+- Add tests in the `scripts/tests` directory.
 
 Below is the skeleton of an example migration.
 
@@ -28,22 +29,29 @@ Below is the skeleton of an example migration.
 
     from website.app import init_app
     from scripts import utils as script_utils
-    from tests.base import OsfTestCase
 
     logger = logging.getLogger(__name__)
 
-    def do_migration(records):
+    def do_migration(records, dry=True):
         # ... perform the migration ...
 
     def get_targets():
         # ... return the StoredObjects to migrate ...
 
-    def main():
-        init_app(routes=False)  # Sets the storage backends on all models
-        if 'dry' in sys.argv:
-            # print list of affected nodes, totals, etc.
-        else:
-            do_migration(get_targets())
+    def main(dry=True):
+        init_app(set_backends=True, routes=False, mfr=False)  # Sets the storage backends on all models
+        do_migration(get_targets(), dry=dry)
+
+    if __name__ == '__main__':
+        dry = 'dry' in sys.argv
+        if not dry:
+            script_utils.add_file_logger(logger, __file__)
+        main(dry=dry)
+
+
+.. code-block:: python
+
+    from tests.base import OsfTestCase
 
     class TestMigrateNodeCategories(OsfTestCase):
 
@@ -52,10 +60,6 @@ Below is the skeleton of an example migration.
 
         def test_do_migration(self):
             # ...
-
-    if __name__ == '__main__':
-        script_utils.add_file_logger(logger, __file__)
-        main()
 
 
 After performing a migration
