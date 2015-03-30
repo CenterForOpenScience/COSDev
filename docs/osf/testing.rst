@@ -225,6 +225,19 @@ OSF-specific Guidelines
 - Use Chai's ``assert`` `interface <http://chaijs.com/api/assert/>`_.
 - To mock HTTP requests, use the ``createServer`` utility from the ``js/tests/utils`` module.
 
+
+Gotchas
++++++++
+
+- When mocking out endpoints with sinon, be careful when dealing with URLs that accept query parameters. You can pass a regex as a ``url`` value to ``createServer``.
+
+
+    var endpoints = {
+        // Use regex to handle query params
+        {url: /\/api\/users\/.+/, response: {...}}
+    ];
+    server = utils.createServer(sinon, endpoints);
+
 Test Boilerplate
 ----------------
 
