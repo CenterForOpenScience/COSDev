@@ -170,32 +170,47 @@ makeRequest(function(response) {console.log(response)});
 Encapsulation
 *************
 
-Use the Combination Constructor/Prototype pattern for encapsulation. A good write-up on this can be found `here <http://javascriptissexy.com/oop-in-javascript-what-you-need-to-know/#Encapsulation_in_JavaScript>`_.
-
+Use the Combination Constructor/Prototype pattern for encapsulation. You can use the following functions to provide syntactic sugar for creating "classes":
 
 .. code-block:: javascript
+    
+    function noop() {}
 
-    // Private functions/helpers
-    var somePrivateFunction = function() {...}
+    function defclass(prototype) {
+        var constructor = prototype.hasOwnProperty('constructor') ? prototype.constructor : noop;
+        constructor.prototype = prototype;
+        return constructor;
+    }
+    
+    function extend(cls, sub) {
+        var prototype = Object.create(cls.prototype);
+        for (var key in sub) { prototype[key] = sub[key]; }
+        prototype.super = cls.prototype;
+        return defclass(prototype);
+    }
 
-    // Public interface is below
+    // Example usage:
+    var Animal = defclass({
+        constructor: function(name) {
+            this.name = name || 'unnamed';
+            this.sleeping = false;
+        },
+        sayHi: function() {
+            console.log('Hi, my name is ' + this.name);
+        }
+    });
+ 
+    var Person = extend(Animal, {
+        constructor: function(name) {
+            this.super.constructor.call(name);
+            this.name = name || 'Steve';
+        }
+    });
 
-    // The constructor
-    function Person(name) {
-        var self = this;
-        self.name = name;
-    };
 
-    // Methods
-    Person.prototype.sayHello() = function() {
-        var self = this;
-        window.console.log('Greetings! My name is ' + self.name);
-    };
+.. note::
 
-    module.exports = {
-        Person: Person,
-        _somePrivateFunction: somePrivateFunction
-    };
+    In the OSF, the ``defclass`` and ``extend`` functions are available in the ``oop.js`` module.
 
 Recommended Syntax Checkers
 ***************************
