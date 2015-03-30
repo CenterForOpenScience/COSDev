@@ -231,6 +231,7 @@ Gotchas
 
 - When mocking out endpoints with sinon, be careful when dealing with URLs that accept query parameters. You can pass a regex as a ``url`` value to ``createServer``.
 
+.. code-block:: javascript
 
     var endpoints = {
         // Use regex to handle query params
