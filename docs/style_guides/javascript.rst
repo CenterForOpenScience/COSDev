@@ -130,10 +130,9 @@ Promises
     request.done(function(response) { console.log(response); })
 
     // No
-    function noop() {}
     function makeRequest(callback){
         $.getJSON('/api/projects/', function(response) {
-            callback(response) || noop;
+            callback && callback(response);
         }) ;
     }
     makeRequest(function(response) {console.log(response)});
