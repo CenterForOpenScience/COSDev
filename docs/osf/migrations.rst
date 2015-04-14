@@ -12,7 +12,6 @@ Migrations
         """Generate the nodes to migrate."""
         return (node for node in Node.find(Q('category', 'nin', Node.VALID_CATEGORIES)))
 
-- Migrations should have automated tests. These can go in the same file as the migration script.
 - Use Python's ``logging`` module for logging output. In addition, use ``scripts.utils.add_file_logger`` to add a file handler that will add timestamped log file in ``website.settings.LOG_PATH``.
 - Add tests in the `scripts/tests` directory.
 
