@@ -3,53 +3,105 @@
 Setting up the OSF
 ==================
 
-
 *Work in Progress, please add or edit as necessary.*
 
-This page provides a verbose and detailed instruction to installing OSF. If you are already familiar with Python more compact instructions can be found at the `README <https://github.com/CenterForOpenScience/osf.io>`_ file.
+This page provides detailed instruction to installing OSF on a Mac. If you are already familiar with Python more compact instructions can be found at the `README <https://github.com/CenterForOpenScience/osf.io>`_ file.
 
 Preparing your development environment for the OSF
 **************************************************
 
-Below are quick instructions to get up and running with OSF installation on your local computer. These instructions are prepared for **researchers, technical staff, or developers new to python**.
+Installing Homebrew
+--------------
+
+Homebrew is a package manager needed to install software required by the OSF. To see if Homebrew is already installed, open a new window in your terminal and type
+
+    ::
+
+        brew
+
+If you see a list of options you already have homebrew and you can skip this section. If not you will want to install homebrew globally, not just in your osf environment. To install it, open a new terminal window and run the following command.
+
+    ::
+
+        ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+
+
+Homebrew installation will ask you to press ENTER to continue and enter your password. When it's done installing type
+
+    ::
+
+        brew doctor
+
+This will show any possible errors or other things that need to be done. Homebrew is quite clear about what to do in these cases, usually you need to copy paste the provided commands and run them.
+
+Installing Python
+--------------
+
+Now that we have Homebrew, we can install Python.  Python is the programming language that much of the OSF is written in.  Also, installing Python via homebrew will install pip, which is another package manager we need.  To install Python, go to your terminal and run
+
+    ::
+
+        brew install Python
+
+
+Updating your Path
+------------------
+
+You need to update your path so some of the componants we are installing will run. If you are using bash this could be .bash_profile, .bashrc, or .profile. If you are using another like zsh you will need to add this section to the file .zshrc; virtualenvwrapper works with bash, zsh or ksh.
+
+.. note::
+
+   You most likely have bash, and if you don't know what this means, `this article <http://natelandau.com/my-mac-osx-bash_profile/>`_  can explain.
+
+    ::
+
+        open -e ~/.bash_profile
+
+If you get the error "The file .bash_profile does not exist," then run
+
+    ::
+
+        touch ~/.bash_profile
+        open -e ~/.bash_profile
+
+In your text editor, add the following to your .bash_profile
+
+    ::
+
+        PATH=$PATH:/usr/local/bin
+And save it.
+
+Finally run
+
+    ::
+
+        source ~/.bash_profile
+
+to load the file.
+
+Installing XCode and Java
+-------------------------
+
+You will also need the XCode command line tools and Java to install the OSC.  In the terminal, run
+
+    ::
+
+        xcode-select --install
+
+Followed by
+
+    ::
+
+        brew install Caskroom/cask/java
+
 
 Virtual Environments
 --------------------
 
-Software projects will require different settings for different projects or different versions of libraries installed. If you have a single work environment you will not be able to use two versions of libraries simultaneously. IF you updated a version that is incompatible with other projects in your work environment you will break the code. It's best practice to avoid conflicts as much as possible but since you can't use a different machine for each of your projects it is better to use virtual environments so that instead of a global installation you have individual installations of your programming language that you can then tweak for different reasons. For Python you need to install virtualenv using pip.
+Software projects will require different settings for different projects or different versions of libraries installed. If you have a single work environment you will not be able to use two versions of libraries simultaneously. If you updated a version that is incompatible with other projects in your work environment you will break the code. It's best practice to avoid conflicts as much as possible but since you can't use a different machine for each of your projects it is better to use virtual environments so that instead of a global installation you have individual installations of your programming language that you can then tweak for different reasons. For Python you need to install virtualenv using pip.
 
 Pip is a tool for installing and managing Python packages. Working with libraries in a package format makes it easier to manage and update your applications. Pip is therefore a great tool to install in your system first. PHP has a tool called "Composer" that helps you manage dependencies in a similar way.
 
-Installing pip
---------------
-
-Before you begin, check if Pip is already installed. Open the Terminal application on your Mac (It's under /Applications/Utilities). Type:
-
-    ::
-
-        pip
-
-If you see a long list of options for what to do with pip that means pip is already installed. If pip isn't installed you will get a message that says `command not found`
-
-This time type in your terminal
-
-    ::
-
-        easy_install pip
-
-If you receive a long error that starts with
-
-    ::
-
-        error: can't create or remove files in install directory
-
-this is most likely because you don't have permission to write to a directory and should use **"sudo"**. This might be necessary in the upcoming command line tools as well so if the provided version does not work, add sudo to the front. Try entering
-
-    ::
-
-        sudo easy_install pip
-
-Enter your password to continue installation (See our note about passwords within virtual environments).
 
 Installing Virtualenv
 ---------------------
@@ -67,15 +119,11 @@ Installing Virtualenvwrapper
 
 Now that you installed virtualenv, why not add an extension that makes it even easier to use virtualenv (Programmers like shortcuts). Virtualenvwrapper does what its name suggests, it wraps the virtual environments so that you can easily manage them and work with multiple environments at once. To install virtualenvwrapper, type this into Terminal
 
-  ::
+    ::
 
-      pip install virtualenvwrapper
+        pip install virtualenvwrapper
 
-To conclude the installation you need to add the following lines to the end of your bash profile file. If you are using bash this could be .bashrc or .profile. If you are using another like zsh you will need to add this section to the file .zshrc; virtualenvwrapper works with bash, zsh or ksh.
-
-.. note::
-
-   You most likely have bash, and if you don't know what this means, `this article <http://natelandau.com/my-mac-osx-bash_profile/>`_  can explain.
+To conclude the installation you need to add the following lines to the end of your bash profile file.
 
   ::
 
@@ -97,7 +145,6 @@ Once you made the changes remember to load the changed file by typing:
     ::
 
         source ~/.bash_profile
-
 
 Creating your virtual environment
 ---------------------------------
@@ -167,31 +214,48 @@ Next time you need to start osf you will have to type:
 Remember that the reason we created these environments is that next time we need to install something just for OSF we will go to the osf virtual environment we just created. Most the remainder of this page will be within this virtual environment unless otherwise stated.
 
 
-Installing OSF
-**************
+Quick Installing The OSF
+************************
 
-Using homebrew
---------------
+After you have installed Homebrew, Python, XCode, Java, virtualenv, and virtualenvwrapper, you are ready to install the OSF.
 
-The next step will be to install TokuMX, but just like we used pip to install virtualenv, we need another cool tool called Homebrew to install TokuMX. Homebrew is a package manager that allows you to install lots of very cool things that are not just python related. You most likely have homebrew. To test this open a new window of terminal and type
 
-    ::
+**1.  Copy the OSF to your machine**
 
-        brew
-
-If you see a list of options you already have homebrew and you can skip this section. If not you will want to install homebrew globally, not just in your osf environment. In your new terminal window paste this command:
+    Navigate to where you want the OSF installed, and run
 
     ::
 
-        ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"
+        git clone  https://github.com/CenterForOpenScience/osf.io.git
 
-Homebrew installation will ask you to press ENTER to continue and enter your password. When it's done installing type
+
+**2.  From the Terminal, enter your virtual environment**
 
     ::
 
-        brew doctor
+        workon osf
 
-This will show any possible errors or other things that need to be done. Homebrew is quite clear about what to do in these cases, usually you need to copy paste the provided commands and run them.
+**3.  Create a local settings file**
+
+    Navigate to the osf.io directory, and run
+
+    ::
+
+        cp website/settings/local-dist.py website/settings/local.py
+
+**3.  Install invoke and then use it to start the setup**
+
+    ::
+
+        pip install invoke
+        invoke setup
+
+
+A La Carte Installation of the OSF
+**********************************
+
+If for some reason invoke setup does not work, or you are hardcore, you can install the necessary componants individually.
+
 
 Installing TokuMX
 -----------------
@@ -215,55 +279,6 @@ Installing libxml2 and libxslt
         brew install libxml2
         brew install libxslt
 
-Install XCode and Command Line Tools
-------------------------------------
-
-You will need the command line tools for development work in Macs. It is a good idea to install XCode. You can find XCode in the App Store for Mac applications.
-
-If XCode is already installed make sure you have the command line tools installed as well:
-    - Open Xcode
-
-    - Go to "Preferences"
-
-    - Select "Download" tab
-
-    - Install Command Line Tools
-
-    `Source <http://jaranto.blogspot.com/2012/08/os-x-unable-to-execute-clang-no-such.html>`_
-
-This may now work for some systems. With XCode installed, type on the command line:
-
-    ::
-
-        xcode-select --install
-
-You should get a software update window that will install the command-line tools. If you already have them installed, you'll get an error about not being able to contact the software update server.
-`Source <http://stackoverflow.com/questions/19548011/cannot-install-lxml-on-mac-os-x-10-9>`_
-
-Clone or copy the OSF files to local directory
-----------------------------------------------
-
-To install the latest files for OSF using SSH, type the following in the folder where you would like osf installed.
-
-    ::
-
-        git clone git@github.com:CenterForOpenScience/osf.io.git
-
-
-Run OSF installation
---------------------
-
-    ::
-
-        cd osf
-        pip install -r dev-requirements.txt
-
-Create your local settings file
--------------------------------
-
-    ::
-
-        cp website/settings/local-dist.py website/settings/local.py
 
 Install node packages with ``npm``
 ----------------------------------
@@ -336,24 +351,24 @@ The following commands will install the requirements for add ons.
         invoke addon_requirements
 
 
-Starting up
+Running The OSF
+***************
+
+Quick Start
 -----------
-
-Run your TokuMX process:
-
+    To fully run the OSF, the following commands must be run.  Each in their own terminal window, each in the virtual environment you created.
     ::
 
-        invoke mongo
+            invoke mongo -d  # Runs mongod as a daemon
+            invoke mailserver
+            invoke rabbitmq
+            invoke celery_worker
+            invoke elasticsearch
+            invoke assets -dw
+            invoke server
 
-Note -- TokuMX must be running in order to invoke the server. If the process stops it has failed. Try running  `mongod` for a more informative message. See below for common problems.
 
-Run your local development server:
-
-      ::
-
-          invoke server
-
-You now have both the database and application running. You will see the application address in the terminal window where you entered invoke server. It will most likely be **http://0.0.0.0:5000**. Navigate to this url in your browser to check if it works.
+You now have both the database and application running. You will see the application address in the terminal window where you entered invoke server. It will most likely be **http://localhost:5000/**. Navigate to this url in your browser to check if it works.
 
 Common Error messages
 *********************
@@ -406,6 +421,20 @@ If you have pip and conda installed, make sure remove lxml from conda and from p
         conda remove lxml
         pip uninstall lxml
         conda install lxml
+
+**7.  fatal error: 'libxml/xmlversion.h' file not found #include "libxml/xmlversion.h"**
+
+Problem: Libxml installation fails with the error.
+
+Solution: Xcode Command Line Tools installation is missing or was not successful. Go to the section on installing XCode and follow the steps there.
+
+**8.  high disk watermark [10%] exceeded on ..., shards will be relocated away from this node**
+
+Problem: Mongodb needs 10% of your total disk space to function with the OSF, and more then that to not throw a lot of warnings.
+
+Solution:  Free up space on your disk.
+
+
 
 Notes and Tips
 --------------
