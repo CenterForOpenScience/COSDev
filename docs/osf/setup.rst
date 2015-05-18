@@ -113,17 +113,16 @@ A common problem for software developers is how to deal with different projects 
 If your computer had only a single work environment shared by multiple projects, you would not be able to use two versions of libraries simultaneously,
 and updating a library for one project could break other things that depend on an older version.
 
-To avoid this problem, Python provides a tool called Virtual Environments. Since it is not always possible to avoid conflicts- and not often practical
+To avoid this problem, Python provides a tool called virtual environments (a.k.a. virtualenvs). Since it is not always possible to avoid conflicts- and not often practical
 to use a different computer for each thing you work on- it's best to use Virtual Environments. This lets you have separate, individually customized
 Python setups for each thing you are working on.
 
-You can install this tool using Pip, which is a tool for installing and managing Python packages. This seems like an extra layer of complexity, but working
+You can install this tool using ``pip``, which is a tool for installing and managing Python packages. This seems like an extra layer of complexity, but working
 with libraries in a package format makes it much easier to manage and update your applications.
-PHP has a tool called "Composer" that helps you manage dependencies in a similar way.
 
 
 Installing Virtualenv
----------------------
++++++++++++++++++++++
 
 Virtualenv is the tool we use to isolate the python environments for each project you need to run. Installing it is easy. Open Terminal and type
 
@@ -133,7 +132,7 @@ Virtualenv is the tool we use to isolate the python environments for each projec
 
 
 Installing Virtualenvwrapper
-----------------------------
+++++++++++++++++++++++++++++
 
 Now that you installed virtualenv, why not add an extension that makes it even easier to use virtualenv (Programmers like shortcuts). Virtualenvwrapper does what its name suggests, it wraps the virtual environments so that you can easily manage them and work with multiple environments at once. To install virtualenvwrapper, type this into Terminal
 
@@ -165,7 +164,7 @@ Once you made the changes remember to load the changed file by typing:
         source ~/.bash_profile
 
 Creating your virtual environment
----------------------------------
++++++++++++++++++++++++++++++++++
 
 You now have a solid development environment framework you can use for any of your projects. To start using OSF we will create a virtual environment for it.
 
