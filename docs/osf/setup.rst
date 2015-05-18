@@ -5,15 +5,22 @@ Setting up the OSF
 
 *Work in Progress, please add or edit as necessary.*
 
-This page provides detailed instruction to installing OSF on a Mac. If you are already familiar with Python more compact instructions can be found at the `README <https://github.com/CenterForOpenScience/osf.io>`_ file.
+This page provides detailed instructions for getting up and running with an OSF installation on your local computer.
+These instructions are prepared for **researchers, technical staff, or developers new to python**, and primarily focus on Mac OS ( >=10.7).
+
+If you are already familiar with Python, more compact instructions can be found in the OSF `README <https://github.com/CenterForOpenScience/osf.io/blob/develop/README.md>`_ file.
 
 Preparing your development environment for the OSF
 **************************************************
 
-Installing Homebrew
---------------
+Before you can begin to install the OSF, you will first need to install several pre-requisites. You may already have these installed, but instructions are provided to ensure that things are up-to-date.
 
-Homebrew is a package manager needed to install software required by the OSF. To see if Homebrew is already installed, open a new window in your terminal and type
+Installing Homebrew
+-------------------
+
+Homebrew is a package manager that allows you to install lots of very cool things that are not just python related. You most likely have homebrew.
+
+Homebrew is a package manager that allows you to install many cool things easily (not just python tools)- it will greatly ease the process of installing OSF requirements. To see if Homebrew is already installed, open a new window in your terminal and type
 
     ::
 
@@ -32,12 +39,12 @@ Homebrew installation will ask you to press ENTER to continue and enter your pas
 
         brew doctor
 
-This will show any possible errors or other things that need to be done. Homebrew is quite clear about what to do in these cases, usually you need to copy paste the provided commands and run them.
+This will show any possible errors or other things that need to be done. Homebrew is quite clear about what to do in these cases; usually you just need to copy paste the provided commands and run them.
 
 Installing Python
---------------
+-----------------
 
-Now that we have Homebrew, we can install Python.  Python is the programming language that much of the OSF is written in.  Also, installing Python via homebrew will install pip, which is another package manager we need.  To install Python, go to your terminal and run
+Now that we have Homebrew, we can install Python.  Python is the programming language that much of the OSF is written in. Even if it is already on your computer, installing the newest version via Homebrew will avoid many common problems for new developers.  It will also automatically install pip, which is a tool to manage Python packages.  To install Python, go to your terminal and run
 
     ::
 
@@ -47,7 +54,11 @@ Now that we have Homebrew, we can install Python.  Python is the programming lan
 Updating your Path
 ------------------
 
-You need to update your path so some of the componants we are installing will run. If you are using bash this could be .bash_profile, .bashrc, or .profile. If you are using another like zsh you will need to add this section to the file .zshrc; virtualenvwrapper works with bash, zsh or ksh.
+Now that you have installed Homebrew, you will need to make a change to help your computer find the newly installed software.
+This is done by editing the variable PATH in a file loaded whenever you open a new terminal window.
+
+ The file will usually be in your home directory (such as /Users/your_username, commonly abbreviated as ~). If you are using bash this file could be .bash_profile, .bashrc, or .profile.
+ If you are using another terminal like zsh you will need to add this section to the file .zshrc. Further tools installed later like virtualenvwrapper will work with bash, zsh or ksh.
 
 .. note::
 
@@ -64,7 +75,7 @@ If you get the error "The file .bash_profile does not exist," then run
         touch ~/.bash_profile
         open -e ~/.bash_profile
 
-In your text editor, add the following to your .bash_profile
+In your text editor, add the following line to your .bash_profile
 
     ::
 
@@ -82,7 +93,7 @@ to load the file.
 Installing XCode and Java
 -------------------------
 
-You will also need the XCode command line tools and Java to install the OSC.  In the terminal, run
+You will also need the XCode command line tools and Java to install the OSF.  In the terminal, run
 
     ::
 
@@ -98,21 +109,28 @@ Followed by
 Virtual Environments
 --------------------
 
-Software projects will require different settings for different projects or different versions of libraries installed. If you have a single work environment you will not be able to use two versions of libraries simultaneously. If you updated a version that is incompatible with other projects in your work environment you will break the code. It's best practice to avoid conflicts as much as possible but since you can't use a different machine for each of your projects it is better to use virtual environments so that instead of a global installation you have individual installations of your programming language that you can then tweak for different reasons. For Python you need to install virtualenv using pip.
+A common problem for software developers is how to deal with different projects that all require different settings or library versions.
+If your computer had only a single work environment shared by multiple projects, you would not be able to use two versions of libraries simultaneously,
+and updating a library for one project could break other things that depend on an older version.
 
-Pip is a tool for installing and managing Python packages. Working with libraries in a package format makes it easier to manage and update your applications. Pip is therefore a great tool to install in your system first. PHP has a tool called "Composer" that helps you manage dependencies in a similar way.
+To avoid this problem, Python provides a tool called Virtual Environments. Since it is not always possible to avoid conflicts- and not often practical
+to use a different computer for each thing you work on- it's best to use Virtual Environments. This lets you have separate, individually customized
+Python setups for each thing you are working on.
+
+You can install this tool using Pip, which is a tool for installing and managing Python packages. This seems like an extra layer of complexity, but working
+with libraries in a package format makes it much easier to manage and update your applications.
+PHP has a tool called "Composer" that helps you manage dependencies in a similar way.
 
 
 Installing Virtualenv
 ---------------------
 
-Virtualenv is the tool we use to isolate the python environments for each project you need to run. Instaling it is easy. Open Terminal and type
+Virtualenv is the tool we use to isolate the python environments for each project you need to run. Installing it is easy. Open Terminal and type
 
     ::
 
         pip install virtualenv
 
-We are using pip here to install virtualenv, which is why we needed pip first.
 
 Installing Virtualenvwrapper
 ----------------------------
@@ -243,7 +261,7 @@ After you have installed Homebrew, Python, XCode, Java, virtualenv, and virtuale
 
         cp website/settings/local-dist.py website/settings/local.py
 
-**3.  Install invoke and then use it to start the setup**
+**3.  Install invoke and then use it to start the setup process**
 
     ::
 
@@ -251,11 +269,11 @@ After you have installed Homebrew, Python, XCode, Java, virtualenv, and virtuale
         invoke setup
 
 
-A La Carte Installation of the OSF
-**********************************
+Installing the OSF one piece at a time
+**************************************
 
-If for some reason invoke setup does not work, or you are hardcore, you can install the necessary componants individually.
-
+Although the automatic installer attempts to be helpful, it may sometimes be necessary to perform the installation steps individually- for example, if you are working on a computer running Linux, or updating an existing installation.
+Instructions are provided for Mac OS (using Homebrew), but other operating systems will have their own preferred package management tools.
 
 Installing TokuMX
 -----------------
@@ -356,7 +374,9 @@ Running The OSF
 
 Quick Start
 -----------
-    To fully run the OSF, the following commands must be run.  Each in their own terminal window, each in the virtual environment you created.
+To fully run the OSF, the following commands must be run.  Many of these programs will continue to run in order to log output to the console: this is normal!
+
+Therefore, run the following commands each in their own terminal windows, making sure to switch to the OSF virtual environment (and directory) each time:
     ::
 
             invoke mongo -d  # Runs mongod as a daemon
