@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import os
 import sys
+import webbrowser
 
 from invoke import task, run
 
@@ -17,7 +18,8 @@ def clean_docs():
 
 @task
 def browse_docs():
-    run("open {}".format(os.path.join(build_dir, 'index.html')))
+    path = os.path.join(build_dir, 'index.html')
+    webbrowser.open_new_tab(path)
 
 @task
 def docs(clean=False, browse=False):
