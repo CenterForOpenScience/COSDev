@@ -79,7 +79,7 @@ In your text editor, add the following line to your .bash_profile
 
     ::
 
-        PATH=$PATH:/usr/local/bin
+        PATH=$PATH:/usr/local/sbin
 And save it.
 
 Finally run
