@@ -13,12 +13,20 @@ Restarting the app server
 
     # After pulling down changes
     # Update and build assets
-    $ invoke assets
+    $ HOME=/opt/data/tmp; sudo -u www-data -s /bin/bash -c "source /opt/apps/osf/env/bin/activate && invoke assets"
     # Restart uwsgi
     $ sudo service uwsgi restart
 
+Updating OSF for Meetings Database
+----------------------------------
+
+.. code-block:: bash
+
+    # After pulling down changes
+    $ python -m scripts.populate_conferences
+
 Generating a new SSL certificate
-********************************
+--------------------------------
 
 
 * Generate a certificate signing request (see instructions from `this post <http://blog.wensheng.org/2012/03/using-namecheap-ssl-with-nginx.html>`_)
@@ -49,7 +57,7 @@ Generating a new SSL certificate
 
 
 Upgrading Unsupported releases of Ubuntu
-****************************************
+----------------------------------------
 
 - `EOLUpgrades <https://help.ubuntu.com/community/EOLUpgrades/>`_
 - `How to install software or upgrade from old unsupported release? <https://askubuntu.com/questions/91815/how-to-install-software-or-upgrade-from-old-unsupported-release/91821#91821?newreg=55cb4b0054814dbe9fdf36b3a0a08f27>`_ (AskUbuntu)
@@ -62,7 +70,7 @@ NOTE: When prompted if you want to replace ``/etc/mongodb.conf`` and ``/etc/ngin
 
 
 Migrating to a new machine
-**************************
+--------------------------
 
 .. todo:: This is incomplete. Add final steps and clean this up.
 
