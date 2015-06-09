@@ -13,8 +13,7 @@ Restarting the app server
 
     # After pulling down changes
     # Update and build assets then restart uwsgi
-    $ $(HOME=/opt/data/tmp; sudo -u www-data -s /bin/bash -c "source /opt/data/envs/osf/bin/activate && invoke assets" && sudo service uwsgi restart)
-
+    $ sudo -u www-data -s /bin/bash -c "HOME=/tmp; source /opt/data/envs/osf/bin/activate && invoke assets" && sudo service uwsgi restart
 Updating OSF for Meetings Database
 ----------------------------------
 
