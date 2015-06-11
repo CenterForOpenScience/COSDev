@@ -59,19 +59,3 @@ Below is the skeleton of an example migration.
 
         def test_do_migration(self):
             # ...
-
-
-After performing a migration
-----------------------------
-
-After running a migration script on a production machine, add a timestamped log in the docstring of the script, documenting what was done.
-
-.. code-block:: python
-
-    """Script to remove invalid GUID tag objects from the database.
-
-    Log:
-
-        Performed on production by sloria on 2014-08-15 at 11.45AM. 892 invalid GUID
-        objects were removed.
-    """
