@@ -389,6 +389,12 @@ Therefore, run the following commands each in their own terminal windows, making
 
 You now have both the database and application running. You will see the application address in the terminal window where you entered invoke server. It will most likely be **http://localhost:5000/**. Navigate to this url in your browser to check if it works.
 
+To enable log-in, you will also need to run the authentication server.
+To do so, consult the fakeCAS `repository <https://github.com/CenterForOpenScience/fakeCAS>`_.
+First download the binary file and run the commands specified to run the server.
+    
+**If you need to develop authentication-related features, there is a process for setting up the full CAS server `here <https://github.com/CenterForOpenScience/cas-overlay>`_.
+
 Common Error messages
 *********************
 
