@@ -240,8 +240,8 @@ Gotchas and Pitfalls
     server = utils.createServer(sinon, endpoints);
 
 - Remember for async tests, you need to pass and call the 'done' callback. Failing to pass and call done in async tests can cause unpredictable and untracable errors in your test suite.
-In particular you might see failed assertions from another test being printed to the console as if they're happing in some other test. Since we're concatenating test files together with webpack,
-this error could be coming from any of the tests run before the error occurs (maybe from another file altogether). 
+In particular you might see failed assertions from another test being printed to the console as if they're happening in some other test. Since we're concatenating test files together with webpack,
+this error could be coming from any of the tests run before the error occurs (maybe from another file altogether).
 
 .. code-block:: javascript
 
@@ -249,7 +249,7 @@ this error could be coming from any of the tests run before the error occurs (ma
       ...
       it('Does something asnyc', (done) => {
          myFeature.myAsyncFunction()
-           .then(function() {
+           .always(function() {
              // make some assertions
              done();
            });
