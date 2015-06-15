@@ -31,6 +31,10 @@ If you see a list of options you already have homebrew and you can skip this sec
     ::
 
         ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+        
+    Or for Linux users::
+    
+        ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/linuxbrew/go/install)"
 
 
 Homebrew installation will ask you to press ENTER to continue and enter your password. When it's done installing type
@@ -259,6 +263,13 @@ After you have installed Homebrew, Python, XCode, Java, virtualenv, and virtuale
     ::
 
         cp website/settings/local-dist.py website/settings/local.py
+
+.. note::
+    You may need to clear the WHEELHOUSE environmental variable for setup to function properly.
+    
+    ::
+    
+      unset WHEELHOUSE
 
 **3.  Install invoke and then use it to start the setup process**
 
