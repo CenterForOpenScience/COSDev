@@ -31,9 +31,9 @@ If you see a list of options you already have homebrew and you can skip this sec
     ::
 
         ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-        
-    Or for Linux users::
-    
+
+Or for Linux users::
+
         ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/linuxbrew/go/install)"
 
 
@@ -266,9 +266,9 @@ After you have installed Homebrew, Python, XCode, Java, virtualenv, and virtuale
 
 .. note::
     You may need to clear the WHEELHOUSE environmental variable for setup to function properly.
-    
+
     ::
-    
+
       unset WHEELHOUSE
 
 **3.  Install invoke and then use it to start the setup process**
