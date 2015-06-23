@@ -219,6 +219,19 @@ Use them sparingly. Prefer code readability to writing a lot of comments. Often,
 
 When you do write comments, use them to explain *why* a piece code was used, not *what* it does.
 
+Method Overrides
+----------------
+
+One useful place for comments are method overrides.
+
+.. code-block:: python
+
+    class UserDetail(generics.RetrieveUpdateAPIView, UserMixin):
+
+        # overrides RetrieveUpdateAPIView
+        def get_serializer_context(self):
+            return {'request': self.request}
+
 Line lengths
 ************
 
