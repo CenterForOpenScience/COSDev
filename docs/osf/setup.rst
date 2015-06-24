@@ -297,6 +297,16 @@ To install TokuMX first refresh your brew install by updating it and then use br
         brew tap tokutek/tokumx
         brew install tokumx-bin
 
+Installing RabbitMQ
+-----------------
+
+To install RabbitMQ first refresh your brew install by updating it and then use brew to install RabbitMQ:
+
+    ::
+
+        brew update
+        brew install rabbitmq
+    
 Installing libxml2 and libxslt
 ------------------------------
 
