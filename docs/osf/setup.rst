@@ -83,7 +83,7 @@ In your text editor, add the following line to your .bash_profile
 
     ::
 
-        PATH=$PATH:/usr/local/bin
+        PATH=/usr/local/bin:/usr/local/sbin:$PATH
 And save it.
 
 Finally run
@@ -297,6 +297,16 @@ To install TokuMX first refresh your brew install by updating it and then use br
         brew tap tokutek/tokumx
         brew install tokumx-bin
 
+Installing RabbitMQ
+-----------------
+
+To install RabbitMQ first refresh your brew install by updating it and then use brew to install RabbitMQ:
+
+    ::
+
+        brew update
+        brew install rabbitmq
+    
 Installing libxml2 and libxslt
 ------------------------------
 
