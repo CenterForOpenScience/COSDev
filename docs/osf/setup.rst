@@ -298,7 +298,7 @@ To install TokuMX first refresh your brew install by updating it and then use br
         brew install tokumx-bin
 
 Installing RabbitMQ
------------------
+-------------------
 
 To install RabbitMQ first refresh your brew install by updating it and then use brew to install RabbitMQ:
 
@@ -306,7 +306,7 @@ To install RabbitMQ first refresh your brew install by updating it and then use 
 
         brew update
         brew install rabbitmq
-    
+
 Installing libxml2 and libxslt
 ------------------------------
 
@@ -349,7 +349,7 @@ Building assets with ``webpack``
 ::
 
     inv assets -dw
-    
+
 
 Installing Add on Requirements
 ------------------------------
@@ -413,7 +413,7 @@ You now have both the database and application running. You will see the applica
 To enable log-in, you will also need to run the authentication server.
 To do so, consult the fakeCAS `repository <https://github.com/CenterForOpenScience/fakeCAS>`_.
 First download the binary file and run the commands specified to run the server.
-    
+
 **If you need to develop authentication-related features, there is a process for setting up the full CAS server `here <https://github.com/CenterForOpenScience/docker-library/tree/master/cas>`_.
 
 

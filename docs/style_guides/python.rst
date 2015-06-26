@@ -224,6 +224,7 @@ Method Overrides
 
 One useful place for comments are method overrides.
 
+
 .. code-block:: python
 
     class UserDetail(generics.RetrieveUpdateAPIView, UserMixin):
@@ -231,6 +232,31 @@ One useful place for comments are method overrides.
         # overrides RetrieveUpdateAPIView
         def get_serializer_context(self):
             return {'request': self.request}
+
+Calling Superclasses' Methods
+*****************************
+
+Use `super` when there is only one superclass.
+
+.. code-block:: python
+
+    class Employee(Person):
+
+        def __init__(self, name):
+            super(Employee, self).__init__(name)
+            # or super().__init__(name) on Python 3
+            # ...
+
+
+Call the method directly when there are multiple superclasses.
+
+.. code-block:: python
+
+    class DevOps(Developer, Operations):
+
+        def __init__(self):
+            Developer.__init__(self)
+            # ...
 
 Line lengths
 ************
