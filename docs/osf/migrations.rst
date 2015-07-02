@@ -38,7 +38,7 @@ Below is the skeleton of an example migration.
         # ... return the StoredObjects to migrate ...
 
     def main(dry=True):
-        init_app(set_backends=True, routes=False, mfr=False)  # Sets the storage backends on all models
+        init_app(set_backends=True, routes=False)  # Sets the storage backends on all models
         do_migration(get_targets(), dry=dry)
 
     if __name__ == '__main__':
