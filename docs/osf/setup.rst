@@ -492,6 +492,18 @@ Problem: Mongodb needs 10% of your total disk space to function with the OSF, an
 
 Solution:  Free up space on your disk.
 
+**9. Import Error: cannot import name URITemplate**
+
+Problem: github3.py needs uritemplate.py but conflicting package uritemplate is installed instead
+
+Solution: Uninstall uritemplate and install uritemplate.py.
+
+    ::
+
+        pip uninstall uritemplate.py
+        pip install uritemplate.py==0.3.0
+
+
 
 
 Notes and Tips
