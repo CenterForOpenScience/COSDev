@@ -393,11 +393,10 @@ Install R using homebrew
 
         brew install R
 
-The following commands will install the requirements for add ons.
+The following command will install the requirements for addons.
 
     ::
 
-        invoke mfr_requirements
         invoke addon_requirements
 
 
