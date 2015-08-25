@@ -29,6 +29,7 @@ If you see a list of options you already have homebrew.  Homebrew prefers to be 
     ::
 
         sudo chown -R <your username> /usr/local
+        sudo chown -R <your username> /Library/Caches/Homebrew
         sudo chown -R <your username> /opt/homebrew-cask
 
 If not you will want to install homebrew globally, not just in your osf environment. To install it, open a new terminal window and run the following command.
