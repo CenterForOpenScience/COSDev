@@ -425,7 +425,7 @@ To enable log-in, you will also need to run the authentication server.
 To do so, consult the fakeCAS `repository <https://github.com/CenterForOpenScience/fakeCAS>`_.
 First download the binary file and run the commands specified to run the server.
 
-**If you need to develop authentication-related features, there is a process for setting up the full CAS server `here <https://github.com/CenterForOpenScience/docker-library/tree/master/cas>`_.
+If you need to develop authentication-related features, there is a process for setting up the full CAS server `here <https://github.com/CenterForOpenScience/docker-library/tree/master/cas>`_.
 
 
 Common Error messages
