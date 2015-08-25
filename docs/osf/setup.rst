@@ -69,12 +69,15 @@ Updating your Path
 Now that you have installed Homebrew, you will need to make a change to help your computer find the newly installed software.
 This is done by editing the variable PATH in a file loaded whenever you open a new terminal window.
 
- The file will usually be in your home directory (such as /Users/your_username, commonly abbreviated as ~). If you are using bash this file could be .bash_profile, .bashrc, or .profile.
- If you are using another terminal like zsh you will need to add this section to the file .zshrc. Further tools installed later like virtualenvwrapper will work with bash, zsh or ksh.
+The file will usually be in your home directory (such as /Users/your_username, commonly abbreviated as ~). If you are using bash this file could be .bash_profile, .bashrc, or .profile.
+If you are using another shell like zsh you will need to add this section to the file .zshrc. Further tools installed later like virtualenvwrapper will work with bash, zsh or ksh.
 
 .. note::
 
    You most likely have bash, and if you don't know what this means, `this article <http://natelandau.com/my-mac-osx-bash_profile/>`_  can explain.
+
+
+You can open your .bash_profile from the command line with:
 
     ::
 
@@ -92,6 +95,7 @@ In your text editor, add the following line to your .bash_profile
     ::
 
         PATH=/usr/local/bin:/usr/local/sbin:$PATH
+
 And save it.
 
 Finally run
