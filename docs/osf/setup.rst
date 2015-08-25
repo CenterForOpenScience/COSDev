@@ -18,8 +18,6 @@ Before you can begin to install the OSF, you will first need to install several 
 Installing Homebrew
 -------------------
 
-Homebrew is a package manager that allows you to install lots of very cool things that are not just python related. You most likely have homebrew.
-
 Homebrew is a package manager that allows you to install many cool things easily (not just python tools)- it will greatly ease the process of installing OSF requirements. To see if Homebrew is already installed, open a new window in your terminal and type
 
     ::
