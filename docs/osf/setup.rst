@@ -24,13 +24,22 @@ Homebrew is a package manager that allows you to install many cool things easily
 
         brew
 
-If you see a list of options you already have homebrew and you can skip this section. If not you will want to install homebrew globally, not just in your osf environment. To install it, open a new terminal window and run the following command.
+If you see a list of options you already have homebrew.  Homebrew prefers to be run by one user, so you'll need to take ownership of it and homebrew-cask.
+
+    ::
+
+        sudo chown -R <your username> /usr/local
+        sudo chown -R <your username> /opt/homebrew-cask
+
+If not you will want to install homebrew globally, not just in your osf environment. To install it, open a new terminal window and run the following command.
 
     ::
 
         ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
-Or for Linux users::
+Or for Linux users:
+
+    ::
 
         ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/linuxbrew/go/install)"
 
