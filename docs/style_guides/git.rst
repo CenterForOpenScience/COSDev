@@ -4,7 +4,7 @@ Git
 ===
 
 - Use the imperative mode (e.g, "Fix rendering of user logs") in commit messages.
-- If your patch addresses a JIRA ticket, add the JIRA ticket ID commit message so that the issue will automatically be closed when the patch is merged.
+- If your patch addresses a JIRA ticket, add the JIRA ticket ID to the commit message.
 
 ::
 
