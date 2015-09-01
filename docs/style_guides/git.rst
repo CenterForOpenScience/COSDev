@@ -4,6 +4,17 @@ Git
 ===
 
 - Use the imperative mode (e.g, "Fix rendering of user logs") in commit messages.
+- If your patch addresses a JIRA ticket, add the JIRA ticket ID commit message so that the issue will automatically be closed when the patch is merged.
+
+::
+
+  Improve UI for changing names
+
+  - Change button color for Auto-fill
+  - Add help text
+
+  [#OSF-4251]
+
 - If your patch fixes a Github issue, you can add the issue to your commit message so that the issue will automatically be closed when the patch is merged.
 
 ::
