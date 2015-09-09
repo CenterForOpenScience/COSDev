@@ -18,21 +18,21 @@ Before you can begin to install the OSF, you will first need to install several 
 Installing Homebrew
 -------------------
 
-Homebrew is a package manager that allows you to install lots of very cool things that are not just python related. You most likely have homebrew.
-
 Homebrew is a package manager that allows you to install many cool things easily (not just python tools)- it will greatly ease the process of installing OSF requirements. To see if Homebrew is already installed, open a new window in your terminal and type
 
     ::
 
         brew
 
-If you see a list of options you already have homebrew and you can skip this section. If not you will want to install homebrew globally, not just in your osf environment. To install it, open a new terminal window and run the following command.
+If you see a list of options you already have homebrew. If not you will want to install homebrew globally, not just in your osf environment. To install it, open a new terminal window and run the following command.
 
     ::
 
         ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
-Or for Linux users::
+Or for Linux users:
+
+    ::
 
         ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/linuxbrew/go/install)"
 
@@ -61,12 +61,15 @@ Updating your Path
 Now that you have installed Homebrew, you will need to make a change to help your computer find the newly installed software.
 This is done by editing the variable PATH in a file loaded whenever you open a new terminal window.
 
- The file will usually be in your home directory (such as /Users/your_username, commonly abbreviated as ~). If you are using bash this file could be .bash_profile, .bashrc, or .profile.
- If you are using another terminal like zsh you will need to add this section to the file .zshrc. Further tools installed later like virtualenvwrapper will work with bash, zsh or ksh.
+The file will usually be in your home directory (such as /Users/your_username, commonly abbreviated as ~). If you are using bash this file could be .bash_profile, .bashrc, or .profile.
+If you are using another shell like zsh you will need to add this section to the file .zshrc. Further tools installed later like virtualenvwrapper will work with bash, zsh or ksh.
 
 .. note::
 
    You most likely have bash, and if you don't know what this means, `this article <http://natelandau.com/my-mac-osx-bash_profile/>`_  can explain.
+
+
+You can open your .bash_profile from the command line with:
 
     ::
 
@@ -84,6 +87,7 @@ In your text editor, add the following line to your .bash_profile
     ::
 
         PATH=/usr/local/bin:/usr/local/sbin:$PATH
+
 And save it.
 
 Finally run
@@ -381,11 +385,10 @@ Install R using homebrew
 
         brew install R
 
-The following commands will install the requirements for add ons.
+The following command will install the requirements for addons.
 
     ::
 
-        invoke mfr_requirements
         invoke addon_requirements
 
 
@@ -414,7 +417,7 @@ To enable log-in, you will also need to run the authentication server.
 To do so, consult the fakeCAS `repository <https://github.com/CenterForOpenScience/fakeCAS>`_.
 First download the binary file and run the commands specified to run the server.
 
-**If you need to develop authentication-related features, there is a process for setting up the full CAS server `here <https://github.com/CenterForOpenScience/docker-library/tree/master/cas>`_.
+If you need to develop authentication-related features, there is a process for setting up the full CAS server `here <https://github.com/CenterForOpenScience/docker-library/tree/master/cas>`_.
 
 
 Common Error messages
@@ -480,6 +483,29 @@ Solution: Xcode Command Line Tools installation is missing or was not successful
 Problem: Mongodb needs 10% of your total disk space to function with the OSF, and more then that to not throw a lot of warnings.
 
 Solution:  Free up space on your disk.
+
+**9. Import Error: cannot import name URITemplate**
+
+Problem: github3.py needs uritemplate.py but conflicting package uritemplate is installed instead
+
+Solution: Uninstall uritemplate and install uritemplate.py.
+
+    ::
+
+        pip uninstall uritemplate.py
+        pip install uritemplate.py==0.3.0
+
+**10. Error: Cannot write to /usr/local/Cellar**
+
+Problem: Can't install packages because homebrew complains about permissions.
+
+Solution: Take control, Gotham! Homebrew prefers to be run by one user, so you'll need to take ownership of it and homebrew-cask.  This assumes you have admin privileges.
+
+    ::
+
+        sudo chown -R <your username> /usr/local
+        sudo chown -R <your username> /Library/Caches/Homebrew
+        sudo chown -R <your username> /opt/homebrew-cask
 
 
 
