@@ -24,15 +24,7 @@ Homebrew is a package manager that allows you to install many cool things easily
 
         brew
 
-If you see a list of options you already have homebrew.  Homebrew prefers to be run by one user, so you'll need to take ownership of it and homebrew-cask.
-
-    ::
-
-        sudo chown -R <your username> /usr/local
-        sudo chown -R <your username> /Library/Caches/Homebrew
-        sudo chown -R <your username> /opt/homebrew-cask
-
-If not you will want to install homebrew globally, not just in your osf environment. To install it, open a new terminal window and run the following command.
+If you see a list of options you already have homebrew. If not you will want to install homebrew globally, not just in your osf environment. To install it, open a new terminal window and run the following command.
 
     ::
 
@@ -503,6 +495,17 @@ Solution: Uninstall uritemplate and install uritemplate.py.
         pip uninstall uritemplate.py
         pip install uritemplate.py==0.3.0
 
+**10. Error: Cannot write to /usr/local/Cellar**
+
+Problem: Can't install packages because homebrew complains about permissions.
+
+Solution: Take control, Gotham! Homebrew prefers to be run by one user, so you'll need to take ownership of it and homebrew-cask.  This assumes you have admin privileges.
+
+    ::
+
+        sudo chown -R <your username> /usr/local
+        sudo chown -R <your username> /Library/Caches/Homebrew
+        sudo chown -R <your username> /opt/homebrew-cask
 
 
 
