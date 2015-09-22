@@ -6,16 +6,17 @@ Developing An Addon
 Notes and gotchas
 *****************
 
+- The words SHALL, MUST, MAY, etc are to be interpreted as defined `here`_
+- The add-on system is module based not class based
+- Everything you touch should be in the website/addons/ directory
 - A new AddonSettings record is created upon enabling your addon's checkbox on the user settings page and submitting the form. You should *not* instantiate an `MyAddonUserSettings` object yourself
-- The view for rendering a file **must** include the return value of `website.project.util.serialize_project` (an alias of `_view_project`).
-- The view for rendering a file **must** use `website.addons.base.views.check_file_guid` and redirect if necessary
 - `to_json` returns the mako context for the settings pages
 - Log templates: the `id` of each script tag correspond to log actions.
 - Don't forget to do error handling! This includes handling errors that might occur if 3rd party HTTP APIs cause a failure and any exceptions that a client library might raise
 - Any static assets that you put in ``website/addons/<addon_name>/static/`` will be served from ``/static/addons/<addon_name>/``. This means that ``<link>`` and ``<script>`` tags should always point to URLs that begin with ``/static/``.
 
-Installing Addons
-*****************
+Installing Add-ons
+******************
 
 
 Open terminal and switch to the folder where your OSF installation is located. We will install the addons to the website folder. So navigate to
@@ -31,31 +32,219 @@ During your installation you created a virtual environment for OSF. Switch to th
     # If you use virtualenvwrapper
     $ workon osf
 
-Addon cookiecutter
+Addon Structure
 ------------------
 
-While this should not be used when creating your first add-on, the Cookie cutter is designed to get you started with a new addon by filling out standard information and using boilerplate code to connect your add on.
-
-Install Cookiecutter
+An add-on SHOULD have the following folder structure
 
 ::
 
-    $ pip install cookiecutter
+    website/addons/youraddon/
+    ├── __init__.py
+    ├── model.py
+    ├── requirements.txt
+    ├── routes.py
+    ├── settings
+    │   ├── __init__.py
+    │   └── defaults.py
+    ├── static
+    │   ├── comicon.png
+    │   ├── node-cfg.js
+    │   ├── tests
+    │   │   └── ...
+    │   └── user-cfg.js
+    ├── templates
+    │   ├── log_templates.mako
+    │   ├── youraddon_node_settings.mako
+    │   └── youraddon_user_settings.mako
+    ├── tests
+    │   ├── __init__.py
+    │   ├── test_model.py
+    │   └── test_views.py
+    └── views
+        └── ...
 
-Then run the following to create the project scaffold.
 
-::
+Bare minimums
+-------------
 
-    $ cookiecutter https://github.com/chrisseto/osf-Addon-cookiecutter.git
+-  ``__init__.py`` declares all views/models/routes/hooks for your add-on
+-  Your add-on MUST declare the following in its ``__init__.py``
+-  ``SHORT_NAME`` (string)
 
-This will prompt a few questions:
+   -  The name that will be used to refer to your add-on on the backend
+   -  EX:
 
-**full_name (default is "Amazon Simple Storage Service")?**: Enter a descriptive name that can have spaces. Describe your add on in a few words.
+      -  Amazon Simple Storage Service is s3
+      -  Google Drive is googledrive
 
-**short_name (default is "s3")?**: Enter a lowercase, single word name. This name will be used in the file structure and as variables. You can use CamelCase if you need to have more words, or you can combine with numbers, but don't use any spaces or hyphens.
+-  ``FULL_NAME`` (string)
 
-**categories (default is "'storage'")?**: Enter a one word category, lowercase.
+   -  The name “display name” of your add-on, whenever the user is
+      interacting with your add-on this is the name they will see
 
+-  ``ROUTES`` (list of `routes`_ dicts)
+
+   -  A list containing all `routes`_ defined by your add-on
+   -  Maps Urls to views
+
+-  ``MODELS`` (list of `StoredObjects`_)
+
+   -  A list of all ODM objects defined by your add-on
+   -  If your model is not in this list it will not be usable
+
+-  ``ADDED_DEFAULT`` (list of strings)
+
+   -  A list of ``AddonMixin`` models that your add-on SHALL be added to
+      when they are created
+   -  Valid options are ``user`` and ``node``
+   -  EX:
+   -  The Wiki addon is added by default for nodes
+
+-  ``ADDED_MANDATORY`` (list of strings)
+
+   -  A list of AddonMixin models that your add-on MUST be
+      attached/connected to at all times
+   -  Valid options are ``user`` and ``node``
+   -  EX:
+   -  OsfStorage is a required add-on for nodes
+
+-  ``VIEWS`` (list of strings)
+
+   -  Additional builtin views for your add-on
+   -  Valid options are ``page`` and ``widget``
+   -  EX: The wiki defines both a ``page`` view and a ``widget`` view
+
+-  ``CATEGORIES`` (list of strings)
+
+   -  A list of categories this add-on should be displayed under when
+      the user is “browsing” add-ons
+
+-  ``INCLUDE_JS`` and ``INCLUDE_CSS``
+
+   -  Deprecated field, define as empty dict (``{}``)
+
+Optional Fields
+---------------
+
+Your add-on MAY define the following fields
+
+-  ``HAS_HGRID_FILES`` (boolean)
+-  A boolean that indicated that this add-on’s ``GET_HGRID_DATA``
+   function should be used to populate the files grid
+-  ``GET_HGRID_DATA`` (function)
+-  A function that returns HGrid/Treebeard formatted data to be included
+   in a project’s files grid
+-  ``USER_SETTINGS_MODEL`` (`StoredObject`_)
+-  MUST inherit from ``website.addons.base.AddonUserSettingsBase``
+-  A model that will be used to store settings for users
+-  Will be returned when ``User.get_addon('YourAddon')`` is called
+-  EX:
+
+   -  S3’s User settings is used to store the user’s AWS access keys
+
+-  ``NODE_SETTINGS_MODEL`` (`StoredObject`_)
+-  MUST inherit from ``website.addons.base.AddonNodeSettingsBase``
+-  A model that will be used to store settings for nodes
+-  Will be returned when ``Node.get_addon('YourAddon')`` is called
+-  ``NODE_SETTINGS_TEMPLATE`` (string to directory)
+-  A `mako`_ template for configuring your add-on’s node settings object
+-  ``USER_SETTINGS_TEMPLATE`` (string to directory)
+-  A `mako`_ template for configuring your add-on’s user settings object
+-  ``MAX_FILE_SIZE``
+-  This maximum size, in MB, that can be uploaded to your add-on, supposing it supports files
+
+StoredObject
+============
+
+A ``StoredObject`` is a class from our package ``modularodm`` that
+represents an object stored in a database.
+
+For our use case this database will always be TokuMX, a fork of mongodb
+that provides transactions and performance increases.
+
+Defining a ``StoredObject`` is very similar to the syntax used in
+`peewee`_ and `sqlalchemy`_
+
+The one caveat is that rather than using
+``modularodm.storedobject.StoredObject`` the base class must be
+``framework.mongo.StoredObject``
+
+Routes
+======
+
+A route is dictionary that containing one or more ``Rule`` objects in
+the ``'rules'`` key.
+
+Our url templating works the same way that `flask’s`_ does.
+
+.. code:: python
+
+    my_route = {
+      'rules': [
+        Rule(
+          [
+            '/my/<templated>/path/',  # Note all routes SHOULD end with a forward slash (/)
+            '/also/my/<templated>/path/'
+          ],
+          ('get', 'post'),  # Valid HTTP methods
+          view.my_view_function,  # The view method this route maps to
+          json_renderer  # The renderer used for this view function, either OsfWebRenderer or json_renderer
+        )
+      ]
+    }
+
+Routes SHOULD be defined in ``website.addons.youraddon.routes`` but
+could be defined anywhere
+
+Views
+=====
+
+Our views are implemented the same way that `flask’s`_ are.
+
+Any value matched by url templating (``<value_name>``) will be passed to
+your view function as a keyword argument
+
+Our framework supplies many python decorators to make writing view
+functions more pleasant.
+
+Below are a few examples that are commonly used in our code base.
+
+More can be found in ``website.project.decorators``.
+
+``framework.auth.decorators.must_be_logged_in``
+===============================================
+
+Ensures that a user is logged in and imputes ``auth`` into keyword
+arguments
+
+``from website.project.decorators.must_have_addon``
+===================================================
+
+``must_have_addon`` is a decorator factory meaning you must supply
+arguments to it to get a decorator.
+
+.. code:: python
+
+    def must_have_addon(addon_short_name, model_name):
+      ...
+
+
+    @must_have_addon('myaddon', 'user')
+    def my_view(...):
+      pass
+
+The above code snippet will only run the view function if the specified
+model as the requested addon.
+
+``from website.project.decorators.must_have_permission``
+========================================================
+
+``must_have_permission`` is another decorator factory, it takes a single
+permission argument (‘write’, ‘read’, ‘admin’).
+
+It prevents the decorated view function from being called unless the
+user issuing the request has the required permission.
 
 
 Logs
@@ -78,13 +267,13 @@ Use the ``NodeLog`` class's named constants when possible,
 Every log action requires a template in ``youraddon/templates/log_templates.mako``. Each template's id corresponds to the name of the log action.
 
 
-Static files for addons
+Static files for add-ons
 ***********************
 
 .. todo:: Add detail.
 
 
-First make sure your addon's short name is listed in ``addons.json``.
+First make sure your add-on's short name is listed in ``addons.json``.
 
 **addons.json**
 
@@ -98,7 +287,7 @@ First make sure your addon's short name is listed in ``addons.json``.
         ]
     }
 
- This adds the proper entry points for webpack to build your addon's static files.
+ This adds the proper entry points for webpack to build your add-on's static files.
 
 The following files in the ``static`` folder of your addon directory will be built by webpack:
 
@@ -144,46 +333,17 @@ Builds the root or "dummy" folder for an addon.
 
         eg. Repo name for Github or bucket name for S3
 
-    :param permissions dict or Auth: Dictionary of permissions for the addon's content or Auth for use in node.can_X methods
+    :param permissions dict or Auth: Dictionary of permissions for the add-on's content or Auth for use in node.can_X methods
 
     :param urls dict: Hgrid related urls
 
-    :param extra String: Html to be appened to the addon folder name
+    :param extra String: Html to be appended to the addon folder name
 
         eg. Branch switcher for github
 
     :param kwargs dict: Any additional information to add to the root folder
 
     :return dict: Hgrid formatted dictionary for the addon root folder
-
-
-Rendering files
-***************
-
-First requirement here is a render template, which should consist mainly of 1. the rendered file 2. a version history of the file
-
-Building File GUIDs
-*******************
-
-whenever a file is rendered a GUID should be created for it
-
-.. code-block:: python
-
-    try:
-        guid = S3GuidFile.find_one(
-            Q('node', 'eq', node) &
-            Q('path', 'eq', path)
-        )
-    except:
-        guid = S3GuidFile(
-            node=node,
-            path=path,
-        )
-        guid.save()
-
-    redirect_url = check_file_guid(guid)
-    if redirect_url:
-        return redirect(redirect_url)`
 
 
 Deselecting and Deauthorizing
@@ -255,3 +415,13 @@ Example: When a Dropbox folder is shared on a project, contributors (and the pub
         ...
 
 Make sure that any view (CRUD, settings views...) that accesses resources from a 3rd-party service is secured in this way.
+
+
+.. _here: https://tools.ietf.org/html/rfc2119
+.. _routes: #routes
+.. _StoredObjects: #storedobject
+.. _StoredObject: #storedobject
+.. _mako: http://www.makotemplates.org/
+.. _peewee: https://peewee.readthedocs.org/en/latest/
+.. _sqlalchemy: http://www.sqlalchemy.org/
+.. _flask’s: http://flask.pocoo.org/docs/0.10/views/
