@@ -32,38 +32,6 @@ During your installation you created a virtual environment for OSF. Switch to th
     # If you use virtualenvwrapper
     $ workon osf
 
-Addon Structure
-------------------
-
-An add-on SHOULD have the following folder structure
-
-::
-
-    website/addons/youraddon/
-    ├── __init__.py
-    ├── model.py
-    ├── requirements.txt
-    ├── routes.py
-    ├── settings
-    │   ├── __init__.py
-    │   └── defaults.py
-    ├── static
-    │   ├── comicon.png
-    │   ├── node-cfg.js
-    │   ├── tests
-    │   │   └── ...
-    │   └── user-cfg.js
-    ├── templates
-    │   ├── log_templates.mako
-    │   ├── youraddon_node_settings.mako
-    │   └── youraddon_user_settings.mako
-    ├── tests
-    │   ├── __init__.py
-    │   ├── test_model.py
-    │   └── test_views.py
-    └── views
-        └── ...
-
 
 Bare minimums
 -------------
@@ -153,6 +121,40 @@ Your add-on MAY define the following fields
 -  A `mako`_ template for configuring your add-on’s user settings object
 -  ``MAX_FILE_SIZE``
 -  This maximum size, in MB, that can be uploaded to your add-on, supposing it supports files
+
+
+Addon Structure
+------------------
+
+An add-on SHOULD have the following folder structure
+
+::
+
+    website/addons/addonshortname/
+    ├── __init__.py
+    ├── model.py
+    ├── requirements.txt
+    ├── routes.py
+    ├── settings
+    │   ├── __init__.py
+    │   └── defaults.py
+    ├── static
+    │   ├── comicon.png
+    │   ├── node-cfg.js
+    │   ├── tests
+    │   │   └── ...
+    │   └── user-cfg.js
+    ├── templates
+    │   ├── log_templates.mako
+    │   ├── addonshortname_node_settings.mako
+    │   └── addonshortname_user_settings.mako
+    ├── tests
+    │   ├── __init__.py
+    │   ├── test_model.py
+    │   └── test_views.py
+    └── views
+        └── ...
+
 
 StoredObject
 ============
