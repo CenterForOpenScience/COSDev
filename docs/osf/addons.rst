@@ -9,7 +9,7 @@ Notes and gotchas
 - The words SHALL, MUST, MAY, etc are to be interpreted as defined `here`_
 - The add-on system is module based not class based
 - Everything you touch should be in the website/addons/ directory
-- A new AddonSettings record is created upon enabling your addon's checkbox on the user settings page and submitting the form. You should *not* instantiate an `MyAddonUserSettings` object yourself
+- You MUST NOT instantiate an `AddonSettings` object yourself
 - `to_json` returns the mako context for the settings pages
 - Log templates: the `id` of each script tag correspond to log actions.
 - Don't forget to do error handling! This includes handling errors that might occur if 3rd party HTTP APIs cause a failure and any exceptions that a client library might raise
@@ -87,6 +87,10 @@ Bare minimums
 
    -  A list of categories this add-on should be displayed under when
       the user is “browsing” add-ons
+      
+   - SHOULD be one of ``documentation``, ``storage``, ``citations``, ``security``, ``bibliography``, and ``other``
+   
+       - Additional categories can be added to ``ADDON_CATEGORIES`` in ``website.settings.defaults``
 
 -  ``INCLUDE_JS`` and ``INCLUDE_CSS``
 
@@ -140,14 +144,14 @@ An add-on SHOULD have the following folder structure
     │   └── defaults.py
     ├── static
     │   ├── comicon.png
-    │   ├── node-cfg.js
+    │   ├── node-cfg.js*
     │   ├── tests
     │   │   └── ...
-    │   └── user-cfg.js
+    │   └── user-cfg.js*
     ├── templates
     │   ├── log_templates.mako
-    │   ├── addonshortname_node_settings.mako
-    │   └── addonshortname_user_settings.mako
+    │   ├── addonshortname_node_settings.mako*
+    │   └── addonshortname_user_settings.mako*
     ├── tests
     │   ├── __init__.py
     │   ├── test_model.py
@@ -155,6 +159,7 @@ An add-on SHOULD have the following folder structure
     └── views
         └── ...
 
+\* optional
 
 StoredObject
 ============
@@ -239,6 +244,8 @@ arguments to it to get a decorator.
 The above code snippet will only run the view function if the specified
 model as the requested addon.
 
+Note: routes whose views are with decorated ``must_have_addon`` MUST start with ``/project/<pid>/...``.
+
 ``from website.project.decorators.must_have_permission``
 ========================================================
 
@@ -320,8 +327,6 @@ Rubeus
 Rubeus is a helper module for filebrowser compatible add ons.
 
 ``rubeus.FOLDER,KIND,FILE`` are rubeus constants for use when defining filebrowser data.
-
-``rubeus.to_hgrid`` Todo document me
 
 ``rubeus.build_addon_root``:
 
