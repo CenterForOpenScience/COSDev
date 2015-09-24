@@ -220,13 +220,13 @@ Below are a few examples that are commonly used in our code base.
 More can be found in ``website.project.decorators``.
 
 ``framework.auth.decorators.must_be_logged_in``
-===============================================
+-----------------------------------------------
 
 Ensures that a user is logged in and imputes ``auth`` into keyword
 arguments
 
 ``from website.project.decorators.must_have_addon``
-===================================================
+---------------------------------------------------
 
 ``must_have_addon`` is a decorator factory meaning you must supply
 arguments to it to get a decorator.
@@ -247,7 +247,7 @@ model as the requested addon.
 Note: routes whose views are with decorated ``must_have_addon`` MUST start with ``/project/<pid>/...``.
 
 ``from website.project.decorators.must_have_permission``
-========================================================
+--------------------------------------------------------
 
 ``must_have_permission`` is another decorator factory, it takes a single
 permission argument (‘write’, ‘read’, ‘admin’).
