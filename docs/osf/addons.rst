@@ -222,12 +222,13 @@ arguments to it to get a decorator.
 
 .. code:: python
 
-    def must_have_addon(addon_short_name, model_name):
-      ...
-
-
     @must_have_addon('myaddon', 'user')
     def my_view(...):
+      pass
+
+
+    @must_have_addon('myaddon', 'node')
+    def my_node_view(...):
       pass
 
 The above code snippet will only run the view function if the specified
