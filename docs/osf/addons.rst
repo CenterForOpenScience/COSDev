@@ -235,7 +235,7 @@ The above code snippet will only run the view function if the specified
 model as the requested addon.
 
 .. note:: 
-    Routes whose views are with decorated ``must_have_addon('addon_short_name', 'node') `` MUST start with ``/project/<pid>/...``.
+    Routes whose views are with decorated ``must_have_addon('addon_short_name', 'node')`` MUST start with ``/project/<pid>/...``.
 
 ``website.project.decorators.must_have_permission``
 --------------------------------------------------------
