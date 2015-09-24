@@ -214,7 +214,7 @@ More can be found in ``website.project.decorators``.
 Ensures that a user is logged in and imputes ``auth`` into keyword
 arguments
 
-``from website.project.decorators.must_have_addon``
+``website.project.decorators.must_have_addon``
 ---------------------------------------------------
 
 ``must_have_addon`` is a decorator factory meaning you must supply
@@ -235,9 +235,9 @@ The above code snippet will only run the view function if the specified
 model as the requested addon.
 
 .. note:: 
-    Routes whose views are with decorated ``must_have_addon`` MUST start with ``/project/<pid>/...``.
+    Routes whose views are with decorated ``must_have_addon('addon_short_name', 'node') `` MUST start with ``/project/<pid>/...``.
 
-``from website.project.decorators.must_have_permission``
+``website.project.decorators.must_have_permission``
 --------------------------------------------------------
 
 ``must_have_permission`` is another decorator factory that takes a ``permission`` argument (may be'write','read', or'admin').
