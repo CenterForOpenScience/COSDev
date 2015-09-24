@@ -6,7 +6,7 @@ Developing An Addon
 Notes and gotchas
 *****************
 
-- The words SHALL, MUST, MAY, etc are to be interpreted as defined `here`_
+- The words SHALL, MUST, MAY, etc are to be interpreted as defined `here <https://tools.ietf.org/html/rfc2119>`_.
 - The add-on system is module based not class based
 - Everything you touch should be in the website/addons/ directory
 - You MUST NOT instantiate an `AddonSettings` object yourself
@@ -34,7 +34,7 @@ During your installation you created a virtual environment for OSF. Switch to th
 
 
 Bare minimums
--------------
+*************
 
 -  ``__init__.py`` declares all views/models/routes/hooks for your add-on
 -  Your add-on MUST declare the following in its ``__init__.py``
@@ -97,7 +97,7 @@ Bare minimums
    -  Deprecated field, define as empty dict (``{}``)
 
 Optional Fields
----------------
+***************
 
 Your add-on MAY define the following fields
 
@@ -128,7 +128,7 @@ Your add-on MAY define the following fields
 
 
 Addon Structure
-------------------
+***************
 
 An add-on SHOULD have the following folder structure
 
@@ -162,26 +162,15 @@ An add-on SHOULD have the following folder structure
 \* optional
 
 StoredObject
-============
+************
 
-A ``StoredObject`` is a class from our package ``modularodm`` that
-represents an object stored in a database.
+All models should be defined as subclasses of `framework.mongo.StoredObject`.
 
-For our use case this database will always be TokuMX, a fork of mongodb
-that provides transactions and performance increases.
-
-Defining a ``StoredObject`` is very similar to the syntax used in
-`peewee`_ and `sqlalchemy`_
-
-The one caveat is that rather than using
-``modularodm.storedobject.StoredObject`` the base class must be
-``framework.mongo.StoredObject``
 
 Routes
-======
+******
 
-A route is dictionary that containing one or more ``Rule`` objects in
-the ``'rules'`` key.
+Routes are defined in a dictionary containing ``rules`` and an optional ``prefix``.
 
 Our url templating works the same way that `flask’s`_ does.
 
@@ -205,7 +194,7 @@ Routes SHOULD be defined in ``website.addons.youraddon.routes`` but
 could be defined anywhere
 
 Views
-=====
+*****
 
 Our views are implemented the same way that `flask’s`_ are.
 
@@ -244,13 +233,13 @@ arguments to it to get a decorator.
 The above code snippet will only run the view function if the specified
 model as the requested addon.
 
-Note: routes whose views are with decorated ``must_have_addon`` MUST start with ``/project/<pid>/...``.
+.. note:: 
+    Routes whose views are with decorated ``must_have_addon`` MUST start with ``/project/<pid>/...``.
 
 ``from website.project.decorators.must_have_permission``
 --------------------------------------------------------
 
-``must_have_permission`` is another decorator factory, it takes a single
-permission argument (‘write’, ‘read’, ‘admin’).
+``must_have_permission`` is another decorator factory that takes a ``permission`` argument (may be'write','read', or'admin').
 
 It prevents the decorated view function from being called unless the
 user issuing the request has the required permission.
@@ -277,7 +266,7 @@ Every log action requires a template in ``youraddon/templates/log_templates.mako
 
 
 Static files for add-ons
-***********************
+************************
 
 .. todo:: Add detail.
 
@@ -334,28 +323,28 @@ Builds the root or "dummy" folder for an addon.
 
 ::
 
-    :param node_settings addonNodeSettingsBase: Addon settings
+    :param AddonNodeSettingsBase node_settings: Addon settings
 
-    :param name String: Additional information for the folder title
+    :param str name: Additional information for the folder title
 
         eg. Repo name for Github or bucket name for S3
 
-    :param permissions dict or Auth: Dictionary of permissions for the add-on's content or Auth for use in node.can_X methods
+    :param dict or Auth permissions: Dictionary of permissions for the add-on's content or Auth for use in node.can_X methods
 
-    :param urls dict: Hgrid related urls
+    :param dict urls: Hgrid related urls
 
-    :param extra String: Html to be appended to the addon folder name
+    :param str extra: Html to be appended to the addon folder name
 
         eg. Branch switcher for github
 
-    :param kwargs dict: Any additional information to add to the root folder
+    :param dict kwargs: Any additional information to add to the root folder
 
     :return dict: Hgrid formatted dictionary for the addon root folder
 
 Addons using OAuth and OAuth2
 -----------------------------
 
-Some abstraction is in place to reduce redundancy for add-on that authorize access to third-party services via OAuth or OAuth2. Important classes to note include:
+There are utilities for add-ons that use OAuth or Oauth2 for authentication. These include:
 
 - ``website.oauth.models.ExternalProvider`` : a helper class for managing and acquiring credentials (see ``website.addons.mendeley.model.Mendeley`` as an example)
 - ``website.oauth.models.ExternalAccount`` : abstract representation of stored credentials; you do not need to implement a subclass of this class
@@ -412,7 +401,7 @@ Every add-on will come with its own unique set of privacy considerations. There 
 
 General
 
-- **Using ``must_be_contributor_or_public``, ``must_have_addon``, etc. is not enough.** While you should make sure that you correctly decorate your views, that does not ensure that *non-OSF*-related permissions have been handled.
+- **Using** ``must_be_contributor_or_public``, ``must_have_addon``, **etc. is not enough.** While you should make sure that you correctly decorate your views, that does not ensure that *non-OSF*-related permissions have been handled.
 - For file storage add-ons, make sure that contributors can only see the folder that the authorizing user has selected to share.
 - Think carefully about security when writing the node settings view ({{addon}}_node_settings.mako / {{addon}}NodeConfig.js}}. For example, in the GitHub add-on, the user should only be able to see the list of repos from the authenticating account if the user is the authenticator for the current node. Most add-ons will need to tell the view (1) whether the current user is the authenticator of the current node and (2) whether the current user has added an auth token for the current add-on to her OSF account.
 
@@ -435,11 +424,8 @@ Example: When a Dropbox folder is shared on a project, contributors (and the pub
 Make sure that any view (CRUD, settings views...) that accesses resources from a 3rd-party service is secured in this way.
 
 
-.. _here: https://tools.ietf.org/html/rfc2119
 .. _routes: #routes
 .. _StoredObjects: #storedobject
 .. _StoredObject: #storedobject
 .. _mako: http://www.makotemplates.org/
-.. _peewee: https://peewee.readthedocs.org/en/latest/
-.. _sqlalchemy: http://www.sqlalchemy.org/
 .. _flask’s: http://flask.pocoo.org/docs/0.10/views/
