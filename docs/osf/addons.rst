@@ -352,6 +352,17 @@ Builds the root or "dummy" folder for an addon.
 
     :return dict: Hgrid formatted dictionary for the addon root folder
 
+Addons using OAuth and OAuth2
+-----------------------------
+
+Some abstraction is in place to reduce redundancy for add-on that authorize access to third-party services via OAuth or OAuth2. Important classes to note include:
+
+- ``website.oauth.models.ExternalProvider`` : a helper class for managing and acquiring credentials (see ``website.addons.mendeley.model.Mendeley`` as an example)
+- ``website.oauth.models.ExternalAccount`` : abstract representation of stored credentials; you do not need to implement a subclass of this class
+- ``website.addons.base.AddonOAuthUserSettingsBase`` : abstract interface to access user credentials (see ``website.addons.mendeley.model.MendeleyUserSettings`` as an example)
+- ``website.addons.base.AddonOAuthUserSettingsBase`` : abstract interface for nodes to manage and  access user credentials (see ``website.addons.mendeley.model.MendeleyNodeSettings`` as an example)
+- ``website.addons.base.serializer.AddonSerializer`` & ``website.addons.base.serializer.OAuthAddonSerializer``: helper classes to facilitate serializing add-on settings
+
 
 Deselecting and Deauthorizing
 -----------------------------
