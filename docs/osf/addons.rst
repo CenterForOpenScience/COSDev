@@ -87,14 +87,23 @@ Bare minimums
 
    -  A list of categories this add-on should be displayed under when
       the user is “browsing” add-ons
-      
+
    - SHOULD be one of ``documentation``, ``storage``, ``citations``, ``security``, ``bibliography``, and ``other``
-   
+
        - Additional categories can be added to ``ADDON_CATEGORIES`` in ``website.settings.defaults``
 
 -  ``INCLUDE_JS`` and ``INCLUDE_CSS``
 
    -  Deprecated field, define as empty dict (``{}``)
+
+-  ``OWNERS`` (list of strings)
+
+   -  Valid options are ``user`` and ``node``
+
+-  ``CONFIGS`` (list of strings)
+
+   -  Valid options are ``accounts`` and ``node``
+
 
 Optional Fields
 ***************
@@ -234,7 +243,7 @@ arguments to it to get a decorator.
 The above code snippet will only run the view function if the specified
 model as the requested addon.
 
-.. note:: 
+.. note::
     Routes whose views are with decorated ``must_have_addon('addon_short_name', 'node')`` MUST start with ``/project/<pid>/...``.
 
 ``website.project.decorators.must_have_permission``
@@ -277,7 +286,7 @@ First make sure your add-on's short name is listed in ``addons.json``.
 **addons.json**
 
 .. code-block:: json
-    
+
     {
         "addons": [
             ...
