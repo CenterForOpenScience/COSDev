@@ -509,7 +509,7 @@ Solution: Take control, Gotham! Homebrew prefers to be run by one user, so you'l
 
 **11. Error: Failed to download resource "tokumx-bin"**
 
-Problem: The 2.0.0 version of "tokumx-bin" Brew's repo points to is no longer available.
+Problem: The 2.0.0 version of "tokumx-bin" may not be available.
 
 Solution: Manually update tokumx-bin.rb:
 
