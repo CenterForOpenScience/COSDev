@@ -507,7 +507,31 @@ Solution: Take control, Gotham! Homebrew prefers to be run by one user, so you'l
         sudo chown -R <your username> /Library/Caches/Homebrew
         sudo chown -R <your username> /opt/homebrew-cask
 
+**11. Error: Failed to download resource "tokumx-bin"**
 
+Problem: The 2.0.0 version of "tokumx-bin" may not be available.
+
+Solution: Manually update tokumx-bin.rb:
+
+    ::
+
+        brew edit tokumx-bin
+
+Replace
+
+    ::
+
+        version "2.0.0"
+        url "https://s3.amazonaws.com/tokumx-2.0.0/tokumx-2.0.0-osx-x86_64-main.tar.gz"
+        sha1 "ad575f0868a778bca45eea404346e9823d6d5ef2"
+
+with
+
+    ::
+
+        version "2.0.1"
+        url "https://s3.amazonaws.com/tokumx-2.0.1/tokumx-2.0.1-osx-x86_64-main.tar.gz"
+        sha1 "26f77ce6faa10c774d32a1a85aebc838c36b7e22"
 
 Notes and Tips
 --------------
