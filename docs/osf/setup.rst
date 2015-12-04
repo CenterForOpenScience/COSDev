@@ -419,6 +419,18 @@ First download the binary file and run the commands specified to run the server.
 
 If you need to develop authentication-related features, there is a process for setting up the full CAS server `here <https://github.com/CenterForOpenScience/docker-library/tree/master/cas>`_.
 
+The Modular File Renderer (MFR) is used to render uploaded files to HTML via an iFrame so that they can be
+viewed directly on the OSF. Files will not be rendered if the MFR is not running. Consult the
+MFR [repository] (https://github.com/CenterForOpenScience/modular-file-renderer) for information on how to install
+and run the MFR.
+
+You may also be interested in running the API Server with
+    ::
+
+        invoke apiserver
+
+Browse to localhost:8000/v2/ in your browser to go to the root of the browsable API. If the page looks strange, run python manage.py collectstatic to ensure that CSS files are deposited in the correct location.
+
 
 Common Error messages
 *********************
