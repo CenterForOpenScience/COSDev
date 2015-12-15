@@ -284,9 +284,8 @@ Testing Internet Explorer on a Mac
 
 - `Install Virtualbox and Internet Explorer. <http://osxdaily.com/2011/09/04/internet-explorer-for-mac-ie7-ie8-ie-9-free/>`_
 - Pick a name for your Microsoft IE localhost, in this example, we will use "windows.fun"
-- Add the following lines of code to your website/settings/local.py.
+- Add the following lines of code to your website/settings/local.py. ::
 
-.. code-block:: python
     ELASTIC_URI = 'windows.fun:9200'
     DOMAIN = 'http://windows.fun:5000/'
     API_DOMAIN = 'http://windows.fun:8000/'
@@ -295,16 +294,14 @@ Testing Internet Explorer on a Mac
     CAS_SERVER_URL = 'http://windows.fun:8080'
     MFR_SERVER_URL = 'http://windows.fun:7778'
 
-- Update your /etc/hosts file on the mac with this line. ::
+- Add the following to your /etc/hosts file on the mac with this line. ::
 
     129.0.0.1 windows.fun
 
-- In Virtualbox, update your windows hosts file with the following line. ::
+- In Virtualbox,  `update your windows hosts file <http://helpdeskgeek.com/windows-7/windows-7-hosts-file/>`_ with the following line. ::
 
     10.0.2.2 windows.fun
 
-`How to update your windows hosts file <http://helpdeskgeek.com/windows-7/windows-7-hosts-file/>`_
-
 - In Virtualbox preferences, set the network adaptor Attached To setting to Nat
-
+- As of this writing, Internet Explorer's debugger doesn't work without an update.  To update, go to `this link <https://www.microsoft.com/en-us/download/confirmation.aspx?id=45134>`_ and patch IE.
 - Restart everything in the OSF, and how you can access the osf on Internet Explorer from http://windows.fun:5000.  The http://locahost:5000 url will still work on your mac browser.
