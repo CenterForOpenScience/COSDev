@@ -226,8 +226,8 @@ OSF-specific Guidelines
 - To mock HTTP requests, use the ``createServer`` utility from the ``js/tests/utils`` module.
 
 
-Gotchas
-+++++++
+Gotchas and Pitfalls
+++++++++++++++++++++
 
 - When mocking out endpoints with sinon, be careful when dealing with URLs that accept query parameters. You can pass a regex as a ``url`` value to ``createServer``.
 
@@ -238,6 +238,24 @@ Gotchas
         {url: /\/api\/users\/.+/, response: {...}}
     ];
     server = utils.createServer(sinon, endpoints);
+
+- Remember for async tests, you need to pass and call the 'done' callback. Failing to pass and call done in async tests can cause unpredictable and untracable errors in your test suite.
+In particular you might see failed assertions from another test being printed to the console as if they're happening in some other test. Since we're concatenating test files together with webpack,
+this error could be coming from any of the tests run before the error occurs (maybe from another file altogether).
+
+.. code-block:: javascript
+
+    describe('My feature', () => {
+      ...
+      it('Does something asnyc', (done) => {
+         myFeature.myAsyncFunction()
+           .always(function() {
+             // make some assertions
+             done();
+           });
+      });
+    });
+
 
 Test Boilerplate
 ----------------

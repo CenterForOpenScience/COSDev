@@ -12,4 +12,4 @@ Columns are defined as follows:
 - **Ready to Merge**: Code review complete, all appropriate tests are written and passing. Ready to merge into COS/develop and deploy to staging.
 - **On Staging**: Feature is on staging server, ready for manual testing
 
-.. _HuBoard: https://huboard.com/CenterForOpenScience/openscienceframework.org#/
+.. _HuBoard: https://huboard.com/CenterForOpenScience/osf.io

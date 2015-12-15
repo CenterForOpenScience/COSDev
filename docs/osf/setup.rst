@@ -18,19 +18,23 @@ Before you can begin to install the OSF, you will first need to install several 
 Installing Homebrew
 -------------------
 
-Homebrew is a package manager that allows you to install lots of very cool things that are not just python related. You most likely have homebrew.
-
 Homebrew is a package manager that allows you to install many cool things easily (not just python tools)- it will greatly ease the process of installing OSF requirements. To see if Homebrew is already installed, open a new window in your terminal and type
 
     ::
 
         brew
 
-If you see a list of options you already have homebrew and you can skip this section. If not you will want to install homebrew globally, not just in your osf environment. To install it, open a new terminal window and run the following command.
+If you see a list of options you already have homebrew. If not you will want to install homebrew globally, not just in your osf environment. To install it, open a new terminal window and run the following command.
 
     ::
 
         ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+
+Or for Linux users:
+
+    ::
+
+        ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/linuxbrew/go/install)"
 
 
 Homebrew installation will ask you to press ENTER to continue and enter your password. When it's done installing type
@@ -57,12 +61,15 @@ Updating your Path
 Now that you have installed Homebrew, you will need to make a change to help your computer find the newly installed software.
 This is done by editing the variable PATH in a file loaded whenever you open a new terminal window.
 
- The file will usually be in your home directory (such as /Users/your_username, commonly abbreviated as ~). If you are using bash this file could be .bash_profile, .bashrc, or .profile.
- If you are using another terminal like zsh you will need to add this section to the file .zshrc. Further tools installed later like virtualenvwrapper will work with bash, zsh or ksh.
+The file will usually be in your home directory (such as /Users/your_username, commonly abbreviated as ~). If you are using bash this file could be .bash_profile, .bashrc, or .profile.
+If you are using another shell like zsh you will need to add this section to the file .zshrc. Further tools installed later like virtualenvwrapper will work with bash, zsh or ksh.
 
 .. note::
 
    You most likely have bash, and if you don't know what this means, `this article <http://natelandau.com/my-mac-osx-bash_profile/>`_  can explain.
+
+
+You can open your .bash_profile from the command line with:
 
     ::
 
@@ -79,7 +86,8 @@ In your text editor, add the following line to your .bash_profile
 
     ::
 
-        PATH=$PATH:/usr/local/bin
+        PATH=/usr/local/bin:/usr/local/sbin:$PATH
+
 And save it.
 
 Finally run
@@ -113,17 +121,16 @@ A common problem for software developers is how to deal with different projects 
 If your computer had only a single work environment shared by multiple projects, you would not be able to use two versions of libraries simultaneously,
 and updating a library for one project could break other things that depend on an older version.
 
-To avoid this problem, Python provides a tool called Virtual Environments. Since it is not always possible to avoid conflicts- and not often practical
+To avoid this problem, Python provides a tool called virtual environments (a.k.a. virtualenvs). Since it is not always possible to avoid conflicts- and not often practical
 to use a different computer for each thing you work on- it's best to use Virtual Environments. This lets you have separate, individually customized
 Python setups for each thing you are working on.
 
-You can install this tool using Pip, which is a tool for installing and managing Python packages. This seems like an extra layer of complexity, but working
+You can install this tool using ``pip``, which is a tool for installing and managing Python packages. This seems like an extra layer of complexity, but working
 with libraries in a package format makes it much easier to manage and update your applications.
-PHP has a tool called "Composer" that helps you manage dependencies in a similar way.
 
 
 Installing Virtualenv
----------------------
++++++++++++++++++++++
 
 Virtualenv is the tool we use to isolate the python environments for each project you need to run. Installing it is easy. Open Terminal and type
 
@@ -133,7 +140,7 @@ Virtualenv is the tool we use to isolate the python environments for each projec
 
 
 Installing Virtualenvwrapper
-----------------------------
+++++++++++++++++++++++++++++
 
 Now that you installed virtualenv, why not add an extension that makes it even easier to use virtualenv (Programmers like shortcuts). Virtualenvwrapper does what its name suggests, it wraps the virtual environments so that you can easily manage them and work with multiple environments at once. To install virtualenvwrapper, type this into Terminal
 
@@ -165,7 +172,7 @@ Once you made the changes remember to load the changed file by typing:
         source ~/.bash_profile
 
 Creating your virtual environment
----------------------------------
++++++++++++++++++++++++++++++++++
 
 You now have a solid development environment framework you can use for any of your projects. To start using OSF we will create a virtual environment for it.
 
@@ -261,6 +268,13 @@ After you have installed Homebrew, Python, XCode, Java, virtualenv, and virtuale
 
         cp website/settings/local-dist.py website/settings/local.py
 
+.. note::
+    You may need to clear the WHEELHOUSE environmental variable for setup to function properly.
+
+    ::
+
+      unset WHEELHOUSE
+
 **3.  Install invoke and then use it to start the setup process**
 
     ::
@@ -286,6 +300,16 @@ To install TokuMX first refresh your brew install by updating it and then use br
 
         brew tap tokutek/tokumx
         brew install tokumx-bin
+
+Installing RabbitMQ
+-------------------
+
+To install RabbitMQ first refresh your brew install by updating it and then use brew to install RabbitMQ:
+
+    ::
+
+        brew update
+        brew install rabbitmq
 
 Installing libxml2 and libxslt
 ------------------------------
@@ -368,11 +392,10 @@ Install R using homebrew
 
         brew install R
 
-The following commands will install the requirements for add ons.
+The following command will install the requirements for addons.
 
     ::
 
-        invoke mfr_requirements
         invoke addon_requirements
 
 
@@ -396,6 +419,25 @@ Therefore, run the following commands each in their own terminal windows, making
 
 
 You now have both the database and application running. You will see the application address in the terminal window where you entered invoke server. It will most likely be **http://localhost:5000/**. Navigate to this url in your browser to check if it works.
+
+To enable log-in, you will also need to run the authentication server.
+To do so, consult the fakeCAS `repository <https://github.com/CenterForOpenScience/fakeCAS>`_.
+First download the binary file and run the commands specified to run the server.
+
+If you need to develop authentication-related features, there is a process for setting up the full CAS server `here <https://github.com/CenterForOpenScience/docker-library/tree/master/cas>`_.
+
+The Modular File Renderer (MFR) is used to render uploaded files to HTML via an iFrame so that they can be
+viewed directly on the OSF. Files will not be rendered if the MFR is not running. Consult the
+MFR [repository] (https://github.com/CenterForOpenScience/modular-file-renderer) for information on how to install
+and run the MFR.
+
+You may also be interested in running the API Server with
+    ::
+
+        invoke apiserver
+
+Browse to localhost:8000/v2/ in your browser to go to the root of the browsable API. If the page looks strange, run python manage.py collectstatic to ensure that CSS files are deposited in the correct location.
+
 
 Common Error messages
 *********************
@@ -461,7 +503,54 @@ Problem: Mongodb needs 10% of your total disk space to function with the OSF, an
 
 Solution:  Free up space on your disk.
 
+**9. Import Error: cannot import name URITemplate**
 
+Problem: github3.py needs uritemplate.py but conflicting package uritemplate is installed instead
+
+Solution: Uninstall uritemplate and install uritemplate.py.
+
+    ::
+
+        pip uninstall uritemplate.py
+        pip install uritemplate.py==0.3.0
+
+**10. Error: Cannot write to /usr/local/Cellar**
+
+Problem: Can't install packages because homebrew complains about permissions.
+
+Solution: Take control, Gotham! Homebrew prefers to be run by one user, so you'll need to take ownership of it and homebrew-cask.  This assumes you have admin privileges.
+
+    ::
+
+        sudo chown -R <your username> /usr/local
+        sudo chown -R <your username> /Library/Caches/Homebrew
+        sudo chown -R <your username> /opt/homebrew-cask
+
+**11. Error: Failed to download resource "tokumx-bin"**
+
+Problem: The 2.0.0 version of "tokumx-bin" may not be available.
+
+Solution: Manually update tokumx-bin.rb:
+
+    ::
+
+        brew edit tokumx-bin
+
+Replace
+
+    ::
+
+        version "2.0.0"
+        url "https://s3.amazonaws.com/tokumx-2.0.0/tokumx-2.0.0-osx-x86_64-main.tar.gz"
+        sha1 "ad575f0868a778bca45eea404346e9823d6d5ef2"
+
+with
+
+    ::
+
+        version "2.0.1"
+        url "https://s3.amazonaws.com/tokumx-2.0.1/tokumx-2.0.1-osx-x86_64-main.tar.gz"
+        sha1 "26f77ce6faa10c774d32a1a85aebc838c36b7e22"
 
 Notes and Tips
 --------------

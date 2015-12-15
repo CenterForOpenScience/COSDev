@@ -60,17 +60,16 @@ Views
     def user_settings_put(auth, **kwargs):
         #...
 
+    @must_be_contributor_or_public
+    def get_project_comments(auth, node, **kwargs):
+        # ...
+
     # No
     @must_be_logged_in
     def user_settings_put(**kwargs):
         auth = kwargs['auth']
         #...
 
-    # Exception: when node and/or project are injected, you must pull off kwargs
-    @must_be_contributor_or_public
-    def get_project_comments(auth, **kwargs):
-        node = kwargs['node'] or kwargs['project']
-        # ...
 
 - Use ``framework.flask.redirect`` to return redirect responses. It has the same functionality as ``flask.redirect`` except that it will reappend querystring parameters for view-only links when necessary. Do **not** use ``flask.redirect``.
 

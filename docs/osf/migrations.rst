@@ -38,7 +38,7 @@ Below is the skeleton of an example migration.
         # ... return the StoredObjects to migrate ...
 
     def main(dry=True):
-        init_app(set_backends=True, routes=False, mfr=False)  # Sets the storage backends on all models
+        init_app(set_backends=True, routes=False)  # Sets the storage backends on all models
         do_migration(get_targets(), dry=dry)
 
     if __name__ == '__main__':
@@ -59,19 +59,3 @@ Below is the skeleton of an example migration.
 
         def test_do_migration(self):
             # ...
-
-
-After performing a migration
-----------------------------
-
-After running a migration script on a production machine, add a timestamped log in the docstring of the script, documenting what was done.
-
-.. code-block:: python
-
-    """Script to remove invalid GUID tag objects from the database.
-
-    Log:
-
-        Performed on production by sloria on 2014-08-15 at 11.45AM. 892 invalid GUID
-        objects were removed.
-    """

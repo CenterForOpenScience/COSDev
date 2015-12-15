@@ -54,7 +54,7 @@ Hotfix releases
 
 .. note::
 
-    You can also use the ``release.hotfix`` invoke task to automatically rename the current hotfix branch and finish it. ::
+    You can also use the ``hotfix`` invoke task to automatically rename the current hotfix branch and finish it. ::
 
         $ invoke hotfix --finish
 
