@@ -362,13 +362,6 @@ OSF uses add ons that provide diverse functionalities. You can decide to work wi
 
 During your add on installation some packages will be required and if you don't have them you will receive errors. To avoid errors install the following
 
-**Install WaterButler**
-
-If you want to work with files on the OSF, you must install Waterbutler:
-`Waterbutler Git Repositiory <https://github.com/CenterForOpenScience/waterbutler/>`_
-`Waterbutler Documentation <http://waterbutler.io/>`_
-
-
 **Install xQuartz**
 
 This is required for R installation. The xQuartz installation uses an installer that you can download from the following website:
