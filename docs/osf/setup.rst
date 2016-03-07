@@ -260,13 +260,14 @@ After you have installed Homebrew, Python, XCode, Java, virtualenv, and virtuale
 
         workon osf
 
-**3.  Create a local settings file**
+**3.  Create local settings files.**
 
     Navigate to the osf.io directory, and run
 
     ::
 
         cp website/settings/local-dist.py website/settings/local.py
+        cp api/base/settings/local-dist.py api/base/settings/local.py
 
 .. note::
     You may need to clear the WHEELHOUSE environmental variable for setup to function properly.
