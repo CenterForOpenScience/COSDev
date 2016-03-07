@@ -52,11 +52,6 @@ Solution: You may have to start your Rabbitmq and Celery workers.
     $ invoke rabbitmq
     $ invoke celery_worker
 
-webassets.exceptions.BundleError
-********************************
-
-Solution: Make sure your bower components are installed. If you have bower installed, just run ``bower install``. If you need to install bower, consult the OSF README.
-
 Error when importing uritemplate
 ********************************
 
