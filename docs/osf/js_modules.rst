@@ -263,7 +263,6 @@ Knockout modules aren't much different from regular modules.
 Examples
 --------
 
-- `revisions.js <https://github.com/CenterForOpenScience/osf.io/blob/develop/website/addons/dropbox/static/revisions.js>`_ (small example)
 - `Full LogFeed module <https://github.com/CenterForOpenScience/osf.io/blob/develop/website/static/js/logFeed.js>`_
 - `comment.js <https://github.com/CenterForOpenScience/osf.io/blob/develop/website/static/js/comment.js>`_
 
