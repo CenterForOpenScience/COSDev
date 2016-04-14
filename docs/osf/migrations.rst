@@ -42,7 +42,7 @@ Below is the skeleton of an example migration.
         do_migration(get_targets(), dry=dry)
 
     if __name__ == '__main__':
-        dry = 'dry' in sys.argv
+        dry = '--dry' in sys.argv
         if not dry:
             script_utils.add_file_logger(logger, __file__)
         main(dry=dry)
