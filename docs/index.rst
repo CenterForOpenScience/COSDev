@@ -13,7 +13,6 @@ Process
     :maxdepth: 1
 
     process/version_control
-    process/issues.rst
     process/testing
     process/pull_requests
     process/code_review
