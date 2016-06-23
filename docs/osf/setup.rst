@@ -422,7 +422,7 @@ If you need to develop authentication-related features, there is a process for s
 
 The Modular File Renderer (MFR) is used to render uploaded files to HTML via an iFrame so that they can be
 viewed directly on the OSF. Files will not be rendered if the MFR is not running. Consult the
-MFR [repository] (https://github.com/CenterForOpenScience/modular-file-renderer) for information on how to install
+MFR `repository <https://github.com/CenterForOpenScience/modular-file-renderer>`_ for information on how to install
 and run the MFR.
 
 You may also be interested in running the API Server with
