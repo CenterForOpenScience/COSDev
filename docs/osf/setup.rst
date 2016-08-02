@@ -280,7 +280,7 @@ After you have installed Homebrew, Python, XCode, Java, virtualenv, and virtuale
 
     ::
 
-        pip install invoke==0.12.2
+        pip install invoke==0.13.0
         invoke setup
 
 
