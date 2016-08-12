@@ -329,17 +329,8 @@ Installing libxml2 and libxslt
 Install node packages with ``npm``
 ----------------------------------
 
-``npm`` (node package manager) is used to install required Node.JS packages. To install ``npm``, you have to install ``node.js``, which includes ``npm``. `npmjs.org <http://blog.npmjs.org/post/85484771375/how-to-install-npm>`_ recommends doing this through the `node.js installer <https://nodejs.org/en/>`_. Be sure to check for upgrades after installation by running: 
+``npm`` (node package manager) is used to install required Node.JS packages. To install ``npm``, you have to install ``node.js``, which includes ``npm``. `npmjs.org <http://blog.npmjs.org/post/85484771375/how-to-install-npm>`_ recommends doing this through the `node.js installer <https://nodejs.org/en/>`_.
 
-    ::
-
-        sudo npm install npm -g
-
-.. note::
-        
-    By default, ``npm`` installs packages locally, in the directory where you run the command (similar ``pip`` packages with ``virtualenv``). To install a package so that it's accessible from anywhere on your computer, you have to include the ``-g`` (global) flag.
-
-.. todo:: In-depth info on npm installation. For now, see the README.
 
 Install front end dependencies with ``bower`` and ``npm``
 ---------------------------------------------------------
@@ -349,6 +340,10 @@ Several front end modules required by OSF are installed using bower. Bower is a 
     ::
 
         npm install -g bower
+        
+.. note::
+        
+    By default, ``npm`` installs packages locally, in the directory where you run the command (similar ``pip`` packages with ``virtualenv``). To install a package so that it's accessible from anywhere on your computer, you have to include the ``-g`` (global) flag.
 
 
 Within your OSF folder Install dependencies for OSF by running:
@@ -361,9 +356,8 @@ Within your OSF folder Install dependencies for OSF by running:
 Building assets with ``webpack``
 --------------------------------
 
-.. todo:: Document webpack installation and usage. For now, see the README.
 
-``webpack`` is a module bundler that takes all of the modules (precompiler files are an example of modules, such as .scss, .less, and .coffee files) and turns them into static assets such as .css and .js files. ``webpack`` is more useful than other module bundlers in that it only loads the static assets that it needs to depending on the page visited, instead of compiling every module at the same time.
+``webpack`` is a module bundler that takes all of the modules (precompiler files are an example of modules, such as .scss, .less, and .coffee files) and turns them into static assets such as .css and .js files. ``webpack`` is more useful than other module bundlers in that it only loads the static assets that it needs to depending on the page visited, instead of compiling every module at the same time. The following command makes the aforementioned modules available to webpack to be compiled whenever they're needed:
 
 ::
 
