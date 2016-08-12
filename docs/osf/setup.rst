@@ -283,6 +283,9 @@ After you have installed Homebrew, Python, XCode, Java, virtualenv, and virtuale
         pip install invoke==0.13.0
         invoke setup
 
+.. note::
+    Invoke is a python task execution tool & library that provides a clean, high level API for running groups of shell commands and defining/organizing task functions from a ``tasks.py`` file.
+
 
 Installing the OSF one piece at a time
 **************************************
@@ -326,7 +329,15 @@ Installing libxml2 and libxslt
 Install node packages with ``npm``
 ----------------------------------
 
-``npm`` is used to install required Node.JS packages.
+``npm`` (node package manager) is used to install required Node.JS packages. To install ``npm``, you have to install ``node.js``, which includes ``npm``. `npmjs.org <http://blog.npmjs.org/post/85484771375/how-to-install-npm>`_ recommends doing this through the `node.js installer <https://nodejs.org/en/>`_. Be sure to check for upgrades after installation by running: 
+
+    ::
+
+        sudo npm install npm -g
+
+.. note::
+        
+    By default, ``npm`` installs packages locally, in the directory where you run the command (similar ``pip`` packages with ``virtualenv``). To install a package so that it's accessible from anywhere on your computer, you have to include the ``-g`` (global) flag.
 
 .. todo:: In-depth info on npm installation. For now, see the README.
 
@@ -339,6 +350,7 @@ Several front end modules required by OSF are installed using bower. Bower is a 
 
         npm install -g bower
 
+
 Within your OSF folder Install dependencies for OSF by running:
 
     ::
@@ -350,6 +362,8 @@ Building assets with ``webpack``
 --------------------------------
 
 .. todo:: Document webpack installation and usage. For now, see the README.
+
+``webpack`` is a module bundler that takes all of the modules (precompiler files are an example of modules, such as .scss, .less, and .coffee files) and turns them into static assets such as .css and .js files. ``webpack`` is more useful than other module bundlers in that it only loads the static assets that it needs to depending on the page visited, instead of compiling every module at the same time.
 
 ::
 
@@ -403,7 +417,7 @@ To fully run the OSF, the following commands must be run.  Many of these program
 Therefore, run the following commands each in their own terminal windows, making sure to switch to the OSF virtual environment (and directory) each time:
     ::
 
-            invoke mongo -d  # Runs mongod as a daemon
+            invoke mongo -d  # Runs mongodb as a daemon
             invoke mailserver
             invoke rabbitmq
             invoke celery_worker
@@ -412,7 +426,7 @@ Therefore, run the following commands each in their own terminal windows, making
             invoke server
 
 
-You now have both the database and application running. You will see the application address in the terminal window where you entered invoke server. It will most likely be **http://localhost:5000/**. Navigate to this url in your browser to check if it works.
+You now have both the database and application running. You will see the application address in the terminal window where you entered ``invoke server``. It will most likely be **http://localhost:5000/**. Navigate to this url in your browser to check if it works.
 
 To enable log-in, you will also need to run the authentication server.
 To do so, consult the fakeCAS `repository <https://github.com/CenterForOpenScience/fakeCAS>`_.
