@@ -244,7 +244,7 @@ Use `super` when there is only one superclass.
 
         def __init__(self, name):
             super(Employee, self).__init__(name)
-            # or super().__init__(name) on Python 3
+            # or super().__init__(name) in Python 3
             # ...
 
 

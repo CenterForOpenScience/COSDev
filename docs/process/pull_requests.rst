@@ -34,7 +34,7 @@ Purpose
 
 Currently, the only way to add projects to your Dashboard's Project Organizer is from within the project organizer. There are smart folders with your projects and registrations, and you can search for projects from within the info widget to add to folders, but if you are elsewhere in the OSF, it's a laborious process to get the project into the Organizer. This PR allows you to be on a project and add the current project to the Project Organizer.
 
-Closes Issue https://github.com/CenterForOpenScience/openscienceframework.org/issues/1186
+Closes Issue https://github.com/CenterForOpenScience/osf.io/issues/1186
 
 Changes
 -------

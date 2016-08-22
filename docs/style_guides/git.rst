@@ -21,7 +21,7 @@ Git
 
   Fix bug in loading filetree
 
-  [fix CenterForOpenScience/openscienceframework.org#982]
+  [fix CenterForOpenScience/osf.io#982]
 
 - Write `good commit messages <http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html>`_.
 
