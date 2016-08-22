@@ -176,7 +176,7 @@ Regression tests may fall under any one of the categories above (unit, model, vi
 
 .. code-block:: python
 
-    # Regression test for https://github.com/CenterForOpenScience/openscienceframework.org/issues/1136
+    # Regression test for https://github.com/CenterForOpenScience/osf.io/issues/1136
     def test_cannot_create_project_with_blank_name(self):
         # ...
 
