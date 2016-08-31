@@ -11,7 +11,7 @@ Style guidelines for writing Javascript.
 Style
 *****
 
-Follow `Felix's Node Style <https://github.com/felixge/node-style-guide>`_ and `airbnb's Style Guide <https://github.com/airbnb/javascript/blob/master/README.md>`_ with a few exceptions:
+Follow `Felix's Node Style <https://github.com/felixge/node-style-guide>`_ and `airbnb's Style Guide <https://github.com/airbnb/javascript/tree/es5-deprecated/es5>`_ with a few exceptions:
 
 - Use **4 spaces** for indentation.
 - Use ``self`` to save a reference to ``this``.
