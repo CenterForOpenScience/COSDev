@@ -276,7 +276,7 @@ After you have installed Homebrew, Python, XCode, Java, virtualenv, and virtuale
 
       unset WHEELHOUSE
 
-**3.  Install invoke and then use it to start the setup process**
+**4.  Install invoke and then use it to start the setup process**
 
     ::
 
@@ -286,17 +286,17 @@ After you have installed Homebrew, Python, XCode, Java, virtualenv, and virtuale
 .. note::
     Invoke is a python task execution tool & library that provides a clean, high level API for running groups of shell commands and defining/organizing task functions from a ``tasks.py`` file.
 
+If ``invoke setup`` fails for you, try the step-by-step instructions in the next section, **Installing the OSF one piece at a time**.
 
 Installing the OSF one piece at a time
 **************************************
 
-Although the automatic installer attempts to be helpful, it may sometimes be necessary to perform the installation steps individually- for example, if you are working on a computer running Linux, or updating an existing installation.
-Instructions are provided for Mac OS (using Homebrew), but other operating systems will have their own preferred package management tools.
+If you haven't done so already, perform all the actions in the previous section, **Quick Installing The OSF**, omitting the ``invoke setup`` command in step 4. Although the automatic installer attempts to be helpful, it may sometimes be necessary to perform the installation steps individually - for example, if you are working on a computer running Linux, or updating an existing installation. Instructions are provided for Mac OS (using Homebrew), but other operating systems will have their own preferred package management tools.
 
 Installing TokuMX
 -----------------
 
-TokuMX is a database that OSF uses. It is a fork of MongoDB, which is a widely known and very common database application. If you are coming from PHP you have more likely used MySQL although databases are not programming language specific.
+TokuMX is the database that the OSF uses. It is a fork of MongoDB, which is a widely known and very common database application. If you are coming from PHP you have more likely used MySQL although databases are not programming language specific.
 
 To install TokuMX first refresh your brew install by updating it and then use brew to install TokuMX:
 
@@ -346,7 +346,7 @@ Several front end modules required by OSF are installed using bower. Bower is a 
     By default, ``npm`` installs packages locally, in the directory where you run the command (similar ``pip`` packages with ``virtualenv``). To install a package so that it's accessible from anywhere on your computer, you have to include the ``-g`` (global) flag.
 
 
-Within your OSF folder Install dependencies for OSF by running:
+Within your OSF folder install dependencies for OSF by running:
 
     ::
 
