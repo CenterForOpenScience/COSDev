@@ -13,18 +13,32 @@ https://docs.google.com/document/d/1BJ20XDHlVVeW_pRgsNUMKAJg6r3yoVWAZCZ9Sf-Idzw/
 
   ``API_DOMAIN = PROTOCOL + 'osf.localhost:8000/'``
 
-2. In ``defaults.py`` change:
+2. In your mac OSF dist ``local.py`` add:
 
   ``CAS_SERVER_URL = 'http://osf.localhost:8080'``
 
-3. Once your VM is working, open the windows commandline and run: ``ipconfig`` and note the Default Gateway IP (e.g., 10.0.2.2)
+3. If you need WATERBUTLER to work:
+  a. In ``local.py`` add:
+  
+  ``WATERBUTLER_URL = 'http://osf.localhost:7777'`` 
+    
+  b. In your WATERBUTLER repo ``waterbutler/auth/osf/settings.py`` change:
+  
+  ``API_URL = config.get('API_URL', 'http://osf.localhost:5000/api/v1/files/auth/')``
+  
+  c. In your WATERBUTLER repo ``waterbutler/serser/setting.py`` change:
+  
+  ``ADDRESS = config.get('ADDRESS', 'osf.localhost')``
+  ``DOMAIN = config.get('DOMAIN', "http://osf.localhost:7777")``
 
-4. Run ``explorer C:\Windows\System32\drivers\etc`` and a files window will open.
+4. Once your VM is working, open the windows commandline and run: ``ipconfig`` and note the Default Gateway IP (e.g., 10.0.2.2)
 
-5. Right click ``hosts`` and click ``properties``. Under the ``Security`` tab, under groups click ``Users`` and grant full control (fine for a VM just used for development, but not advised for normal machines)
+5. Run ``explorer C:\Windows\System32\drivers\etc`` and a files window will open.
 
-6. Open ``hosts`` with notepad and add to the bottom of the file:
+6. Right click ``hosts`` and click ``properties``. Under the ``Security`` tab, under groups click ``Users`` and grant full control (fine for a VM just used for development, but not advised for normal machines)
+
+7. Open ``hosts`` with notepad and add to the bottom of the file:
   ``10.0.2.2 osf.localhost``
 where 10.0.2.2 is your Default Gateway IP from step 3
 
-7. Open IE and navigate to ``http://osf.localhost:5000``
+8. Open IE and navigate to ``http://osf.localhost:5000``
