@@ -307,7 +307,7 @@ To install TokuMX first refresh your brew install by updating it and then use br
         
     ::
         
-        brew install https://raw.githubusercontent.com/chrisseto/homebrew-tokumx/759ff4e74a0997d952ec777470bd0fedf56a006e/tokumx-bin.rb
+        brew install chrisseto/homebrew-tokumx/tokumx-bin
 
 Installing RabbitMQ
 -------------------
