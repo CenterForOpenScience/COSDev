@@ -300,10 +300,14 @@ TokuMX is the database that the OSF uses. It is a fork of MongoDB, which is a wi
 
 To install TokuMX first refresh your brew install by updating it and then use brew to install TokuMX:
 
-    ::
-
+    ..
+        # TODO: Uncomment this and delete below if Chris' PR is ever merged
         brew tap tokutek/tokumx
         brew install tokumx-bin
+        
+    ::
+        
+        brew install chrisseto/homebrew-tokumx/tokumx-bin
 
 Installing RabbitMQ
 -------------------
