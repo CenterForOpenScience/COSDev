@@ -45,6 +45,7 @@ OSF Development
     osf/common_problems
     osf/ops
     osf/google_analytics
+    osf/preprint_providers
 
 
 Getting Help
