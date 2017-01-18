@@ -22,7 +22,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = 'COS Development'
-copyright = '2014-2015, Center for Open Science'
+copyright = '2014-2017, Center for Open Science'
 version = release = '1.0'
 exclude_patterns = ['_build']
 on_rtd = os.environ.get('READTHEDOCS', None) == 'True'
