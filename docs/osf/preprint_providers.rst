@@ -120,14 +120,37 @@ object to that ``providers`` array.
 .. code-block:: javascript
 
     {
-        id: 'provider_id' // This must match the ID in the OSF Repo
+        id: 'provider_id', // This must match the ID in the OSF Repo
         logoSharing: { // T
             path: '/assets/img/provider_logos/provider_id-sharing.png', // The path to the provider's sharing logo
             type: 'image/png', // The mime type of the image
             width: 1500, // minimum 200, 1500 preferred (this is the width of the image, in pixels)
             height: 1500 // minimum 200, 1500 preferred (this is the height of the image, in pixels)
-        }
+        },
+      permissionLanguage: 'provider_permission_language'
     }
+
+
+Adding permission language to the footer text
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+The branded preprint partners need to show permissions to use content/titles from the owner institutions/organizations. For example, engrXiv, SocArXiv, and PsyArXiv are using the -rXiv extension with permission from Cornell and there is a need to have a language on their pages stating such.
+
+Adding an entry in the translation
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+In the ``tanslation.js``, there will be a permission-language entry where you will need to add the provider permission language. 
+   
+.. code-block:: javascript
+
+    'permission-language':{
+            arxiv_trademark_license,
+            arxiv_non_endorsement: `${arxiv_trademark_license} This license should not be understood to indicate endorsement of content on {{provider}} by Cornell University or arXiv.`
+                     }
+
+Note that if the permission language is expecting to be used fully or partially by other providers then it is preferable to be defined as a constant at the beginning of the transaltion.js file. The const can be later re-used within the permission-language entry.
+
+.. code-block:: javascript
+
+   const arxiv_trademark_license = 'arXiv is a trademark of Cornell University, used under license.'; 
 
 Creating the stylesheet
 ~~~~~~~~~~~~~~~~~~~~~~~
