@@ -114,7 +114,8 @@ Optimitize the images with Optimizilla_ or a similar service. See the `Google Im
 
 Adding an entry in the config
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-In ``config/environment.js``, There will be a ``PREPRINTS`` object, and a ``providers`` array. You will need to add another
+
+In ``config/environment.js``, there will be a ``PREPRINTS`` object and a ``providers`` array. You will need to add another
 object to that ``providers`` array.
 
 .. code-block:: javascript
@@ -127,26 +128,28 @@ object to that ``providers`` array.
             width: 1500, // minimum 200, 1500 preferred (this is the width of the image, in pixels)
             height: 1500 // minimum 200, 1500 preferred (this is the height of the image, in pixels)
         },
-      permissionLanguage: 'provider_permission_language'
+        permissionLanguage: 'provider_permission_language'
     }
 
 
 Adding permission language to the footer text
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 The branded preprint partners need to show permissions to use content/titles from the owner institutions/organizations. For example, engrXiv, SocArXiv, and PsyArXiv are using the -rXiv extension with permission from Cornell and there is a need to have a language on their pages stating such.
 
 Adding an entry in the translation
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-In the ``tanslation.js``, there will be a permission-language entry where you will need to add the provider permission language. 
+
+In ``translation.js``, there will be a permission-language entry where you will need to add the provider permission language. 
    
 .. code-block:: javascript
 
-    'permission-language':{
-            arxiv_trademark_license,
-            arxiv_non_endorsement: `${arxiv_trademark_license} This license should not be understood to indicate endorsement of content on {{provider}} by Cornell University or arXiv.`
-                     }
+    'permission-language': {
+        arxiv_trademark_license,
+        arxiv_non_endorsement: `${arxiv_trademark_license} This license should not be understood to indicate endorsement of content on {{provider}} by Cornell University or arXiv.`
+    }
 
-Note that if the permission language is expecting to be used fully or partially by other providers then it is preferable to be defined as a constant at the beginning of the transaltion.js file. The const can be later re-used within the permission-language entry.
+Note that if the permission language is expecting to be used fully or partially by other providers then it is preferable to be defined as a constant at the beginning of the `translation.js` file. The const can be later re-used within the permission-language entry.
 
 .. code-block:: javascript
 
