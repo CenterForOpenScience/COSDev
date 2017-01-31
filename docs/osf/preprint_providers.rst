@@ -9,7 +9,7 @@ New preprint providers must have the following:
 * A name
 * A square logo
 * A rectangular/wide logo
-* 3 unique colors
+* 3 unique colors (consider contrast ratios for accessibility)
 * A list of acceptable subjects (taxonomies)
 * A list of acceptable licenses 
 * Emails for:
@@ -51,6 +51,7 @@ You'll need to add a entry to the ``PREPRINT_PROVIDERS`` list in ``scripts/popul
         'name': 'provider_name',
         'logo_name': 'provider_id-logo.png',
         'description': 'The description of the preprint provider',
+        'domain': 'provider.org', # Optional
         'banner_name': 'provider_id-banner.png',
         'external_url': 'http://provider-url.org',
         'example': 'abc12', # An example guid for this provider (Will have to be updated after the provider is up)
@@ -86,7 +87,7 @@ You'll need to add a entry to the ``PREPRINT_PROVIDERS`` list in ``scripts/popul
         ],
     },
 
-Run the script locally to ensure that it works: ``python -m scripts.populate_preprint_providers``. If it's working, commit the changes
+Run the script locally to ensure that it works: ``docker-compose run --rm web python -m scripts.populate_preprint_providers``. If it's working, commit the changes. Put a note in the PR to have others re-run this script.
 
 ember-preprints Updates
 -----------------------
@@ -122,6 +123,7 @@ object to that ``providers`` array.
 
     {
         id: 'provider_id', // This must match the ID in the OSF Repo
+        domain: 'provider.org', // If not present, you must use http://localhost:5000/preprints/provider
         logoSharing: { // T
             path: '/assets/img/provider_logos/provider_id-sharing.png', // The path to the provider's sharing logo
             type: 'image/png', // The mime type of the image
@@ -131,6 +133,7 @@ object to that ``providers`` array.
         permissionLanguage: 'provider_permission_language'
     }
 
+If using the provider domain, run ``sudo ./scripts/add-domains.js`` to update your local ``/etc/hosts``. You should be able to restart ember-preprints and go to http://local.provider.org:4200/
 
 Adding permission language to the footer text
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
