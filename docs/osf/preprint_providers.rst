@@ -167,16 +167,16 @@ The basic stylesheet must be named ``app/styles/brands/provider_id.scss`` and co
     @import 'brand';
 
     @include brand(
-        #ABCDEF,                                // Color, theme color #1 (header backgrounds, hover backgrounds)
-        white,                                  // Color, theme color #2 (text color mostly, usually white or black)
-        #012345,                                // Color, theme color #3 (navbar color, preferably a dark color)
-        #6789AB,                                // Color, theme color #4 (used in link colors)
-        black,                                  // Color, theme color #5 (text color that contrasts with #2, usually black or white)
-        $logo-dir + 'engrxiv-small.png',        // String, path to the rectangular provider logo
-        $logo-dir + 'engrxiv-square-small.png', // String, path to the square provider logo
-        true,                                   // Boolean, whether to use the white share logo or not
-        false,                                  // Boolean, whether to use theme color 4 or theme color 2 for the navbar link color
-        true                                    // Boolean, whether to use the contracts link color (theme color 4)
+        #ABCDEF,                                    // Color, theme color #1 (header backgrounds, hover backgrounds)
+        white,                                      // Color, theme color #2 (text color mostly, usually white or black)
+        #012345,                                    // Color, theme color #3 (navbar color, preferably a dark color)
+        #6789AB,                                    // Color, theme color #4 (used in link colors)
+        black,                                      // Color, theme color #5 (text color that contrasts with #2, usually black or white)
+        $logo-dir + 'provider_id-small.png',        // String, path to the rectangular provider logo
+        $logo-dir + 'provider_id-square-small.png', // String, path to the square provider logo
+        true,                                       // Boolean, whether to use the white share logo or not
+        false,                                      // Boolean, whether to use theme color 4 or theme color 2 for the navbar link color
+        true                                        // Boolean, whether to use the contracts link color (theme color 4)
     );
 
     // Add any custom styles or overrides here
