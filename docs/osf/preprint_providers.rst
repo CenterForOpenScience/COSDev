@@ -184,3 +184,27 @@ Open Pull Requests
 ------------------
 Open pull requests against osf.io and ember-preprints with your changes. Be sure to cross-reference in the PR description that it requires the other PR.
 Add notes for QA that include screenshots of the newly added provider
+
+CAS Support for Login and Sign Up
+=================================
+Create a ticket in `CAS Board <https://openscience.atlassian.net/secure/RapidBoard.jspa?rapidView=78&useStoredSettings=true with title>`_ with "Login and Sign Up Support: <the name of the preprint provider>" as the summary. Basic features are guaranteed and extra ones are welcome. Make this ticket block the OSF or EOSF tickets for this provider.
+
+Basic Features
+--------------
+
+1. Register the preprint provider to CAS Registered Service.
+2. Whitelist the provider's external domain to OSF Authentication Logic.
+3. Customize the login page (CAS) and the sign up page (OSF).
+
+Extra Features
+--------------
+
+Please add other requirements in the description.
+
+Resources To Provide
+--------------------
+
+1. Preferred display name: e.g. ``PsyArxiv``.
+2. The default, black and colored logo images (if available).
+3. Preferred CSS background color: the main background color of the home page.
+4. OSF domain and external domain: e.g. ``osf.io/preprints/psyarxiv/`` and ``preprints.psyarxiv.org/``
