@@ -185,5 +185,7 @@ You may need to manipulate the colors and options to get them to look good. Avoi
 
 Open Pull Requests
 ------------------
-Open pull requests against osf.io and ember-preprints with your changes. Be sure to cross-reference in the PR description that it requires the other PR.
-Add notes for QA that include screenshots of the newly added provider
+Open pull requests (PRs) against osf.io and ember-preprints with your changes. Be sure to cross-reference in the PR description that it requires the other PR.
+Add notes for QA that include screenshots of the newly added provider.
+
+In your PR against osf.io, add a section called "Notes for Deployment" with a reminder to request an API key from SHARE. This is necessary, because the provider's preprints will not be indexed by SHARE without the API Key.
