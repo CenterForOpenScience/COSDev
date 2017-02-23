@@ -9,7 +9,7 @@ New preprint providers must have the following:
 * A name
 * A square logo
 * A rectangular/wide logo
-* 3 unique colors (consider contrast ratios for accessibility)
+* 3 unique colors
 * A list of acceptable subjects (taxonomies)
 * A list of acceptable licenses 
 * Emails for:
@@ -51,7 +51,6 @@ You'll need to add a entry to the ``PREPRINT_PROVIDERS`` list in ``scripts/popul
         'name': 'provider_name',
         'logo_name': 'provider_id-logo.png',
         'description': 'The description of the preprint provider',
-        'domain': 'provider.org', # Optional
         'banner_name': 'provider_id-banner.png',
         'external_url': 'http://provider-url.org',
         'example': 'abc12', # An example guid for this provider (Will have to be updated after the provider is up)
@@ -87,7 +86,7 @@ You'll need to add a entry to the ``PREPRINT_PROVIDERS`` list in ``scripts/popul
         ],
     },
 
-Run the script locally to ensure that it works: ``docker-compose run --rm web python -m scripts.populate_preprint_providers``. If it's working, commit the changes. Put a note in the PR to have others re-run this script.
+Run the script locally to ensure that it works: ``python -m scripts.populate_preprint_providers``. If it's working, commit the changes
 
 ember-preprints Updates
 -----------------------
@@ -123,7 +122,6 @@ object to that ``providers`` array.
 
     {
         id: 'provider_id', // This must match the ID in the OSF Repo
-        domain: 'provider.org', // If not present, you must use http://localhost:5000/preprints/provider
         logoSharing: { // T
             path: '/assets/img/provider_logos/provider_id-sharing.png', // The path to the provider's sharing logo
             type: 'image/png', // The mime type of the image
@@ -133,7 +131,6 @@ object to that ``providers`` array.
         permissionLanguage: 'provider_permission_language'
     }
 
-If using the provider domain, run ``sudo ./scripts/add-domains.js`` to update your local ``/etc/hosts``. You should be able to restart ember-preprints and go to http://local.provider.org:4200/
 
 Adding permission language to the footer text
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -167,16 +164,16 @@ The basic stylesheet must be named ``app/styles/brands/provider_id.scss`` and co
     @import 'brand';
 
     @include brand(
-        #ABCDEF,                                    // Color, theme color #1 (header backgrounds, hover backgrounds)
-        white,                                      // Color, theme color #2 (text color mostly, usually white or black)
-        #012345,                                    // Color, theme color #3 (navbar color, preferably a dark color)
-        #6789AB,                                    // Color, theme color #4 (used in link colors)
-        black,                                      // Color, theme color #5 (text color that contrasts with #2, usually black or white)
-        $logo-dir + 'provider_id-small.png',        // String, path to the rectangular provider logo
-        $logo-dir + 'provider_id-square-small.png', // String, path to the square provider logo
-        true,                                       // Boolean, whether to use the white share logo or not
-        false,                                      // Boolean, whether to use theme color 4 or theme color 2 for the navbar link color
-        true                                        // Boolean, whether to use the contracts link color (theme color 4)
+        #ABCDEF,                                // Color, theme color #1 (header backgrounds, hover backgrounds)
+        white,                                  // Color, theme color #2 (text color mostly, usually white or black)
+        #012345,                                // Color, theme color #3 (navbar color, preferably a dark color)
+        #6789AB,                                // Color, theme color #4 (used in link colors)
+        black,                                  // Color, theme color #5 (text color that contrasts with #2, usually black or white)
+        $logo-dir + 'engrxiv-small.png',        // String, path to the rectangular provider logo
+        $logo-dir + 'engrxiv-square-small.png', // String, path to the square provider logo
+        true,                                   // Boolean, whether to use the white share logo or not
+        false,                                  // Boolean, whether to use theme color 4 or theme color 2 for the navbar link color
+        true                                    // Boolean, whether to use the contracts link color (theme color 4)
     );
 
     // Add any custom styles or overrides here
@@ -185,7 +182,31 @@ You may need to manipulate the colors and options to get them to look good. Avoi
 
 Open Pull Requests
 ------------------
-Open pull requests (PRs) against osf.io and ember-preprints with your changes. Be sure to cross-reference in the PR description that it requires the other PR.
-Add notes for QA that include screenshots of the newly added provider.
+Open pull requests against osf.io and ember-preprints with your changes. Be sure to cross-reference in the PR description that it requires the other PR.
+Add notes for QA that include screenshots of the newly added provider
 
 In your PR against osf.io, add a section called "Notes for Deployment" with a reminder to request an API key from SHARE. This is necessary, because the provider's preprints will not be indexed by SHARE without the API Key.
+
+CAS Support for Login and Sign Up
+=================================
+Create a ticket in `CAS Board <https://openscience.atlassian.net/secure/RapidBoard.jspa?rapidView=78&useStoredSettings=true with title>`_ with "Login and Sign Up Support: <the name of the preprint provider>" as the summary. Basic features are guaranteed and extra ones are welcome. Make this ticket block the OSF or EOSF tickets for this provider.
+
+Basic Features
+--------------
+
+1. Register the preprint provider to CAS Registered Service.
+2. Whitelist the provider's external domain to OSF Authentication Logic.
+3. Customize the login page (CAS) and the sign up page (OSF).
+
+Extra Features
+--------------
+
+Please add other requirements in the description.
+
+Resources To Provide
+--------------------
+
+1. Preferred display name: e.g. ``PsyArxiv``.
+2. The default, black and colored logo images (if available).
+3. Preferred CSS background color: the main background color of the home page.
+4. OSF domain and external domain: e.g. ``osf.io/preprints/psyarxiv/`` and ``preprints.psyarxiv.org/``
