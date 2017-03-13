@@ -52,8 +52,9 @@ You'll need to add a entry to the ``PREPRINT_PROVIDERS`` list in ``scripts/popul
         'logo_name': 'provider_id-logo.png',
         'description': 'The description of the preprint provider',
         'banner_name': 'provider_id-banner.png',
+        'domain': 'provider.org'  # Delete this line and add a comment if not using a domain
         'external_url': 'http://provider-url.org',
-        'example': 'abc12', # An example guid for this provider (Will have to be updated after the provider is up)
+        'example': 'abc12',  # An example guid for this provider (Will have to be updated after the provider is up)
         # Advisory board should be valid html string in triple quotes
         'advisory_board': '''
             <div class="col-xs-12">
@@ -118,11 +119,14 @@ Adding an entry in the config
 In ``config/environment.js``, there will be a ``PREPRINTS`` object and a ``providers`` array. You will need to add another
 object to that ``providers`` array.
 
+If adding a provider domain, you'll need to run ``sudo ./scripts/add-domains.js``
+
 .. code-block:: javascript
 
     {
         id: 'provider_id', // This must match the ID in the OSF Repo
-        logoSharing: { // T
+        domain: 'provider.org', // If using a domain. Otherwise, delete this line
+        logoSharing: {
             path: '/assets/img/provider_logos/provider_id-sharing.png', // The path to the provider's sharing logo
             type: 'image/png', // The mime type of the image
             width: 1500, // minimum 200, 1500 preferred (this is the width of the image, in pixels)
@@ -183,6 +187,7 @@ You may need to manipulate the colors and options to get them to look good. Avoi
 Open Pull Requests
 ------------------
 Open pull requests against osf.io and ember-preprints with your changes. Be sure to cross-reference in the PR description that it requires the other PR.
+If the PR includes adding a domain, Add a "Notes for Reviewers" section with a reminder to run the add-domains script.
 Add notes for QA that include screenshots of the newly added provider
 
 In your PR against osf.io, add a section called "Notes for Deployment" with a reminder to request an API key from SHARE. This is necessary, because the provider's preprints will not be indexed by SHARE without the API Key.
@@ -210,3 +215,7 @@ Resources To Provide
 2. The default, black and colored logo images (if available).
 3. Preferred CSS background color: the main background color of the home page.
 4. OSF domain and external domain: e.g. ``osf.io/preprints/psyarxiv/`` and ``preprints.psyarxiv.org/``
+
+DevOps
+======
+If the provider is using a domain, create a DevOps ticket to update the proxy redirects and for them to contact the domain admin to get the domain pointed at the correct IP address. Include the contact information from the product team.
