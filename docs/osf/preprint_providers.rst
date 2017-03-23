@@ -94,15 +94,36 @@ Create a new feature branch in the **ember-preprints** repository ``git checkout
 
 Formatting the images
 ~~~~~~~~~~~~~~~~~~~~~
-In the ember-preprints repository: ``public/assets/img/provider_logos``
+In the ember-preprints repository: ``public/assets/img/provider_logos``. Commit the original images (before edits) to the repository, but don't reference the original images in the CSS.
+SVG images are preferred, but if the provider does not have those available, use or convert to the PNG format.
 
 You'll need:
 
 * White foreground with transparent background (Used on the main OSF Preprints landing page, under the *Preprint Services* Section)
+
+  * width: <= ``350px``
+  * height: ``140px``
+
 * Black foreground with transparent background (Used on the OSF Preprints discover page, under *Partner Repositories*)
+
+  * width: <= ``350px``
+  * height: ``120px``
+
 * Square logo with a transparent background (can have color foreground)
+
+  * width: ``48px``
+  * height: ``48px``
+
 * Rectangular/wide logo with a transparent background (can have color foreground, this can be the white foreground image)
-* A *sharing logo* that will be displayed on social media sites (preferably 1500x1500 pixels)
+
+  * width: <= ``600px``
+  * height: ``140px``
+
+* A *sharing logo* that will be displayed on social media sites
+
+  * width: >= ``200px``, ``1500px`` preferred
+  * height: >= ``200px``, ``1500px`` preferred
+
 
 You may need to edit the images to meet the requirements. Use ``brew cask install gimp`` to install gimp or use Pixlr_.
 
