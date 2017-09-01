@@ -39,56 +39,6 @@ osf.io Updates
 Create a new feature branch in the **osf.io** repository ``git checkout develop && git checkout -b feature/add-preprint-provider-provider_id``
 
 
-Updating the OSF populate_preprint_providers script
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-You'll need to add a entry to the ``PREPRINT_PROVIDERS`` list in ``scripts/populate_preprint_providers.py``
-
-.. code-block:: python
-
-    {
-        '_id': 'provider_id',
-        'name': 'provider_name',
-        'logo_name': 'provider_id-logo.png',
-        'description': 'The description of the preprint provider',
-        'banner_name': 'provider_id-banner.png',
-        'domain': 'provider.org'  # Delete this line and add a comment if not using a domain
-        'external_url': 'http://provider-url.org',
-        'example': 'abc12',  # An example guid for this provider (Will have to be updated after the provider is up)
-        # Advisory board should be valid html string in triple quotes
-        'advisory_board': '''
-            <div class="col-xs-12">
-                <h2>Advisory Board</h2>
-                <p class="m-b-lg">This is an example advisory board. The members are:</p>
-            </div>
-            <div class="col-xs-6">
-                <ul>
-                    <li>Pat Johnson, works at a place</li>
-                    <li>Cody Jackson, with a description</li>
-                </ul>
-            </div>
-            <div class="col-xs-6">
-                <ul>
-                    <li><a href="http://www.example.com/bobsmith">Bob Smith</a>, Awesome board member</li>
-                    <li><a href="http://www.example.com/janesmith">Jane Smith</a>, Great board member</li>
-                </ul>
-            </div>
-        ''',
-        'email_contact': 'contact+provider_id@osf.io',
-        'email_support': 'support+provider_id@osf.io',
-        'social_twitter': 'provider_tweets', # optional
-        'social_facebook': 'provider_fb', # optional
-        'social_instagram': 'provider_ig', # optional
-        'licenses_acceptable': ['CC0 1.0 Universal', 'CC-By Attribution 4.0 International', 'No license'], # Determined by the provider
-        'header_text': '', # Unused
-        'subjects_acceptable':[
-            (['Subject', 'Heirarchy'], True), # Tuple<List<String>, Boolean> The list should be the heirarchy of the subjects/taxonomies
-            (['Subject2', 'Subject3', 'Subject4'], False),
-        ],
-    },
-
-Run the script locally to ensure that it works: ``python -m scripts.populate_preprint_providers``. If it's working, commit the changes
-
 ember-preprints Updates
 -----------------------
 Create a new feature branch in the **ember-preprints** repository ``git checkout develop && git checkout -b feature/add-preprint-provider-provider_id``

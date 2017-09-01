@@ -6,22 +6,6 @@ Ops
 Common deployment tasks
 ***********************
 
-Restarting the app server
--------------------------
-
-.. code-block:: bash
-
-    # After pulling down changes
-    # Update and build assets then restart uwsgi
-    $ sudo -u www-data -s /bin/bash -c "HOME=/tmp; source /opt/data/envs/osf/bin/activate && invoke assets" && sudo service uwsgi restart
-Updating OSF for Meetings Database
-----------------------------------
-
-.. code-block:: bash
-
-    # After pulling down changes
-    $ python -m scripts.populate_conferences
-
 Generating a new SSL certificate
 --------------------------------
 
