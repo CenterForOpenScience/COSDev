@@ -8,13 +8,16 @@ from invoke import task, run
 docs_dir = 'docs'
 build_dir = os.path.join(docs_dir, '_build')
 
+
 @task
 def readme(browse=False):
     run('rst2html.py README.rst > README.html')
 
+
 @task
 def clean_docs():
     run("rm -rf %s" % build_dir)
+
 
 @task
 def browse_docs():
@@ -29,11 +32,12 @@ def docs(clean=False, browse=False):
     if browse:
         browse_docs()
 
+
 @task
 def watch(port=8000):
     docs()
     try:
-        import sphinx_autobuild
+        import sphinx_autobuild  # flake8: noqa
     except ImportError:
         print('ERROR: watch task requires the sphinx_autobuild package.')
         print('Install it with:')
@@ -41,4 +45,3 @@ def watch(port=8000):
         sys.exit(1)
     run('sphinx-autobuild {} {} --port {}'.format(docs_dir, build_dir, port),
             pty=True, echo=True)
-
