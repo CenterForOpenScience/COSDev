@@ -26,7 +26,8 @@ Reviewing Code
 - Make sure you understand the purpose of the code being reviewed.
 - Checkout the branch being reviewed, and manually test the intended behavior.
 - In your comments, keep in mind the fact that what you're saying can easily be perceived as personal criticism (even if it's not--it shouldn't be) and adjust your tone accordingly.
-- After doing a pass of code review, add a comment with an emoji to signify that your pass is complete and ready to be processed.
+- After doing a pass of code review, "Approve" or "Request Changes" in
+  the GitHub UI.
 - Style fixes should refer to the style guides, when possible.
 
 Example style comment:
