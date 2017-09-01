@@ -3,6 +3,11 @@
 Testing the OSF
 ===============
 
+.. warning::
+
+    This page contains outdated information. We now use pytest and
+    pytest-django instead of nose for tests.
+
 This page includes information about testing the OSF codebase.
 
 .. seealso::
