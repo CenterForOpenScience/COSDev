@@ -3,45 +3,57 @@ import os
 import sys
 import webbrowser
 
-from invoke import task, run
+from invoke import task
 
 docs_dir = 'docs'
 build_dir = os.path.join(docs_dir, '_build')
 
 
 @task
-def readme(browse=False):
-    run('rst2html.py README.rst > README.html')
+def readme(ctx, browse=False):
+    ctx.run("rst2html.py README.rst > README.html")
+    if browse:
+        webbrowser.open_new_tab('README.html')
+
+
+def build_docs(ctx, browse):
+    ctx.run("sphinx-build %s %s" % (docs_dir, build_dir), echo=True)
+    if browse:
+        browse_docs(ctx)
 
 
 @task
-def clean_docs():
-    run("rm -rf %s" % build_dir)
+def clean_docs(ctx):
+    ctx.run('rm -rf %s' % build_dir)
 
 
 @task
-def browse_docs():
+def browse_docs(ctx):
     path = os.path.join(build_dir, 'index.html')
     webbrowser.open_new_tab(path)
 
+
 @task
-def docs(clean=False, browse=False):
+def docs(ctx, clean=False, browse=False, watch=False):
+    """Build the docs."""
     if clean:
-        clean_docs()
-    run("sphinx-build {} {}".format(docs_dir, build_dir), pty=True)
-    if browse:
-        browse_docs()
+        clean_docs(ctx)
+    if watch:
+        watch_docs(ctx, browse=browse)
+    else:
+        build_docs(ctx, browse=browse)
 
 
 @task
-def watch(port=8000):
-    docs()
+def watch_docs(ctx, browse=False):
+    """Run build the docs when a file changes."""
     try:
-        import sphinx_autobuild  # flake8: noqa
+        import sphinx_autobuild  # noqa
     except ImportError:
         print('ERROR: watch task requires the sphinx_autobuild package.')
         print('Install it with:')
         print('    pip install sphinx-autobuild')
         sys.exit(1)
-    run('sphinx-autobuild {} {} --port {}'.format(docs_dir, build_dir, port),
-            pty=True, echo=True)
+    ctx.run('sphinx-autobuild {0} {1} {2} -z marshmallow'.format(
+        '--open-browser' if browse else '', docs_dir, build_dir),
+            echo=True, pty=True)
