@@ -45,7 +45,7 @@ def docs(ctx, clean=False, browse=False, watch=False):
 
 
 @task
-def watch_docs(ctx, browse=False):
+def watch_docs(ctx, browse=False, port=1234):
     """Run build the docs when a file changes."""
     try:
         import sphinx_autobuild  # noqa
@@ -54,6 +54,6 @@ def watch_docs(ctx, browse=False):
         print('Install it with:')
         print('    pip install sphinx-autobuild')
         sys.exit(1)
-    ctx.run('sphinx-autobuild {0} {1} {2} -z marshmallow'.format(
-        '--open-browser' if browse else '', docs_dir, build_dir),
+    ctx.run('sphinx-autobuild {0} --port={port} {1} {2}'.format(
+        '--open-browser' if browse else '', docs_dir, build_dir, port=port),
             echo=True, pty=True)
