@@ -229,7 +229,7 @@ There are a number of plugins for integrating jshint with your preferred text ed
 
 Vim
 
-- `syntastic <https://github.com/scrooloose/syntastic>`_ (multi-language)
+- `ale <https://github.com/w0rp/ale>`_ (multi-language)
 
 Sublime Text
 
