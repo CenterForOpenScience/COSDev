@@ -121,18 +121,22 @@ If you have intentionally have an unused import that exists only to make imports
 String formatting
 *****************
 
-Prefer ``str.format`` to "%-style" formatting.
+Prefer f-strings (if using Python>=3.6) or ``str.format`` to "%-style" formatting or concatenation.
 
 .. code-block:: python
 
+    name = 'World'
+
     # Yes
-    'Hello {}'.format('World')
+    f'Hello {name}'
+    # OR (on Python 2)
+    'Hello {}'.format(name)
      # OR
-    'Hello {name}'.format(name='World')
+    'Hello {name}'.format(name=name)
 
     # No
-
-    'Hello %s' % ('World', )
+    'Hello %s' % (name, )
+    'Hello ' + name
 
 Print statements
 ****************
